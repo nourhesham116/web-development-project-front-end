@@ -1,0 +1,198 @@
+body {
+    background-color: white;
+    margin: 0px;
+    /* font-family: 'Roboto', sans-serif;*/
+    font-family: 'Brown', sans-serif;
+}
+
+.header {
+    background-color: rgb(238, 220, 215);
+    width: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 20px;
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: 600;
+    z-index: 999;
+
+
+}
+
+.header2 {
+    background-color: rgb(226, 206, 226);
+    width: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    float: right;
+    text-align: center;
+    padding-top: 20px;
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: 600;
+    z-index: 999;
+
+
+}
+
+.header a,
+.header2 a {
+    text-decoration: none;
+    color: black;
+    margin: auto;
+    position: fixed;
+
+
+}
+
+.header :hover,
+.header2 :hover {
+
+    font-size: large;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+nav a {
+    color: rgb(11, 11, 11);
+    /* padding: 15px;*/
+    /*padding-right: 2px;*/
+    text-decoration: none;
+
+
+}
+
+nav {
+    background-color: rgb(255, 255, 255);
+    right: 0;
+    left: 0%;
+    width: 100%;
+    z-index: 999;
+    position: fixed;
+    height: 60px;
+
+
+}
+
+.wrapper .nav-links {
+    display: inline-flex;
+
+}
+
+.bothHeaders {
+    padding: 15px;
+
+
+}
+
+nav .wrapper {
+    max-width: 1300px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+
+
+}
+
+.nav-links li {
+    list-style: none;
+
+
+}
+
+.nav-links li a {
+    text-decoration: none;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 9px 20px;
+    transition: all 0.3s ease;
+    display: block;
+
+}
+
+.wrapper .logo a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 550;
+    align-items: center;
+
+
+}
+
+.mega-box {
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    left: 0;
+    padding-top: 10.3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+}
+
+.mega-box .content {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    padding: 25px 20px;
+    justify-content: left;
+    border-top: 1px;
+    border-top-color: rgb(174, 168, 168);
+    border-top-style: solid;
+}
+
+.content .row {
+    width: calc(25%-30px);
+    line-height: 45px;
+    padding: 25px 25px;
+}
+
+.content .row .new-links {
+    margin-left: -40px;
+
+}
+
+.row .new-links li a {
+    padding: 0 30px;
+    color: rgb(10, 10, 10);
+    font-size: 17px;
+    display: block;
+
+
+}
+
+.row .new-links li:hover a {
+    text-decoration: underline;
+}
+
+.nav-links li:hover .mega-box {
+    top: 99px;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease;
+
+}
+
+.icons {
+
+    padding-left: 30px;
+    justify-content: space-between;
+
+}
+
+.icons a {
+
+    width: 100%;
+}

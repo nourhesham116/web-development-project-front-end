@@ -1,0 +1,102 @@
+body{
+    background-color: black;
+    padding:40px 0;
+    position:relative;
+    font-family:'Bona Nova', serif;
+    
+}
+.h3{
+    text-align: center;
+    font-size: 32px;
+    line-height: 4px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color:white;
+
+}
+.p1{
+    text-align: center;
+    font-size: 22px;
+    line-height:2px;
+    letter-spacing:0.01em;
+    color:white;
+
+}
+
+.disclaimer{
+    text-align: center;
+    font-size: 16px;
+    color:white;
+
+
+}
+
+.logo{
+    text-align: left;
+    color: rgb(230, 159, 134);
+    margin: 15px;
+    font-size: 28px;
+    line-height:2px;
+
+}
+.follow{
+    text-align:left;
+    color: rgb(230, 159, 134);
+    margin-left: 45px;
+    font-size: 24px;
+    line-height:2px;
+
+}
+.logos{
+    text-align: left;
+    color:white;
+    margin: 15px;
+    font-size: 28px;
+    line-height:2px;
+    
+
+}
+.follows{
+    text-align:left;
+    color: white;
+    margin-left: 60px;
+    font-size: 24px;
+    line-height:2px;
+
+}
+.skin{
+    float:right;
+    margin-top: -120px;
+    margin-right:30px;
+}
+.contactus{
+    text-align: left;
+    margin-right:400px;
+    line-height:15px;
+    margin:15px;
+}
+.about{
+    text-align: left;
+    margin-right:150px;
+    margin-left:15px;
+}
+.lists{
+    list-style-type:none;
+    list-style:none;
+    margin-top: -670px;
+    margin-left:700px; 
+   text-align: left;
+}
+.bea{
+    margin-left:250px;
+    margin-top: -458px;
+    
+
+}
+
+.ski{
+    margin-left:500px;
+    margin-top: -458px;
+
+    
+}

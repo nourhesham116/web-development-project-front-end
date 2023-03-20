@@ -423,6 +423,7 @@ body {
  
   .hide:hover {
     display: none;
+    transition: 0.8s ease-in-out;
   }
  
   .flt-left {
@@ -539,3 +540,5 @@ body {
   .highlighterdescription button a {
     color: white;
   }
+
+  

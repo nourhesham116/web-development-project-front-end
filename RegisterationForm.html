@@ -9,9 +9,10 @@
     <title>Register</title>
 </head>
 <body>
+    <script src="Validation.js"></script>
     <div class="createAndBenifits">
         <div class="regForm">
-            <form action="">
+            <form action='' method='post' onsubmit='return validate(this)'>
                 <h2>Create Account</h2>
                 <p>Save your shipping information for faster checkout.
                      Opt-in for our email list to receive early access to new products & exclusive offers.</p> 
@@ -19,9 +20,11 @@
                     <input type="text" name="Fname" placeholder="First Name">
                     <input type="text" name="Lname" placeholder="Last Name">
                  </div> 
+                 <div class="err"><span id="FnameERR"></span> <span id="LnameERR"></span></div>
                  <input type="email" name="email" placeholder="Email Address"> 
-                 <br>
+                 <span id="eErr" class="err"></span>
                  <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> 
+                 <span id="ecErr" class="err"></span>
                  <p>
                     "="">Terms of Use & Privacy Policy. California residents: Please also 
                     see our Financial Incentive Terms"ref=""@change="onInputChange"description="true"> By
@@ -32,7 +35,10 @@
                     Privacy Policy.
                  </p>
                  <input type="password" name="pass" placeholder="Password">
+                 <span id="pErr" class="err"></span>
                  <input type="password" name="passConfirm" placeholder="Confirm Password">
+                 <span id="pcErr" class="err"></span>
+                 <br>
                  <select name="months">
                     <option value= "Months"> Months</option>
                     <option value="january">January</option>
@@ -83,7 +89,7 @@
                     <option value= "30"> 30</option>
                     <option value= "31"> 31</option>
                   </select>
-                  <button type="button" name="create">Create Account</button>
+                  <input type="submit" name="submit" value="Create Account">
             </form>
             
 

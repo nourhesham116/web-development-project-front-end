@@ -66,7 +66,7 @@ body{
 }
 
 #interface{
- width: 78%;
+ width: 80%;
  margin-left: 300px;
  position: relative;
 }
@@ -252,4 +252,47 @@ tbody tr td{
         width:100%;
         border-collapse: collapse;
     }
+}
+/* statistics page */
+.stats{
+    display: flex;
+    position: relative;
+    padding: 30px 0 0 30px;
+    justify-content: space-between;
+}
+.statvalue{
+    padding: 30px 30px 0 30px;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 30px 30px 30px;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.statvalue .val-box{
+    background-color: white;
+    width:300px;
+    padding:16px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.statvalue .val-box i{
+    font-size: 25px;
+    width: 60px;
+    height:60px;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    color: black;
+    margin-right: 15px;
+}
+.statvalue .val-box:nth-child(1) i{
+    background:#FAE5DF;
+}
+.statvalue .val-box:nth-child(2) i{
+    background:#D9E6F3;
 }

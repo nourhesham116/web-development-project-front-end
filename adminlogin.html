@@ -9,18 +9,20 @@
     <title>Admin login</title>
 </head>
 <body>
+    <script src="Validation.js"></script>
     <div class="createAndBenifits">
         <div class="regForm">
-            <form action="">
+            <form action='' method='post' onsubmit='return validateAdmin(this)'>
                 <h2>Admin login</h2>
                  <input type="email" name="email" placeholder="Email Address"> 
                  <br>
                  <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> 
             
                  <input type="password" name="pass" placeholder="Password">
+                 <span id="pErr" class="err"></span>
                  <input type="password" name="passConfirm" placeholder="Confirm Password">
-                 
-                  <button type="button" name="create">Login As Admin</button>
+                 <span id="pcErr" class="err"></span>
+                 <input type="submit" name="submit" value="Login">
             </form>
         </div>
     </div>

@@ -327,7 +327,8 @@ body{
   .number{
       margin:100px;
   }
-  .minus{
+  
+  #minus{
       width:45px;
       height:30px;
       background:#f2f2f2;
@@ -344,7 +345,7 @@ body{
       transform: translate(-19.9%, -30%);
       text-align:center;
   }
-  .add{
+  #add{
     width:45px;
     height:30px;
     background:#f2f2f2;
@@ -361,7 +362,7 @@ body{
     transform: translate(-19.9%, -30%);
     text-align:center;
   }
-  .value{
+  #value{
     height:30px;
     width: 45px;
     text-align: center;

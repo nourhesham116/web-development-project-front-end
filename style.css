@@ -1,6 +1,5 @@
-@charset "utf-8";
 body{
-    margin: 0%;
+    margin: 0;
     padding: 0%;
     background-color: #fffffd;
 }
@@ -16,7 +15,7 @@ body{
 }
 .headerIMG{
     overflow-clip-margin: content-box;
-    overflow: clip;
+    /*overflow: clip;*/
     top: 0;
     left: 0;
     right: 0;
@@ -25,35 +24,51 @@ body{
     height: 100%;
     object-fit:inherit;
     display: flexbox;
+    padding-top: 30px;
+    margin-top: 40px;
 }
 a{
     text-decoration: none;
 }
-div{
+/*div{
     position: relative;
     display: flex;
 }
+*/
 div .detail{
 position:relative ; 
 }
 .box{
-    width: 350px;
+    width: 310px;
     height: 350px;
     box-shadow: 2px 2px 30px rgba(0,0,0,0,0.2);
     border-radius: 0px;
     overflow:hidden;
     position: relative;
-    
+
    /* left: 50%;
     top: 50%;
     
     transform: translate(-50%,-50%);*/
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.2s ease;
+    background-color: white;
+  }
 .img-slide{
     width: 100%;
     height: 100%;
     object-fit: contain;
     box-sizing:content-box;
+  
 }
 .detail{
     width: 310px;
@@ -109,7 +124,7 @@ position:relative ;
     display: inline;
     float: right;
 }
-li{
+.item-a{
     display: inline;
     float: left;
     border: 4px;
@@ -119,9 +134,10 @@ li{
 .add{
 
 }
-.hide:hover{
-    display: none;
-}
+.box:hover .overlay {
+    opacity: 1;
+  }
+
 .checked {
     color: black;
   }

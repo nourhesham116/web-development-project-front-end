@@ -4,17 +4,20 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.createandbenefits{
+    margin: 900px;
+}
 .regForm{
+
     width: 500px;
-    padding: 40px;
+    padding: 70px;
+     margin: 100px 0px 0 450px;
     background-color: white;
     justify-content: center;
-    display: flex;
+    display: relative;
 
 }
-/* h4 [name="Formrequired"]{
-    
-} */
+
 input{
     width:200px;
     height: 30px;

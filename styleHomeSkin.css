@@ -479,7 +479,7 @@ nav .wrapper {
    
   }
   .add-to-bag-button{
-    border: 0;
+    border: none;
     background-color: white;
     align-items: center;
     padding-top: 10px;

@@ -4,15 +4,17 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.createAndBenefits{
+    display:flex;
+}
 .regForm{
     width: 500px;
     padding: 40px;
     margin: 40px;
     background-color: white;
+    font-family: 'Overpass Mono', monospace;
+    font-family: 'Space Grotesk', sans-serif;
 }
-/* h4 [name="Formrequired"]{
-    
-} */
 input{
     width:200px;
     height: 30px;
@@ -91,4 +93,15 @@ input[type="submit"]{
     letter-spacing: 0.2em;
     font-weight: 600;
     border-style: none;
+}
+div[class="benefits"]{
+    width: 500px;
+    padding: 40px;
+    margin: 40px;
+    padding-left: 50px;
+    padding-right: 200px;
+    font-family: 'Overpass Mono', monospace;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.2em;
+    font-weight: 500;
 }

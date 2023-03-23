@@ -691,3 +691,6 @@ body {
 .nxt-btn:hover img {
   opacity: 1;
 }
+header{
+    margin-top: 0px;
+}

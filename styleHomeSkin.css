@@ -457,9 +457,66 @@ nav .wrapper {
   .nxt-btn:hover img {
     opacity: 1;
   }
+  /*add to bag*/
+  #square{
+    width: 40%;
+    height: 688px;
+    padding-top: 0px;
+    margin-top: 0px;
+    z-index: 999;
+    background-color: rgb(255, 255, 255);
+    border:2px;
+    border-color: rgb(198, 191, 191);
+    border-style: solid;
+    margin-bottom: 0px;
+    position:fixed;
+    left:60%;
+    bottom:0%;
+    top:0%;
+    opacity:0;
+    align-items: center;
+   
+  }
+  .your-bag{
+    background-color:rgb(238, 236, 236) ;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    
+    
+  }
+  #ur-bag{
+    font-size: larger;
+    font-weight: bold;
+    padding-right:30%;
+  }
+  .welcome{
+    font-weight: bold;
+    font-size: 30px;
+    align-items: center;
+    padding-left: 180px;
   
-  
-
+  }
+  .bag-content{
+    font-weight: bold;
+    font-size: 30px;
+    align-items: center;
+    padding-left: 170px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+  }
+  .incart-buttons{
+    margin-right: 30px;
+    margin-left: 55px;
+   width: 250px;
+   height: 50px;
+   background-color: black;
+   color: white;
+   font-weight:bold;
+   font-size: small;
+   margin-bottom: 20px;
+}
+/*add to bag end*/
 /*@keyframes wipe-enter {
 	
 	50% {

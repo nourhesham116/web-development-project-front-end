@@ -154,9 +154,9 @@
                         </div>
                     </li>
                     <li> <a href="Account.html"><i class="fa fa-user-circle"></i></a></li>
-                    <li> <a href="#"><i class="fa fa-search"></i></a></li>
+                    <li> <a href="#"><i class="fa fa-search"></a></i></li>
                     <li> <a href="#"><i class="fa fa-heart"></i></a></li>
-                    <li> <a href="#"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li> <button id="add-to-bag-button" onclick="appear()"> <i class="fa fa-shopping-bag"></i> </button></li>
 
                 </ul>
             </div>
@@ -164,9 +164,27 @@
     </div>
     <br>
     <!--nav bar ender-->
+    <!--add to bag-->
     <div>
-        <a href="productdetail.html"><img id="big-melt-image" src="FS366458-FS-Melt-Awf-Launch_HP_Takeover_Hero_Desktop_1400x.webp"
-                width="100%" height="675px"></a>
+        <div id="square">
+            <div class="your-bag">
+                <p id="ur-bag"> YOUR BAG </p>
+                <span id="value">0</span><span> items</span>
+            </div>
+            <div class="welcome">
+               <p>WELCOME  BACK!</p> 
+            </div>
+            <div class="bag-content">
+                <p>YOUR BAG IS EMTY</p>
+                <button class="incart-buttons" onclick="">SHOP SOPHISTIQUÉ SKIN</button>
+                <button class="incart-buttons" onclick="">SHOP SOPHISTIQUÉ BEAUTY</button>
+            </div>
+        </div>
+    </div>
+    <!--add to bag ends-->
+    <div>
+        <a href="productdetail.html"><img id="big-melt-image"
+                src="FS366458-FS-Melt-Awf-Launch_HP_Takeover_Hero_Desktop_1400x.webp" width="100%" height="675px"></a>
         <a href="#"><img id="small-melt-image" src="melt pic 728px.webp" width="100%" height="675px"></a>
     </div>
     <div>
@@ -298,6 +316,13 @@
         </div>
     </div>
     <script src="SliderScript.js"></script>
+    <script>
+        function appear() {
+            let sq = document.getElementById("square");
+            sq.style.opacity = 1;
+
+        }
+    </script>
 </body>
 
 </html>

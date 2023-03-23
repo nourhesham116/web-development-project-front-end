@@ -478,12 +478,11 @@ nav .wrapper {
     /*visibility: hidden;*/
    
   }
-  .add-to-bag-button{
+  #add-to-bag-button{
     border: none;
-    background-color: white;
+    background-color: rgb(254, 254, 254);
     align-items: center;
-    padding-top: 10px;
-    margin-top: 20px;
+    margin-top: 7px;
   }
   .your-bag{
     background-color:rgb(238, 236, 236) ;

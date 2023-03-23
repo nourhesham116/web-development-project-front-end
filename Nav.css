@@ -69,7 +69,12 @@ nav a {
 
 
 }
-
+#add-to-bag-button{
+    border: none;
+    background-color: rgb(254, 254, 254);
+    align-items: center;
+    margin-top: 7px;
+  }
 nav {
     background-color: rgb(255, 255, 255);
     right: 0;

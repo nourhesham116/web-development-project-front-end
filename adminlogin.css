@@ -4,15 +4,20 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.regForm{
-    width: 500px;
-    padding: 40px;
-    margin: 40px;
-    background-color: white;
+.createandbenefits{
+    margin: 900px;
 }
-/* h4 [name="Formrequired"]{
-    
-} */
+.regForm{
+
+    width: 500px;
+    padding: 70px;
+     margin: 100px 0px 0 450px;
+    background-color: white;
+    justify-content: center;
+    display: relative;
+
+}
+
 input{
     width:200px;
     height: 30px;
@@ -55,30 +60,6 @@ select[name="months"],select[name="Days"]{
 }
 
 button[name="create"]{
-    width:460px;
-    height: 50px;
-    margin: 10px;
-    font-weight: bold;
-    color: grey;
-    padding: 8px;
-    font-family: 'Overpass Mono', monospace;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.2em;
-    font-weight: 600;
-    border-style: none;
-}
-.err{
-    color: red;
-	font-size: smaller;
-    margin: 10px;
-    padding: 0px;
-}
-span[id="LnameERR"]{
-    float: right;
-    margin-right: 20px;
-}
-input[type="submit"]{
     width:460px;
     height: 50px;
     margin: 10px;

@@ -6,7 +6,7 @@ body {
  
   /* sophistique beauty and skin  header 1 and 2 */
   .header {
-    background-color: #E8BEAC;
+    background-color: rgb(238, 220, 215);
     width: 50%;
     position: fixed;
     top: 0;
@@ -19,13 +19,12 @@ body {
     font-size: small;
     font-weight: 600;
     z-index: 999;
-    border-bottom: 40px;
-    padding: 20px;
- 
-  }
- 
-  .header2 {
-    background-color: #eedbdf;
+
+
+}
+
+.header2 {
+    background-color: rgb(226, 206, 226);
     width: 50%;
     position: fixed;
     top: 0;
@@ -38,37 +37,29 @@ body {
     font-size: small;
     font-weight: 600;
     z-index: 999;
-    border-bottom: 40px;
-    padding: 20px;
- 
-  }
- 
-  .header a,
-  .header2 a {
- 
+
+
+}
+
+.header a,
+.header2 a {
     text-decoration: none;
     color: black;
-    position: relative;
-    left: 270px;
- 
- 
-  }
- 
-  .header :hover,
-  .header2 :hover {
- 
+    margin: auto;
+    position: fixed;
+
+
+}
+
+.header :hover,
+.header2 :hover {
+
     font-size: large;
-  }
- 
-  a:active {
+}
+
+a:active {
     text-decoration: underline;
-  }
- 
-  .header a :hover,
-  .header2 a:hover {
-    font-size: large;
-  }
- 
+}
   /* mega box menu in nav */
   * {
     margin: 0;
@@ -326,7 +317,7 @@ body {
     text-decoration: none;
   }
  
-  div {
+  .boxes {
     position: relative;
     display: flex;
   }
@@ -414,14 +405,14 @@ body {
     float: right;
   }
  
-  li {
+  /*li {
     display: inline;
     float: left;
     border: 4px;
     border-style: solid;
     border-color: transparent;
   }
- 
+ */
   .hide:hover {
     display: none;
     transition: 0.8s ease-in-out;

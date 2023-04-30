@@ -1,4 +1,4 @@
-body{
+.footer{
     background-color: black;
     padding:40px 0;
     position:relative;
@@ -31,7 +31,7 @@ body{
 
 }
 
-.logo{
+.logoo{
     text-align: left;
     color: rgb(230, 159, 134);
     margin: 15px;

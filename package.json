@@ -1,0 +1,18 @@
+{
+  "name": "web-development-project-front-end",
+  "version": "1.0.0",
+  "description": "html,css and javascript for an e-commerce website",
+  "main": "server.js",
+  "scripts": {
+    "devStart":"nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

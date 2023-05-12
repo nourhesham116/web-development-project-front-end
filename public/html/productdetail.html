@@ -35,14 +35,14 @@
         <div class="left-split">
             <div class="row">
                 <div class="column">
-                    <img class="demo cursor" src="main product.jpeg" style="width:50%" >
-                    <img class="demo cursor" src="before&after.jpeg" style="width:50%">
-                    <img src="texture.jpeg" style="width:50%">
-                    <img src="afteroneuse.jpeg" style="width:50%">
-                    <img src="hydra.jpeg" style="width:50%">
+                    <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%" >
+                    <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%">
+                    <img src="../imgs/texture.jpeg" style="width:50%">
+                    <img src="../imgs/afteroneuse.jpeg" style="width:50%">
+                    <img src="../imgs/hydra.jpeg" style="width:50%">
                 </div>
                 <div class="column2">
-                    <img src="main product.jpeg" width="175%" height=800px>
+                    <img src="../imgs/main product.jpeg" width="175%" height=800px>
                 </div>
             </div>
             <div class="container">
@@ -79,28 +79,28 @@
                 </div>
                 <div class="container">
                     <div class="clean">
-                        <img src="clean.png" width="45px" height="40px">
+                        <img src="../imgs/clean.png" width="45px" height="40px">
                     </div>
                     <div class="text1">
                         <p>Clean</p>
                     </div>
                     <div class="container2">
                         <div class="crueltyfree">
-                            <img src="crueltyfree.png" width="45px" height="40px">
+                            <img src="../imgs/crueltyfree.png" width="45px" height="40px">
                         </div>
                         <div class="text2">
                             <p>Cruelty-<br>free</p>
                         </div>
                         <div class="container3">
                             <div class="vegan">
-                                <img src="vegan.png" width="45px" height="40px">
+                                <img src="../imgs/vegan.png" width="45px" height="40px">
                             </div>
                             <div class="text3">
                                 <p>Vegan</p>
                             </div>
                             <div class="container4">
                                 <div class="glutenfree">
-                                    <img src="glutenfree.png" width="45px" height="40px">
+                                    <img src="../imgs/glutenfree.png" width="45px" height="40px">
                                 </div>
                                 <div class="text4">
                                     <p>Gluten-<br>free</p>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="container5">
                                 <div class="daytimeuse">
-                                    <img src="daytimeuse.png" width="45px" height="40px">
+                                    <img src="../imgs/daytimeuse.png" width="45px" height="40px">
                                 </div>
                                 <div class="text5">
                                     <p>Daytime<br>use</p>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="container6">
                                 <div class="nighttimeuse">
-                                    <img src="nighttimeuse.png" width="45px" height="40px">
+                                    <img src="../imgs/nighttimeuse.png" width="45px" height="40px">
                                 </div>
                                 <div class="text6">
                                     <p>Nighttime<br>use</p>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="container7">
                                 <div class="Recyclable">
-                                    <img src="recycle.png" width="45px" height="40px">
+                                    <img src="../imgs/recycle.png" width="45px" height="40px">
                                 </div>
                                 <div class="text7">
                                     <p>Recyclable</p>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="container9">
                                 <div class="containsrecycledmaterials">
-                                    <img src="containerrecycledmaterials.png" width="45px" height="40px">
+                                    <img src="../imgs/containerrecycledmaterials.png" width="45px" height="40px">
                                 </div>
                                 <div class="text9">
                                     <p>Contains<br>Recycled<br>Materials</p>
@@ -196,7 +196,7 @@
                 <h2>WATCH IT IN ACTION</h2>
                 <br>
                 <video controls loop width="100%" autoplay muted>
-                    <source src="melt_awf_-_desktop (1080p).mp4" type="video/mp4" width="200px" height="150px">
+                    <source src="../imgs/melt_awf_-_desktop (1080p).mp4" type="video/mp4" width="200px" height="150px">
                 </video>
                 <div>
 
@@ -225,7 +225,7 @@
                 let add = document.getElementById("add");
                 let countNum = parseInt(val.innerHTML);
                 if (meen == 'minus') {
-                    if (countNum < 1) {
+                    if (countNum > 1) {
                         let valuee = countNum - 1;
                         val.innerHTML = valuee;
                     }

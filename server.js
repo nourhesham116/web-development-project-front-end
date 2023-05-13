@@ -12,15 +12,15 @@ app.use('/imgs',express.static(__dirname +'public/imgs'))
 app.set('views','./views')
 app.set('view engine','ejs')
 
-app.get('',(req,res)=>{
-    res.render('ayhaga')
+app.get('/',(req,res)=>{
+    res.render('index')
 })
 
 
 
 
 
-
+app.listen(port,()=>console.info(`listening on port ${port}`));
 
 
 

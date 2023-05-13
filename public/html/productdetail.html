@@ -25,6 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/productdetail.css" />
+    <script src="productdetail.js"></script>
     
     <title>Melt Awf Jelly Oil Make-Up Melting Cleanser</title>
 </head>
@@ -35,20 +36,15 @@
         <div class="left-split">
             <div class="row">
                 <div class="column">
-                    <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%" >
-                    <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%">
-                    <img src="../imgs/texture.jpeg" style="width:50%">
-                    <img src="../imgs/afteroneuse.jpeg" style="width:50%">
-                    <img src="../imgs/hydra.jpeg" style="width:50%">
+                    <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%"  onclick="expand(this);" >
+                    <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%"  onclick="expand(this);">
+                    <img src="../imgs/texture.jpeg" style="width:50%"  onclick="expand(this);">
+                    <img src="../imgs/afteroneuse.jpeg" style="width:50%"  onclick="expand(this);">
+                    <img src="../imgs/hydra.jpeg" style="width:50%"  onclick="expand(this);">
                 </div>
                 <div class="column2">
-                    <img src="../imgs/main product.jpeg" width="175%" height=800px>
+                    <img id="expandedImg" img src="../imgs/main product.jpeg" width="175%" height=800px>
                 </div>
-            </div>
-            <div class="container">
-                <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-                <img id="expandedImg" style="width:100%">
-                <div id="imgtext"></div>
             </div>
         </div>
         <div class="right-split">

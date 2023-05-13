@@ -12,8 +12,17 @@ app.use('/imgs',express.static(__dirname +'public/imgs'))
 app.set('views','./views')
 app.set('view engine','ejs')
 
-app.get('/',(req,res)=>{
+app.get('',(req,res)=>{
     res.render('index')
+})
+app.get('/index',(req,res)=>{
+    res.render('index')
+})
+app.get('/productdetail',(req,res)=>{
+    res.render('productdetail')
+})
+app.get('/Account',(req,res)=>{
+    res.render('Account')
 })
 
 

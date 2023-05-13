@@ -24,6 +24,25 @@ app.get('/productdetail',(req,res)=>{
 app.get('/Account',(req,res)=>{
     res.render('Account')
 })
+app.get('/sophistique_beauty_main',(req,res)=>{
+    res.render('sophistique_beauty_main')
+})
+app.get('/allface',(req,res)=>{
+    res.render('allface')
+})
+app.get('/body',(req,res)=>{
+    res.render('body')
+})
+app.get('/Lipbalm+traetment',(req,res)=>{
+    res.render('Lipbalm+traetment')
+})
+app.get('/RegisterationForm',(req,res)=>{
+    res.render('RegisterationForm')
+})
+app.get('/skincarePage1',(req,res)=>{
+    res.render('skincarePage1')
+})
+
 
 
 

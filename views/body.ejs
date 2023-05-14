@@ -19,182 +19,59 @@
 
 <body>
     <%- include('./partials/Nav.ejs') %>
-     <%- include('./partials/addtocart.ejs') %>
-    <div class="h2">
-        <h2 class="title">SOPHISTIQUÉ BODY</h2>
-    </div>
-    </div>
+        <%- include('./partials/addtocart.ejs') %>
+            <div class="h2">
+                <h2 class="title">
+                    <%=pageTitle %>
+                </h2>
+            </div>
+            </div>
 
 
-    <ul>
-        <li class="item-a">
-            <div class="box">
-                <a href="../html/productdetail.html">
-                <div class img-slide>
-                    <img src="../imgs/b1.webp" width="300px" class="hide">
-                </div>
-                <div class="overlay"> <img src="../imgs/b2.webp " width="300px"   ></div>
+            <% if(products.length){%>
+<ul>
+                <%for( let product of products){%>
+                    
+                        <li class="item-a">
+                            <div class="box">
 
-            </div>
-            <div class="detail">
-                <div class="type">
-                    <span> NEW</span>
-                    <a href="#">FENTY SKIN BODY START'RS BUNDLE
-                    </a>
-                </div>
-            </div>
-            <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-            </a>
-            <div class="shop">
-                <span class=""><a href="#">ADD TO BAG</a></span>
-                <a href="#" class="price">$‌44.00</a>
-            </div>
-        </li>
-        <li class="item-a">
-            <div class="box">
-                <a href="productdetail">
-                <div class img-slide>
-                    <img src="../imgs/b3.webp" width="300px" class="hide">
-                </div>
-                <div class="overlay"> <img src="../imgs/b4.webp"  width="300px"></div>
+                                <a href="productdetail">
+                                    <div class img-slide>
+                                        <img src=<%=product.image1 %> width="300px" height="350px" class="hide">
+                                    </div>
+                                    <div class="overlay"> <img src=<%=product.overlayImg %> width="300px" height="350px"></div>
 
+                            </div>
+                            <div class="detail">
+                                <div class="type">
+                                    <span> <%=product.status %></span>
+                                    <a href="#">
+                                        <%= product.description %>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
+                            </a>
+                            <div class="shop">
+                                <span class=""><a href="#">ADD TO BAG</a></span>
+                                <a href="#" class="price">
+                                    <%= product.price %>
+                                </a>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+                        <%} else{ %>
+                            <div class="h2"> NO PRODUCTS</div>
+                            <% } %>
+                        
 
-            </div>
-            <div class="detail">
-                <div class="type">
-                    <span>FRAGRANCE-FREE+ONLINE EXCLUSIVE</span>
-                    <a href="#">HYDRA’RESET INTENSIVE RECOVERY GLYCERIN HAND MASK</a>
-                </div>
-            </div>
-            <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-        </a>
-            <div class="shop">
-                <span class=""><a href="#">ADD TO BAG</a></span>
-                <a href="#" class="price">$36.00</a>
-            </div>
-        </li>
-        <li  class="item-a">
-            <div class="box">
-                <a href="productdetail">
-                <div class img-slide>
-                    <img src="../imgs/b6.webp" width="350px" class="hide">
-                </div>
-                <div class="overlay"><img src="../imgs/haileybeieber.jpg"    width="500px"></div>
-
-            </div>
-            <div class="detail">
-                <div class="type">
-                    <span> BESTSELLER</span>
-                    <a href="#">PEPTIDE GLAZING FLUID
-                        MORE DETAILSMORE DETAILSMORE DETAILSMORE 
-                        </a>
-                </div>
-            </div>
-            <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-            </a>
-            <div class="shop">
-                <span class="add"><a href="#">ADD TO BAG</a></span>
-                <a href="#" class="price">$‌56.00</a>
-            </div>
-        </li>
-        <li class="item-a">
-            <div class="box">
-                <a href="productdetail">
-                <div class img-slide>
-                    <img src="../imgs/B14.webp" width="300px" class="hide">
-                </div>
-                <div class="overlay"><img src="../imgs/B15.webp"   width="400px"></div>
-
-            </div>
-            <div class="detail">
-                <div class="type">
-                    <span>FRAGRANCE-FREE+ONLINE EXCLUSIVE</span>
-                    <a href="#">FENTY EAU DE PARFUM + SCARF WRAP SET
-
-                    </a>
-                </div>
-            </div>
-            <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-        </a>
-            <div class="shop">
-                <span class=""><a href="#">ADD TO BAG</a></span>
-                <a href="#" class="price">$‌44.00</a>
-            </div>
-        </li>
-        <li class="item-a">
-            <div class="box">
-                <a href="../html/productdetail.html">
-                <div class img-slide>
-                    <img src="../imgs/b12.webp" width="600px" class="hide">
-                </div>
-                <div class="overlay"><img src="../imgs/b13.webp" width="600px"></div>
-
-            </div>
-            <div class="detail">
-                <div class="type">
-                    <span> BESTSELLER</span>
-                    <a href="#">BARRIER RESTORE CREAM<BR>
-                        THE RICH RECOVERY LAYER<BR>
-                            FROM RHODE BEAUTY
-                    </a>
-                </div>
-            </div>
-            <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-        </a>
-            <div class="shop">
-                <span class=""><a href="#">ADD TO BAG</a></span>
-                <a href="#" class="price">$50.00</a>
-            </div>
-        </li>
-
-    </ul>
-    <script>
-        function appear() {
-            let sq = document.getElementsByClassName("split");
-            if (sq[0].style.opacity == 0) {
-                sq[0].style.display="block";
-                //sq[0].style.opacity = 1;
-                //sq[0].style.visibility = "visible";
-            }
-            
-        }
-        function ex(){
-            let s = document.getElementsByClassName("split");
-            s[0].style.display="none";
-           
-            
-        }
-    </script>
 </body>
 
 </html>

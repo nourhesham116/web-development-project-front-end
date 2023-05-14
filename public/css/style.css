@@ -131,13 +131,12 @@ position:relative ;
     border-style:solid;
     border-color: transparent;
 }
-.add{
-
-}
 .box:hover .overlay {
     opacity: 1;
   }
-
+ul{
+    display:block;
+}
 .checked {
     color: black;
   }

@@ -1,6 +1,7 @@
 
 const express=require('express');
 const ejs = require('ejs');
+const prodRouter= require("./routes/productsRoute.js");
 const app=express()
 const port=3000
 
@@ -11,7 +12,7 @@ app.use('/imgs',express.static(__dirname +'public/imgs'))
 
 app.set('views','./views')
 app.set('view engine','ejs')
-
+app.use('/body',prodRouter);
 app.get('',(req,res)=>{
     res.render('index')
 })
@@ -29,9 +30,6 @@ app.get('/sophistique_beauty_main',(req,res)=>{
 })
 app.get('/allface',(req,res)=>{
     res.render('allface')
-})
-app.get('/body',(req,res)=>{
-    res.render('body')
 })
 app.get('/Lipbalm+traetment',(req,res)=>{
     res.render('Lipbalm+traetment')

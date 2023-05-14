@@ -42,7 +42,9 @@ app.get('/skincarePage1',(req,res)=>{
 })
 
 
-
+app.get('/admindashboard',(req,res)=>{
+    res.render('admindashboard')
+})
 
 
 

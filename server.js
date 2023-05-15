@@ -12,7 +12,7 @@ app.use('/imgs',express.static(__dirname +'public/imgs'))
 app.set('views','./views')
 app.set('view engine','ejs')
 
-app.get('',(req,res)=>{
+app.get('/',(req,res)=>{
     res.render('index')
 })
 app.get('/index',(req,res)=>{
@@ -25,7 +25,22 @@ app.get('/Account',(req,res)=>{
     res.render('Account')
 })
 
+app.get('/admindashboard',(req,res)=>{
+    res.render('admindashboard')
+})
 
+app.get('/adminstatistics',(req,res)=>{
+    res.render('adminstatistics')
+})
+
+
+app.get('/sophistiqueBeauty',(req,res)=>{
+    res.render('sophistiqueBeauty')
+})
+
+app.get('/adminproducts',(req,res)=>{
+    res.render('adminproducts')
+})
 
 
 

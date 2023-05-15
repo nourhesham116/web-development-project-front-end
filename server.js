@@ -1,6 +1,7 @@
 
 const express=require('express');
 const ejs = require('ejs');
+const prodRouter= require("./routes/productsRoute.js");
 const app=express()
 const port=3000
 
@@ -12,7 +13,14 @@ app.use('/imgs',express.static(__dirname +'public/imgs'))
 app.set('views','./views')
 app.set('view engine','ejs')
 
+
 app.get('/',(req,res)=>{
+    res.render('index')
+})
+
+app.use('/body',prodRouter);
+app.get('',(req,res)=>{
+
     res.render('index')
 })
 app.get('/index',(req,res)=>{
@@ -24,10 +32,26 @@ app.get('/productdetail',(req,res)=>{
 app.get('/Account',(req,res)=>{
     res.render('Account')
 })
+app.get('/sophistiqueBeauty',(req,res)=>{
+    res.render('sophistiqueBeauty')
+})
+app.get('/allface',(req,res)=>{
+    res.render('allface')
+})
+app.get('/Lipbalm+traetment',(req,res)=>{
+    res.render('Lipbalm+traetment')
+})
+app.get('/RegisterationForm',(req,res)=>{
+    res.render('RegisterationForm')
+})
+app.get('/skincarePage1',(req,res)=>{
+    res.render('skincarePage1')
+})
 
 app.get('/admindashboard',(req,res)=>{
     res.render('admindashboard')
 })
+
 
 app.get('/adminstatistics',(req,res)=>{
     res.render('adminstatistics')
@@ -44,11 +68,5 @@ app.get('/adminproducts',(req,res)=>{
 
 
 
+
 app.listen(port,()=>console.info(`listening on port ${port}`));
-
-
-
-
-
-
-

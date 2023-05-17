@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admindashboard.css">
+    <link rel="stylesheet" href="../css/productcontrol.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Products</title>
 </head>
+
 <body>
     <%-include('./partials/admindesign.ejs') %>
-    <section id="interface">
-        <div class="navigation">
-            <div class="n1">
-                <div><i id="menu-btn" class="fa fa-bars"></i>
+
+        <section id="interface">
+            <div class="navigation">
+                <div class="n1">
+                    <div><i id="menu-btn" class="fa fa-bars"></i>
+                    </div>
+                    <div class="search">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
                 </div>
-                <div class="search">
-                    <i class="fa fa-search"></i>
-                    <input type="text" placeholder="Search">
+                <div class="profile">
+                    <i class="fa fa-bell"></i>
+                    <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
                 </div>
             </div>
-            <div class="profile">
-                <i class="fa fa-bell"></i>
-                <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
+            <h2 class="i-name">
+                Products control
+            </h2>
+
+            <div>
+                <button type="Button" class="productcontrolbtn" id="add" onclick="display()"> + add products</button>
+                <button type="Button" class="productcontrolbtn" id="remove"> pending product</button>
             </div>
-        </div>
-        <h2 class="i-name">
-            Products control
-        </h2>
+
+            <div id="newproductdetails" class="hidden">
+                <form>
+                    <label for="fname">Product name:</label>
+                    <input type="text" placeholder="enter the name of the product" size="50" id="productName"></input>
+                    <br>
+                    <br>
+                    <label for="fname">Product price:</label>
+                    <input type="text" placeholder="enter the price of the product" size="51" id="productPrice"></input>
+                    <br>
+                    <br>
+                    <label for="fname">Product description:</label>
+                    <input type="text" placeholder="enter the description of the product" size="45"
+                        id="productDescription"></input>
+                    <br>
+                    <button type="submit" id="addbtn"> add product</button>
+                    <div id="message"></div>
+
+                </form>
+            </div>
+
+            <script src="../javascript/productcontrol.js"></script>
 </body>
+
 </html>

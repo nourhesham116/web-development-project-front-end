@@ -60,5 +60,6 @@ const products=[
         description:"PEPTIDE GLAZING FLUID MORE DETAILSMORE DETAILSMORE DETAILSMORE",
         price:"$‌56.00",
     },
+    
 ];
 module.exports={products};

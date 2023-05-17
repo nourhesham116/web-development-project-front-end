@@ -66,7 +66,9 @@ app.get('/adminproducts',(req,res)=>{
     res.render('adminproducts')
 })
 
-
+app.get('/adminlogin',(req,res)=>{
+    res.render('adminlogin')
+})
 
 
 app.listen(port,()=>console.info(`listening on port ${port}`));

@@ -4,11 +4,14 @@ const ejs = require('ejs');
 const prodRouter= require("./routes/productsRoute.js");
 const app=express()
 const port=3000
-
+const mongoose=require('mongoose');
 app.use(express.static('public'))
 app.use('/css',express.static(__dirname +'public/css'))
 app.use('/js',express.static(__dirname +'public/javascript'))
 app.use('/imgs',express.static(__dirname +'public/imgs'))
+const dburi='mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.net/cluster0?retryWrites=true&w=majority'
+
+mongoose.connect(dburi).then(result=> app.listen(3000)).catch(err=> console.log(err))
 
 app.set('views','./views')
 app.set('view engine','ejs')
@@ -71,4 +74,4 @@ app.get('/adminlogin',(req,res)=>{
 })
 
 
-app.listen(port,()=>console.info(`listening on port ${port}`));
+//app.listen(port,()=>console.info(`listening on port ${port}`));

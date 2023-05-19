@@ -74,4 +74,4 @@ app.get('/adminlogin',(req,res)=>{
 })
 
 
-//app.listen(port,()=>console.info(`listening on port ${port}`));
+app.listen(port,()=>console.info(`listening on port ${port}`));

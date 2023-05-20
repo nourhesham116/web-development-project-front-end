@@ -42,3 +42,25 @@ document.getElementById("newproductdetails").addEventListener("submit", function
     }
 
 });
+const arrSkin=["Face moisturizer","cleanser","toner","mask and treatment","lip care","eye cream","suncream","body cleanser","scrub"];
+const arrBeauty=["foundation","prime+set","concelar","powder","contour","blush","bronzing","highlighter","brushes","lipgloss","lipstick","lipcombos","lipbalm","eyeshadow","mascara"]
+function dropdownSkin(){
+    let drop=document.getElementById("custom-select");
+    var option;
+    
+    for(let i=0;i<arrSkin.length;i++){
+     option = document.createElement("option");
+      option.text = arrSkin[i];
+       drop.add(option, drop[i]);
+    }
+}
+function dropdownBeauty(){
+    let drop2=document.getElementById("custom-select");
+    var option2;
+    
+    for(let i=0;i<arrBeauty.length;i++){
+     option2 = document.createElement("option");
+      option2.text = arrBeauty[i];
+       drop2.add(option2, drop2[i]);
+    }
+}

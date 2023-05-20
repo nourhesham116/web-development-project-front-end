@@ -21,9 +21,9 @@ document.getElementById("newproductdetails").addEventListener("submit", function
     
     // Create a product object
     var product = {
-        name: name,
-        price: price,
-        description: description
+        name: 'name',
+        price: 'price',
+        description: 'description'
     };
     
     // Add product to the array

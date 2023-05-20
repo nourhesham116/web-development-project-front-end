@@ -12,7 +12,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Get port from environment variable or default to 8000
-const PORT = process.env.PORT || "8000";
+const PORT = process.env.PORT || "3000";
 const HOST = process.env.HOST || "localhost";
 
 // Get MongoDB connection URI from environment variable 

@@ -9,9 +9,10 @@ app.use(express.static('public'))
 app.use('/css',express.static(__dirname +'public/css'))
 app.use('/js',express.static(__dirname +'public/javascript'))
 app.use('/imgs',express.static(__dirname +'public/imgs'))
-const dburi='mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.net/cluster0?retryWrites=true&w=majority'
+// const dburi='mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.net/cluster0?retryWrites=true&w=majority'
 
-mongoose.connect(dburi).then(result=>app.listen(port,()=>console.info(`listening on port ${port}`))).catch(err=> console.log(err))
+// mongoose.connect(dburi).then(result=>app.listen(port,()=>console.info(`listening on port ${port}`))).catch(err=> console.log(err))
+app.listen(3000)
 
 app.set('views','./views')
 app.set('view engine','ejs')
@@ -41,8 +42,8 @@ app.get('/sophistiqueBeauty',(req,res)=>{
 app.get('/allface',(req,res)=>{
     res.render('allface')
 })
-app.get('/Lipbalm+traetment',(req,res)=>{
-    res.render('Lipbalm+traetment')
+app.get('/Lipbalm+treatment',(req,res)=>{
+    res.render('Lipbalm+treatment')
 })
 app.get('/RegisterationForm',(req,res)=>{
     res.render('RegisterationForm')

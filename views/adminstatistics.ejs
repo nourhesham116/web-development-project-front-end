@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admindashboard.css">
+    <link rel="stylesheet" href="../css/adminstats.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Admin | Statistics</title>
 </head>
@@ -24,36 +25,31 @@
                 <i class="fa fa-bell"></i>
                 <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
             </div>
-        </div>
-        <div class="statvalue">
-            <div class="val-box">
-                <i class="fa fa-users"></i>
-                <div>
-                    <h3>Users interactivity</h3>
-                    <span>Monthly calculation</span>
-                </div>
-            </div>
+            </div>      
+            <br>
+            <!--charts-->
+            <h2 class="i-name">
+                Statistics
+            </h2>
+            <div class="graphBox">
+              
+              <div class="box">
+                <canvas id="myChart" ></canvas>
+              </div>
+              <div class="box">
+                <canvas id="earning" ></canvas>
+              </div>
+          </div> 
 
-            <div class="val-box">
-                <i class="fa fa-shopping-cart"></i>
-                <div>
-                    <h3>Product Sales</h3>
-                    <span>Weekly calculation</span>
-                </div>
-            </div>
-            </div>
-        <div class="stats">
-            
-            <div>
-                <img src="../imgs/dashboardstatistics.png" alt="sales per month" width="500px">
-            </div>
-            <div>
-                <img src="../imgs/users.webp" alt="sales per month" width="600px">
-            </div>
-        </div>
-        <div class="stats">
-         
-    </section>
-    
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../javascript/adminstats.js"></script>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+           </section>
 </body>
 </html>

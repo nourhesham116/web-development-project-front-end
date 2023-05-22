@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard | Users</title>
+  <link rel="stylesheet" href="../css/admindashboard.css">
+  <link rel="stylesheet" href="../css/users.css">
+</head>
+<body>
+    <%-include('./partials/admindesign.ejs') %>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div><i id="menu-btn" class="fa fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="profile">
+                <i class="fa fa-bell"></i>
+                <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
+            </div>
+        </div>
+       
+   
+  <!-- User List -->
+  <ul id="userList"></ul>
+  
+  <!-- Add User Form -->
+<div id="addu">
+  <h2>Add User</h2>
+</div>
+  <form id="addUserForm">
+    <input type="text" id="nameInput" placeholder="Name">
+    <input type="email" id="emailInput" placeholder="Email">
+    <button type="submit">Add User</button>
+  </form>
+
+  <script src="script.js"></script>
+ </section>
+</body>
+</html>

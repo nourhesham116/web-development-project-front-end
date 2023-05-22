@@ -30,22 +30,27 @@
   <ul id="userList"></ul>
   
   <!-- Add User Form -->
+  <br>
 <div id="addu">
-  <h2>Add User</h2>
+  <h2>Add Admin</h2>
 </div>
 <br>
 <form action="/users" method="post">
-  <div>
+  <div id="userpass">
+  <div >
       <label for="username"> username </label>
       <input id="username" name="Firstname" type="text" placeholder="username"><br>
       <span id="Uerror"></span>
   </div>
-  <div class="passes" style="top: 58%;">
+  <br>
+  <div >
       <label for="password"> password </label>
       <input id="password" name="Password" type="password" placeholder="password"> <br>
       <span id="Perror"></span>
   </div>
-  <button class="ASbutton" type="submit" id="submit">Add User</button>
+  <button class="Adbutton" type="submit" id="submit">Add User</button>
+  
+</div>
 </form>
   <script src="adduser.js"></script>
  </section>

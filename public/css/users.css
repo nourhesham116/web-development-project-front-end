@@ -1,5 +1,19 @@
 #addu{
-    width: 70%;
-    background-color: #ffffff;
-    padding-left: 10px;
+    margin:10px;
+}
+
+#userpass{
+background-color:  rgb(238, 223, 223,50%) ;
+width:50%;
+margin: 10px;
+padding:40px;
+}
+.Adbutton{
+    background-color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    margin-left: 20%;
+
 }

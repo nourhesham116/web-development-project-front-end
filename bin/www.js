@@ -61,4 +61,9 @@ function onError(error) {
 function onListening() {
   const { port } = server.address();
   console.log(`Listening on Port ${port}`);
+  console.log("Connected to the goose");
+    server.listen(PORT);
+    server.on("error", onError);
+    // server.on("listening", onListening);
+    console.log(`Server running at http://${HOST}:${PORT}/`);
 }

@@ -4,6 +4,7 @@
   <title>Admin Dashboard | Users</title>
   <link rel="stylesheet" href="../css/admindashboard.css">
   <link rel="stylesheet" href="../css/users.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <%-include('./partials/admindesign.ejs') %>
@@ -32,13 +33,21 @@
 <div id="addu">
   <h2>Add User</h2>
 </div>
-  <form id="addUserForm">
-    <input type="text" id="nameInput" placeholder="Name">
-    <input type="email" id="emailInput" placeholder="Email">
-    <button type="submit">Add User</button>
-  </form>
-
-  <script src="script.js"></script>
+<br>
+<form action="/users" method="post">
+  <div>
+      <label for="username"> username </label>
+      <input id="username" name="Firstname" type="text" placeholder="username"><br>
+      <span id="Uerror"></span>
+  </div>
+  <div class="passes" style="top: 58%;">
+      <label for="password"> password </label>
+      <input id="password" name="Password" type="password" placeholder="password"> <br>
+      <span id="Perror"></span>
+  </div>
+  <button class="ASbutton" type="submit" id="submit">Add User</button>
+</form>
+  <script src="adduser.js"></script>
  </section>
 </body>
 </html>

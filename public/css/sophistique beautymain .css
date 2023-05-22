@@ -61,11 +61,13 @@ a:active {
     text-decoration: underline;
 }
   /* mega box menu in nav */
+
   * {
     margin: 0;
     padding: 0;
     /*box-sizing: border-box;*/
     font-family: 'Roboto', sans-serif;
+    
   }
  
   nav {

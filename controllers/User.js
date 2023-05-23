@@ -1,6 +1,19 @@
 const path = require('path');
 const addusers = require('../models/adduser');
 
+const GetUser=(req,res) =>{
+    var query ={ Email:req.body.email, Password: req.body.password};
+    users.findOne(query)
+     .then(result =>{
+        req.session.user =result;
+        res.redirect('/myprofile');
+     })
+     .catch(err =>
+        {
+         console.log(err);
+        });
+    };
+
 
 const checkemail=(req,res) =>{
     var query={ Email:req.body.email};
@@ -17,7 +30,8 @@ const checkemail=(req,res) =>{
          console.log(err);
         });
 
-}
+};
+
 const editUser=(req,res)=>{
     users.findByIdAndUpdate(req.session.user._id, {Password: req.body.password})
     .then(result =>{
@@ -28,8 +42,9 @@ const editUser=(req,res)=>{
         {
          console.log(err);
         });
-}
+};
 module.exports ={
     checkemail,
     editUser,
+    GetUser,
 };

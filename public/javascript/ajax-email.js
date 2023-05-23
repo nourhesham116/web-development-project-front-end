@@ -3,7 +3,7 @@ $(document).ready(function(){
         e.preventDefault();
         var data= $ ('#email').val();
         $.ajax({
-            url:'/user/checkemail',
+            url:'/User/checkemail',
             method:'POST',
             contentType:'application/json',
             data:JSON.stringify({email: data}),

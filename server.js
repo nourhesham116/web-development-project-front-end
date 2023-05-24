@@ -12,7 +12,8 @@ const prodRouter= require("./routes/productsRoute.js");
 const app=express()
 const port=3000
 const mongoose=require('mongoose')
-const path = require('path')
+const path = require('path');
+const addusers = require('./models/adduser');
 app.use(express.static('public'))
 //////////////
 
@@ -88,6 +89,24 @@ app.post('/RegisterationForm-action', async (req, res) => {
             console.log(err);
           });
     });
+    app.post('/users',async (req, res, next) => {
+
+        // const hashPass = await bcrypt.hash(req.body.pass, 10)
+      
+        const add = new addusers({
+            Firstname: req.body.Firstname,
+            Password: req.body.Password,
+      })
+      add.save()
+      .then((result)=>
+      {
+        console.log('registration successful!')
+          // res.render('admin/admin-dashboard.ejs')
+      })
+      .catch(err=>{
+          console.log(err);
+      })
+    })
 
 app.get('/productdetail',(req,res)=>{
     res.render('productdetail',{ user: (req.session.user === undefined ? "" : req.session.user) })
@@ -141,6 +160,10 @@ app.get('/adminlogin',(req,res)=>{
 app.get('/RegisterationForm',(req,res)=>{
     res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
+app.get('/users',(req,res)=>{
+    res.render('users')
+})
+
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');

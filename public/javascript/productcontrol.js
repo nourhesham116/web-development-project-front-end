@@ -47,14 +47,14 @@ const arrBeauty=["foundation","prime+set","concelar","powder","contour","blush",
 function dropdownSkin(){
     let drop=document.getElementById("custom-select");
     var option;
-   var L = drop.options.length - 1;
-    if(L>arrSkin.length){
+   var L = drop.options.length ;
+   
    clearDropDown(L,drop);
-   }
-    for(let i=1;i<arrSkin.length;i++){
+   
+    for(let i=0;i<arrSkin.length;i++){
      option = document.createElement("option");
       option.text = arrSkin[i];
-       drop.add(option, drop[i]);
+       drop.add(option);
     }
     
     
@@ -70,12 +70,12 @@ function dropdownBeauty(){
     let drop2=document.getElementById("custom-select");
     var option2;
     var L = drop2.options.length - 1;
-    if(L>arrBeauty.length-1||L>arrSkin.length){
+    
    clearDropDown(L,drop2);
-   }
-    for(let i=1;i<arrBeauty.length;i++){
+   
+    for(let i=0;i<arrBeauty.length;i++){
      option2 = document.createElement("option");
       option2.text = arrBeauty[i];
-       drop2.add(option2, drop2[i]);
+       drop2.add(option2);
     }
 }

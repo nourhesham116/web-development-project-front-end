@@ -107,7 +107,21 @@ app.post('/RegisterationForm-action', async (req, res) => {
           console.log(err);
       })
     })
-
+    /*app.get('/admindashboard', (req, res) => {
+        if(req.session.user !== undefined && req.session.user.Type==='admin'){
+        Employees.find()
+          .then(result => {
+            res.render('admindashboard', { employees: result, user: (req.session.user === undefined ? "" : req.session.user) });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        }
+        else{
+          res.send('you are not admin');
+        }
+      });
+      a*/
 app.get('/productdetail',(req,res)=>{
     res.render('productdetail',{ user: (req.session.user === undefined ? "" : req.session.user) })
 })

@@ -134,6 +134,13 @@ app.get('/Account',(req,res)=>{
     }
 })
 
+app.get('/admindashboard', (req, res) => {
+  collection.find({}).toArray((err, data) => {
+    if (err) throw err;
+    res.render('admindashboard', { users: users });
+  });
+});
+
 app.get('/sophistiqueBeauty',(req,res)=>{
     res.render('sophistiqueBeauty')
 })

@@ -59,6 +59,7 @@
                             SKIN
                         </label>
                         <label>
+                            
                             <input type="radio" value="BEAUTY" name="category" onclick="dropdownBeauty()">
                             BEAUTY
                         </label>
@@ -70,7 +71,20 @@
                           
                         </select>
                       </div>
-                    <button type="submit" id="addbtn"> add product</button>
+                      <br>
+                      <label for="image1">Main image:</label>
+                      <input type="file" name="image1" id="files" >
+                      <br>
+                      <label for="image2">Hover image:</label>
+                      <input type="file" name="image2" id="files" >
+                      <br>
+                      <label for="image3">supporing image:</label>
+                      <input type="file" name="image3" id="files" >
+                      <br>
+                      <label for="image4">product swatch:</label>
+                      <input type="file" name="image4" id="files" >
+                      <br>
+                      <input type="submit" name="submit" value="add product">
                     <div id="message"></div>
 
                 </form>

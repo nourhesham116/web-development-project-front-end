@@ -17,6 +17,9 @@
         <ul>
            <li><a href="#">MY PROFILE</a></li> 
            <li><a href="/logout">LOGOUT</a></li> 
+           <% if(userP.Type=="admin"){ %>
+            <li><a href="/admindashboard">DASHBOARD</a></li>
+            <% }%>
         </ul>
     </div>
     <div class="main-box">

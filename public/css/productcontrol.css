@@ -29,7 +29,7 @@ body{
 .hidden{
     display: none;
 }
-#addbtn{
+input[type="submit"]{
     background-color: rgb(255, 255, 255);
     margin-top: 20px;
     margin-left: 40%;

@@ -1,7 +1,8 @@
-const express= require("express");
+const express=require('express');
+const router= express.Router();
 var bodyParser= require('body-parser');
 
-const router= express.Router();
+
 router.use(bodyParser.json())
 
 const User =require("../controllers/User");
@@ -43,3 +44,4 @@ router.get('/logout',(req,res)=>{
     res.render('logout',{ user: (req.session.user === undefined ? "" : req.session.user) })
     
 });
+module.exports=router;

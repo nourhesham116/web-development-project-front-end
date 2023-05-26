@@ -1,0 +1,14 @@
+body{
+font-family: 'Roboto', sans-serif;
+  background-image: url(../imgs/ezgif.com-webp-to-jpg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.err{
+    position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

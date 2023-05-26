@@ -187,11 +187,15 @@ app.get('/RegisterationForm',(req,res)=>{
 app.get('/users',(req,res)=>{
     res.render('users')
 })
-
+ app.get('/Error404',(req,res)=>{
+    res.render('Error404')
+  })
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
   });
+
+ 
 
 module.exports={app};
 

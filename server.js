@@ -94,8 +94,11 @@ app.post('/RegisterationForm-action', async (req, res) => {
         // const hashPass = await bcrypt.hash(req.body.pass, 10)
       
         const add = new addusers({
-            Firstname: req.body.Firstname,
-            Password: req.body.Password,
+          Firstname: req.body.Firstname,
+          Lastname: req.body.Lastname,
+          Email:req.body.email,
+          Password: req.body.password,
+          Type: req.body.type
       })
       add.save()
       .then((result)=>

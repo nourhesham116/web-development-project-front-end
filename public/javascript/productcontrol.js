@@ -12,7 +12,7 @@ document.getElementById("add").addEventListener("click", function() {
 var products = []; // Array to store products
 
 document.getElementById("newproductdetails").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+   // event.preventDefault(); // Prevent form submission
     
     // Get form values
     var name = document.getElementById("productName").value;

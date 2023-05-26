@@ -40,20 +40,20 @@
             </div>
 
             <div id="newproductdetails" class="hidden">
-                <form>
+                <form action='/addproduct-action' method='post'enctype="multipart/form-data">
                     <label for="fname">Product name:</label>
-                    <input type="text" placeholder="enter the name of the product" size="50" id="productName"></input>
+                    <input type="text" placeholder="enter the name of the product" size="50" name="name"></input>
                     <br>
                     <br>
                     <label for="fname">Product price:</label>
-                    <input type="text" placeholder="enter the price of the product" size="51" id="productPrice"></input>
+                    <input type="text" placeholder="enter the price of the product" size="51"name="price" ></input>
                     <br>
                     <br>
                     <label for="fname">Product description:</label>
-                    <input type="text" placeholder="enter the description of the product" size="45" id="productDescription"></input>
+                    <input type="text" placeholder="enter the description of the product" size="45" name="description" ></input>
                     <br>
                     <br>
-                    <div class="radio-group">
+                    <!----><div class="radio-group">
                         <label>
                             <input type="radio" value="SKIN" name="category"onclick="dropdownSkin()">
                             SKIN
@@ -73,16 +73,16 @@
                       </div>
                       <br>
                       <label for="image1">Main image:</label>
-                      <input type="file" name="image1" id="files" >
+                      <input type="file" name="image1" >
                       <br>
                       <label for="image2">Hover image:</label>
-                      <input type="file" name="image2" id="files" >
+                      <input type="file" name="image2" >
                       <br>
                       <label for="image3">supporing image:</label>
-                      <input type="file" name="image3" id="files" >
+                      <input type="file" name="image3" >
                       <br>
                       <label for="image4">product swatch:</label>
-                      <input type="file" name="image4" id="files" >
+                      <input type="file" name="image4" >
                       <br>
                       <input type="submit" name="submit" value="add product">
                     <div id="message"></div>
@@ -90,7 +90,7 @@
                 </form>
             </div>
 
-            <script src="../javascript/productcontrol.js"></script>
+           <script src="../javascript/productcontrol.js"></script>
 </body>
 
 </html>

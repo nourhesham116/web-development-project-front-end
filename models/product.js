@@ -22,9 +22,9 @@ const productSchema = new Schema({
     type:String,
     required:true
   },
-  status:{// NEW/on sale/50% off .....etc.
+ /* status:{// NEW/on sale/50% off .....etc.
     type: String,
-  },
+  },*/
   image1: {
     type: String,
     required: true

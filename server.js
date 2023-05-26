@@ -94,53 +94,20 @@ app.post('/RegisterationForm-action', async (req, res) => {
 });
 /*app.post('/users',async (req, res, next) => {
 
-    // const hashPass = await bcrypt.hash(req.body.pass, 10)
-  
-    const add = new addusers({
-        Firstname: req.body.Firstname,
-        Password: req.body.Password,
-  })
-  add.save()
-  .then((result)=>
-  {
-    console.log('registration successful!')
-      // res.render('admin/admin-dashboard.ejs')
-  })
-  .catch(err=>{
-      console.log(err);
-  })
-})*/
-app.post('/addproduct-action',  (req, res) => {
-  let imgFile1;
-  let uploadPath1;
-  console.log(req.files)
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  imgFile1 = req.files.img;
-  uploadPath1 = '/public/images/uploads' + req.body.un + path.extname(imgFile1.name);
-  // Use the mv() method to place the file somewhere on your server
-  imgFile1.mv(uploadPath1, function (err) {
-    if (err)
-      return res.status(500).send(err);
-   const product = new product({
-      name: req.body.name,
-      price: req.body.price,
-      description:req.body.description,
-      category:req.body.category,
-      type:req.body.type,
-      image1: req.body.image1 + path.extname(imgFile1.name),
-      image2: req.body.image1 + path.extname(imgFile1.name),
-      image3: req.body.image1 + path.extname(imgFile1.name),
-      image4: req.body.image1 + path.extname(imgFile1.name),
+        // const hashPass = await bcrypt.hash(req.body.pass, 10)
       
-    });
-    product.save()
-      .then(result => {
-        res.redirect('/');
+        const add = new addusers({
+            Firstname: req.body.Firstname,
+            Password: req.body.Password,
       })
-      .catch(err => {
-        console.log(err);
+      add.save()
+      .then((result)=>
+      {
+        console.log('registration successful!')
+          // res.render('admin/admin-dashboard.ejs')
+      })
+      .catch(err=>{
+          console.log(err);
       })
     })
 });
@@ -175,8 +142,8 @@ app.get('/Account', (req, res) => {
   }
 })
 
-app.get('/sophistiqueBeauty', (req, res) => {
-  res.render('sophistiqueBeauty', { user: (req.session.user === undefined ? "" : req.session.user) })
+app.get('/sophistiqueBeauty',(req,res)=>{
+    res.render('sophistiqueBeauty')
 })
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -210,11 +177,13 @@ app.get('/RegisterationForm', (req, res) => {
 app.get('/users', (req, res) => {
   res.render('users')
 })
-
+ app.get('/Error404',(req,res)=>{
+    res.render('Error404')
+  })
 app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
 
-module.exports = { app };
+module.exports={app};
 

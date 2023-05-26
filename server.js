@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const session = require('express-session');
 const fileUpload = require('express-fileupload');
 const morgan = require("morgan");
+const multer = require('multer');
 const busboy = require('connect-busboy');//ashan swar
 //////////////////
 const prodRouter = require("./routes/productsRoute.js");
@@ -26,9 +27,18 @@ app.use('/imgs', express.static(__dirname + 'public/imgs'))
 const dburi = 'mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.net/cluster0?retryWrites=true&w=majority'
 
 mongoose.connect(dburi).then(result => app.listen(port, () => console.info(`listening on port ${port}`))).catch(err => console.log(err))
-
-
-
+/////////////
+//decalre multer storage
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/public/imgs/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + path.extname(file.originalname))
+  }
+})
+var upload = multer({ storage: storage })
+var multipleupload=upload.fields([{name:'image1'},{name:'image2'},{name:'image3'},{name:'image4'}])
 /////////////////
 // default options
 app.use(fileUpload());
@@ -92,25 +102,79 @@ app.post('/RegisterationForm-action', async (req, res) => {
       console.log(err);
     });
 });
-/*app.post('/users',async (req, res, next) => {
+/////////////
+app.post('/addproduct-action',(req, res) => {
+  let imgFile1,imgFile2,imgFile3,imgFile4;
+  let uploadPath1,uploadPath2,uploadPath3,uploadPath4;
+  console.log(req.files)
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  imgFile1 = req.files.image1;
+  imgFile2 = req.files.image2;
+  imgFile3 = req.files.image3;
+  imgFile4 = req.files.image4;
+  uploadPath1 =__dirname+'/public/imgs/uploads/' + req.body.name+"_1" + path.extname(imgFile1.name);
+  uploadPath2 =__dirname+'/public/imgs/uploads/' + req.body.name +"_2"+ path.extname(imgFile2.name);
+  uploadPath3 =__dirname+'/public/imgs/uploads/' + req.body.name +"_3"+ path.extname(imgFile3.name);
+  uploadPath4 =__dirname+'/public/imgs/uploads/' + req.body.name +"_4"+ path.extname(imgFile4.name);
+  // Use the mv() method to place the file somewhere on your server
+  imgFile1.mv(uploadPath1, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  })
+  imgFile2.mv(uploadPath2, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  })
+  imgFile3.mv(uploadPath3, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  })
+  imgFile4.mv(uploadPath4, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  })
+  
+  const prod= new products({
+    name: req.body.name,
+    price: req.body.price,
+    description:req.body.description,
+    category:req.body.category,
+    type:req.body.type,
+    image1: req.body.name+"_1" + path.extname(imgFile1.name),
+    image2: req.body.name+"_2" + path.extname(imgFile2.name),
+    image3: req.body.name+"_3" + path.extname(imgFile3.name),
+    image4: req.body.name+"_4" + path.extname(imgFile4.name)
+    
+  });
+  prod.save()
+    .then(result => {
+      res.redirect('/adminproducts');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+///////////
+app.post('/users', async (req, res, next) => {
 
-        // const hashPass = await bcrypt.hash(req.body.pass, 10)
-      
-        const add = new addusers({
-            Firstname: req.body.Firstname,
-            Password: req.body.Password,
-      })
-      add.save()
-      .then((result)=>
-      {
-        console.log('registration successful!')
-          // res.render('admin/admin-dashboard.ejs')
-      })
-      .catch(err=>{
-          console.log(err);
-      })
+  // const hashPass = await bcrypt.hash(req.body.pass, 10)
+
+  const add = new addusers({
+    Firstname: req.body.Firstname,
+    Password: req.body.Password,
+  })
+  add.save()
+    .then((result) => {
+      console.log('registration successful!')
+      // res.render('admin/admin-dashboard.ejs')
+    })
+    .catch(err => {
+      console.log(err);
     })
 });
+
 
 ////////////////////////////
 
@@ -142,8 +206,8 @@ app.get('/Account', (req, res) => {
   }
 })
 
-app.get('/sophistiqueBeauty',(req,res)=>{
-    res.render('sophistiqueBeauty')
+app.get('/sophistiqueBeauty', (req, res) => {
+  res.render('sophistiqueBeauty')
 })
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -177,13 +241,12 @@ app.get('/RegisterationForm', (req, res) => {
 app.get('/users', (req, res) => {
   res.render('users')
 })
- app.get('/Error404',(req,res)=>{
-    res.render('Error404')
-  })
+app.get('/Error404', (req, res) => {
+  res.render('Error404')
+})
 app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
 
-module.exports={app};
-
+module.exports = { app };

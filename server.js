@@ -3,7 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 const users = require('./models/users');
 const products = require('./models/product');
-const addusers = require('./models/adduser');
+
 ////////////////
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
@@ -165,6 +165,7 @@ app.post('/addadmin-action', async (req, res, next) => {
   add.save()
     .then((result) => {
       console.log('registration successful!')
+      res.redirect('/admindashboard')
       // res.render('admin/admin-dashboard.ejs')
     })
     .catch(err => {

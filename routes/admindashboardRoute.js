@@ -2,7 +2,7 @@ const express=require('express');
 const router= express.Router();
 const users = require('../models/users');
 const products = require('../models/product');
-const addusers = require('../models/adduser');
+
 router.get('/', (req, res) => {
     if (req.session.user !== undefined && req.session.user.Type === 'admin') {
       users.find()

@@ -2,7 +2,7 @@ const express=require('express');
 const router= express.Router();
 const users = require('../models/users');
 const products = require('../models/product');
-const addusers = require('../models/adduser');
+
 const path = require('path');
 router.post('/',(req, res) => {
     let imgFile1,imgFile2,imgFile3,imgFile4;

@@ -151,13 +151,16 @@ app.post('/RegisterationForm-action', async (req, res) => {
     });
 });
 ///////////*/
-/*app.post('/users', async (req, res, next) => {
+app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
 
-  const add = new addusers({
+  const add = new users({
     Firstname: req.body.Firstname,
+    Lastname:req.body.Lastname,
+    Email:req.body.Email,
     Password: req.body.Password,
+    Type:req.body.Type
   })
   add.save()
     .then((result) => {
@@ -168,7 +171,7 @@ app.post('/RegisterationForm-action', async (req, res) => {
       console.log(err);
     })
 });
-*/
+
 
 ////////////////////////////
 

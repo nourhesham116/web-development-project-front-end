@@ -13,6 +13,8 @@ const multer = require('multer');
 const busboy = require('connect-busboy');//ashan swar
 //////////////////
 const prodRouter = require("./routes/productsRoute.js");
+const admindashboardRouter = require("./routes/admindashboardRoute.js");
+const addproductsRouter = require("./routes/addproductsRoute.js");
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
@@ -28,17 +30,7 @@ const dburi = 'mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.n
 
 mongoose.connect(dburi).then(result => app.listen(port, () => console.info(`listening on port ${port}`))).catch(err => console.log(err))
 /////////////
-//decalre multer storage
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/public/imgs/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + path.extname(file.originalname))
-  }
-})
-var upload = multer({ storage: storage })
-var multipleupload=upload.fields([{name:'image1'},{name:'image2'},{name:'image3'},{name:'image4'}])
+
 /////////////////
 // default options
 app.use(fileUpload());
@@ -56,6 +48,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/body', prodRouter);
+app.use('/admindashboard',admindashboardRouter)
+app.use('/addproduct-action',addproductsRouter)
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -83,7 +77,7 @@ app.post('/login-action', (req, res) => {
     });
 });
 
-app.get('/Myprofile', (req, res) => {
+app.get('Account/Myprofile', (req, res) => {
   res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
 });
 app.post('/RegisterationForm-action', async (req, res) => {
@@ -103,7 +97,7 @@ app.post('/RegisterationForm-action', async (req, res) => {
     });
 });
 /////////////
-app.post('/addproduct-action',(req, res) => {
+/*app.post('/addproduct-action',(req, res) => {
   let imgFile1,imgFile2,imgFile3,imgFile4;
   let uploadPath1,uploadPath2,uploadPath3,uploadPath4;
   console.log(req.files)
@@ -156,8 +150,8 @@ app.post('/addproduct-action',(req, res) => {
       console.log(err);
     });
 });
-///////////
-app.post('/users', async (req, res, next) => {
+///////////*/
+/*app.post('/users', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
 
@@ -174,11 +168,11 @@ app.post('/users', async (req, res, next) => {
       console.log(err);
     })
 });
-
+*/
 
 ////////////////////////////
 
-app.get('/admindashboard', (req, res) => {
+/*app.get('/admindashboard', (req, res) => {
   if (req.session.user !== undefined && req.session.user.Type === 'admin') {
     users.find()
       .then(result => {
@@ -191,7 +185,7 @@ app.get('/admindashboard', (req, res) => {
   else {
     res.send('you are not admin');
   }
-});
+});*/
 ////////////////////
 
 app.get('/productdetail', (req, res) => {
@@ -219,9 +213,9 @@ app.get('/skincarePage1', (req, res) => {
   res.render('skincarePage1', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.get('/adminstatistics', (req, res) => {
+/*app.get('/adminstatistics', (req, res) => {
   res.render('adminstatistics', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
+})*/
 
 
 app.get('/sophistiqueBeauty', (req, res) => {

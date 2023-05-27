@@ -17,6 +17,7 @@
     "express-busboy": "^10.1.0",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
     "fileupload": "^0.2.2",
     "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",

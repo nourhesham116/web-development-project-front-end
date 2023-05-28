@@ -22,29 +22,29 @@
         <%- include('./partials/addtocart.ejs') %>
             <div class="h2">
                 <h2 class="title">
-                    <%=pageTitle %>
+                  
                 </h2>
             </div>
             </div>
 
 
-            <% if(products.length){%>
+            
 <ul>
-                <%for( let product of products){%>
+                <%productsList.forEach(product=>{%>
                     
                         <li class="item-a">
                             <div class="box">
 
                                 <a href="productdetail">
                                     <div class img-slide>
-                                        <img src=<%=product.image1 %> width="350px" height="450px" class="hide">
+                                        <img src="../imgs/uploads/<%= product.image1%>"  width="350px" height="450px" class="hide">
                                     </div>
-                                    <div class="overlay"> <img src=<%=product.overlayImg %> width="350px" height="450px"></div>
+                                    <div class="overlay"> <img src="../imgs/uploads/<%= product.image2%>" width="350px" height="450px"></div>
 
                             </div>
                             <div class="detail">
                                 <div class="type">
-                                    <span> <%=product.status %></span>
+                                    <span> <%=product.type %></span>
                                     <a href="#">
                                         <%= product.description %>
                                     </a>
@@ -65,11 +65,9 @@
                                 </a>
                             </div>
                         </li>
-                    <% } %>
+                   
                 </ul>
-                        <%} else{ %>
-                            <div class="h2"> NO PRODUCTS</div>
-                            <% } %>
+          <%  })%>
                         
 
 </body>

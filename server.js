@@ -15,6 +15,7 @@ const busboy = require('connect-busboy');//ashan swar
 const prodRouter = require("./routes/productsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const addproductsRouter = require("./routes/addproductsRoute.js");
+const productdetailRouter = require("./routes/productdetailRoute");
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')

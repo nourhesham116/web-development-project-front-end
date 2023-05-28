@@ -20,12 +20,31 @@
                      Opt-in for our email list to receive early access to new products & exclusive offers.</p> 
                  <div>
                     <input type="text" name="Firstname" placeholder="First Name"required>
+
+                    <span style="color: red">
+                        <% if (Array.isArray(errorMessages) && errorMessages.includes('lastname is required')) { %>
+                            lastname is required                      <% }%>
+                        </span>
+
                     <input type="text" name="Lastname" placeholder="Last Name"required>
+                     
+                    <span style="color: red">
+                        <% if (Array.isArray(errorMessages) && errorMessages.includes('Password is required')) { %>
+                          Password is required.
+                        <% }%>
+                        </span>
+
                  </div> 
                  <div class="err"><span id="FnameERR"></span> <span id="LnameERR"></span></div>
                  <input type="email" name="email" placeholder="Email Address"required> 
-                 <span id="eErr" class="err"></span>
-                <!-- <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> -->
+                  
+                 <span style="color: red">
+                        <% if (Array.isArray(errorMessages) && errorMessages.includes('invalid email')) { %>
+                            invalid email                        <% }%>
+                        </span>
+
+                <span id="eErr" class="err"></span>
+                 <!-- <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> -->
                  <span id="ecErr" class="err"></span>
                  <p>
                      By subscribing to Sophistiqué beauty and skin you consent to receive 
@@ -35,7 +54,29 @@
                     Privacy Policy.
                  </p>
                  <input type="password" name="password" placeholder="Password" required>
-                 <span id="pErr" class="err"></span>
+
+                      
+                 <span id="pErr" class="err">
+                    <span style="color: red">
+                           <% if (Array.isArray(errorMessages) && errorMessages.includes('Password is required')) { %>
+                            Password is required.
+                          <% } else if(Array.isArray(errorMessages) && errorMessages.includes('password must be atleast 8 caharcters')) { %>
+                            password must be atleast 8 caharcters    <% } 
+
+                            else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one lowercase letter')) { %>
+                                Password must contain at least one lowercase letter    <% } 
+
+                            else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one uppercase letter')) { %>
+                                Password must contain at least one uppercase letter    <% } 
+
+                                else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one digit')) { %>
+                                    Password must contain at least one digit    <% } 
+
+                                else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one special character')) { %>
+                                    Password must contain at least one special character    <% } %>
+                      </span>
+                    
+                 </span>
                 <!-- <input type="password" name="passwordConfirm" placeholder="Confirm Password">-->
                  
                   <input type="hidden" name="type" value="client">

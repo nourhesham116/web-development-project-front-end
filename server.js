@@ -3,6 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 const users = require('./models/users');
 const products = require('./models/product');
+const flash = require('connect-flash');
 
 ////////////////
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,8 @@ app.use(express.static('public'));
 app.use(session({ secret: 'Your_Secret_Key' }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
+
 /////////////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -96,6 +99,8 @@ app.post('/RegisterationForm-action', async (req, res) => {
       console.log(err);
     });
 });
+
+
 /////////////
 /*app.post('/addproduct-action',(req, res) => {
   let imgFile1,imgFile2,imgFile3,imgFile4;
@@ -233,9 +238,9 @@ app.get('/adminproducts', (req, res) => {
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-app.get('/RegisterationForm', (req, res) => {
+/*app.get('/RegisterationForm', (req, res) => {
   res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
+});*/
 app.get('/users', (req, res) => {
   res.render('users')
 })
@@ -246,5 +251,15 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+/////////////////////////////////////////////////////
+//app.use(flash());
+app.get('/RegisterationForm', (req, res) => {
+  const errorMessages = req.flash('errorMessages'); // Iam using Express flash messages
+ /* res.locals.errorMessages=req.flash('errorMessages')
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");*/
+  res.render('RegisterationForm',  {errorMessages} );
+});
+
 
 module.exports = { app };

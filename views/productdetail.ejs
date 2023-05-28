@@ -35,34 +35,49 @@
         <div class="left-split">
             <div class="row">
                 <div class="column">
-                    <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%"  onclick="expand(this);" >
-                    <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%"  onclick="expand(this);">
-                    <img src="../imgs/texture.jpeg" style="width:50%"  onclick="expand(this);">
-                    
+                    <!-- <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%"  onclick="expand(this);" > -->
+                    <img class="demo cursor" src="<%= product.image1 %>" style="width:50%"  onclick="expand(this);" >
+
+                    <!-- <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%"  onclick="expand(this);"> -->
+                    <img class="demo cursor" src="<%= product.image2 %>" style="width:50%"  onclick="expand(this);">
+
+                    <!-- <img src="../imgs/texture.jpeg" style="width:50%"  onclick="expand(this);"> -->
+                    <img src="<%= product.image3 %>" style="width:50%"  onclick="expand(this);">
+
+                    "<%= product.imageURL %>
+
                 </div>
                 <div class="column2">
-                    <img id="expandedImg" img src="../imgs/main product.jpeg" width="175%" height=800px>
+                    <!-- <img id="expandedImg" img src="../imgs/main product.jpeg" width="175%" height=800px> -->
+                    <img id="expandedImg" img src="<%= product.image1 %>"  width="175%" height=800px>
+
                 </div>
             </div>
         </div>
         <div class="right-split">
             <div class="centered">
-               <p><a href="/index" > Home&nbsp</a> /Melt Awf Jelly Oil Makeup-Melting Cleanser</p>
+               <!-- <p><a href="/index" > Home&nbsp</a> /Melt Awf Jelly Oil Makeup-Melting Cleanser</p> -->
+               <p><a href="/index" > Home&nbsp</a> /<%= product.name %> </p>
+
                 <br>
                 <div class="box" style="background-color:rgb(174, 168, 187 )">
                     <p>NEW</p>
                 </div>
                 <div class="heading">
-                    <p>MELT AWF JELLY OIL MAKEUP-MELTING CLEANSER</p>
+                    <!-- <p>MELT AWF JELLY OIL MAKEUP-MELTING CLEANSER</p> -->
+                    <p><%= product.name %></p>
+                    
                 </div>
                 <div class="price">
-                    <p>$ 34</p>
+                    <!-- <p>$ 34</p> -->
+                    <p><%= product.price %></p>
                 </div>
                 <div>
                     <a class="review" href=#>4 Reviews</a>
                 </div>
                 <div class="header">
-                    <p>The jelly-oil cleanser so good, you'll put on makeup just to take it off</p>
+                    <!-- <p>The jelly-oil cleanser so good, you'll put on makeup just to take it off</p> -->
+                    <p><%= product.description %></p>
                 </div>
                 <div class="star-review">
                     <div class="fa fa-star checked"></div>
@@ -126,8 +141,7 @@
                             </div>
                             <div class="container8">
                                 <div class="noouterbox">
-                                    <img src="
-    noouterbox.png" width="45px" height="40px">
+                                    <img src="noouterbox.png" width="45px" height="40px">
                                 </div>
                                 <div class="text8">
                                     <p>No<br>Outer<br>Box</p>

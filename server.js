@@ -105,7 +105,10 @@ check('Firstname','Firstname should contain min 3 characters')
 .isLength({min:3}),
 check('Lastname','Lastname should contain min 3 characters')
 .exists()
-.isLength({min:3})
+.isLength({min:3}),
+check('email')
+    .exists().withMessage('Email is required')
+    .isEmail().withMessage('Invalid email'),
 
 ],(req,res)=> {
 const errors = validationResult(req)
@@ -314,4 +317,7 @@ app.use((req, res, next) => {
 
 
 module.exports = { app };
+
+// ...
+
 

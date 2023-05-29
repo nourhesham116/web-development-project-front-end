@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admindashboard.css">
+    <link rel="stylesheet" href="../css/productcontrol.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Products</title>
+</head>
+
+<body>
+    <%-include('./partials/admindesign.ejs') %>
+
+        <section id="interface">
+            <div class="navigation">
+                <div class="n1">
+                    <div><i id="menu-btn" class="fa fa-bars"></i>
+                    </div>
+                    <div class="search">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="profile">
+                    <i class="fa fa-bell"></i>
+                    <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
+                </div>
+            </div>
+            <h2 class="i-name">
+                Products control
+            </h2>
+
+            <div>
+                <button type="Button" class="productcontrolbtn" id="add" onclick="display()"> + add products</button>
+                <button type="Button" class="productcontrolbtn" id="remove"> pending product</button>
+            </div>
+
+            <div id="newproductdetails" class="hidden">
+                <form action='/addproduct-action' method='post' enctype="multipart/form-data">
+                    <label for="fname">Product name:</label>
+                    <input type="text" placeholder="enter the name of the product" size="50" name="name"required></input>
+                    <br>
+                    <br>
+                    <label for="fname">Product price:</label>
+                    <input type="text" placeholder="enter the price of the product" size="51"name="price" required></input>
+                    <br>
+                    <br>
+                    <label for="fname">Product description:</label>
+                    <input type="text" placeholder="enter the description of the product" size="45" name="description" required ></input>
+                    <br>
+                    <br>
+                    <!----><div class="radio-group">
+                        <label>
+                            <input type="radio" value="SKIN" name="category"onclick="dropdownSkin()">
+                            SKIN
+                        </label>
+                        <label>
+                            
+                            <input type="radio" value="BEAUTY" name="category" onclick="dropdownBeauty()">
+                            BEAUTY
+                        </label>
+                    </div>
+                    <br>
+                    <div  style="width:200px;">
+                        <select name="type" id="custom-select" >
+                          <option value="0" >:select</option>
+                          
+                        </select>
+                      </div>
+                      <br>
+                      <label for="image1">Main image:</label>
+                      <input type="file" name="image1"required >
+                      <br>
+                      <label for="image2">Hover image:</label>
+                      <input type="file" name="image2"required >
+                      <br>
+                      <label for="image3">supporing image:</label>
+                      <input type="file" name="image3"required >
+                      <br>
+                      <label for="image4">product swatch:</label>
+                      <input type="file" name="image4"required >
+                      <br>
+                      <input type="submit" name="submit" value="add product">
+                    <div id="message"></div>
+
+                </form>
+            </div>
+
+           <script src="../javascript/productcontrol.js"></script>
+</body>
+
+</html>

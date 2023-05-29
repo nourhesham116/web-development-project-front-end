@@ -4,12 +4,23 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const app = express();
+const flash = require('connect-flash');
+const session = require('express-session');
+
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+
 ///////////////////////////////////////
 
 
 //validating signup form
 
-app.post('/create', [
+app.post('/RegisterationForm-action', [
     body("Firstname").notEmpty({}).withMessage("firstname is required"),
   
     body("Lastname").notEmpty().withMessage("lastname is required"),
@@ -40,11 +51,13 @@ app.post('/create', [
       // Customizing the error messages 
   
       const errorMessages = errors.array().map(error => error.msg);
+      res.locals.success = req.flash("success");
+      res.locals.error = req.flash("error");
       req.flash('errorMessages', errorMessages);
       req.flash('errorColor', 'red');
       
       // Redirect  the form with the error messages 
-      return res.redirect('/RegisterationForm'); 
+      return res.redirect('/RegisterationForm',errorMessages); 
       
     }
     next();

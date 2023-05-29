@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    padding: 0%;
+    padding: 10px;
     background-color: #fffffd;
 }
 .title{
@@ -46,6 +46,7 @@ position:relative ;
     border-radius: 0px;
     overflow:hidden;
     position: relative;
+    
 
 }
 .overlay {
@@ -120,6 +121,10 @@ position:relative ;
 }
 .shop span,a{
     color:black;
+}
+.shop span{
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .price{
     text-align: right;

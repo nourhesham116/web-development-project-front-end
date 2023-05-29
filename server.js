@@ -37,7 +37,9 @@ mongoose.connect(dburi).then(result => app.listen(port, () => console.info(`list
 // default options
 app.use(fileUpload());
 app.use(express.static('public'));
-app.use(session({ secret: 'Your_Secret_Key' }))
+app.use(session(
+  { secret: 'Your_Secret_Key' })
+  )
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 /////////////////////////
@@ -49,7 +51,7 @@ app.get('/', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.use('/', prodRouter);
+app.use('/body', prodRouter);
 app.use('/admindashboard',admindashboardRouter)
 app.use('/addproduct-action',addproductsRouter)
 app.get('', (req, res) => {
@@ -79,7 +81,7 @@ app.post('/login-action', (req, res) => {
     });
 });
 
-app.get('Account/Myprofile', (req, res) => {
+app.get('/Myprofile', (req, res) => {
   res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
 });
 app.post('/RegisterationForm-action', async (req, res) => {
@@ -248,5 +250,9 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+/////////////////////////////////////
+app.get('/editproduct',(req,res)=>{
+  const prod=products.findById(req.params.prodId)
+})
 
 module.exports = { app };

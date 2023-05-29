@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.use('/body', prodRouter);
+app.use('/', prodRouter);
 app.use('/admindashboard',admindashboardRouter)
 app.use('/addproduct-action',addproductsRouter)
 app.get('', (req, res) => {
@@ -212,16 +212,16 @@ app.get('/sophistiqueBeauty', (req, res) => {
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
-app.get('/Lipbalm+treatment', (req, res) => {
-  res.render('Lipbalm+treatment', { user: (req.session.user === undefined ? "" : req.session.user) })
+app.get('/Liptreatment', (req, res) => {
+  res.render('Lipbalm', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 app.get('/skincarePage1', (req, res) => {
   res.render('skincarePage1', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-/*app.get('/adminstatistics', (req, res) => {
+app.get('/adminstatistics', (req, res) => {
   res.render('adminstatistics', { user: (req.session.user === undefined ? "" : req.session.user) })
-})*/
+})
 
 
 app.get('/sophistiqueBeauty', (req, res) => {

@@ -250,5 +250,9 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+/////////////////////////////////////
+app.get('/editproduct',(req,res)=>{
+  const prod=products.findById(req.params.prodId)
+})
 
 module.exports = { app };

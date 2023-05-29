@@ -22,5 +22,10 @@ router.post('/', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
+// const getProduct=(req,res)=>{
+//     var query={"_id":req.params.id};
+//     Product.findone(query).then(result=>{
+//         res.render('productdetail',{ Product: result, product: (req.session.user === undefined ? "" : req.session.user) })
+//     })
+// }
 module.exports = router;

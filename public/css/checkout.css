@@ -1,0 +1,133 @@
+body{
+    background-image:url(backgroundimage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+  input[type=text], select {
+      width: 80%;
+      padding: 10px 18px;
+      margin: 8px 0;
+      display: block;
+      border: 1px solid #F3e5dc;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 40%;
+      background-color: black;
+      color: white;
+      padding: 10px 15px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color:black;
+      display: inline-block;
+    }
+    .billing{
+      display:block;
+      background-color: white;
+      width:40%;
+      padding:10px 18px ;
+      transform: translate(15px,19px);
+      border:2px;
+      border-color: rgb(198, 191, 191);
+      border-style: solid;
+    }
+    
+    .deliveryaddress{
+      display:inline-block;
+      width:40%;
+      background-color: white;
+      padding:40px 15px ;
+      float: right;
+      top: 960px;
+      transform: translate(-60px,-485px);
+      border:2px;
+      border-color: rgb(198, 191, 191);
+      border-style: solid;
+      
+    }
+    .title{
+      font-size: 50px;
+      transform: translate(15px,15px);
+    }
+    #alter{
+      background-color: rgb(238, 223, 223,50%); 
+      width: 50%;
+      padding: 20px;
+      margin-left: 20px;
+     
+  }
+  .hidden{
+      display: none;
+  }
+  
+  .addressbtn{
+      background-color:black;
+      color: white;
+      padding: 10px;
+      margin: 20px;
+  }
+   #deliveryform{
+      background-color:white
+      width:70%;
+      padding:15px;
+  }
+  .hidden{
+      display: none;
+  }
+  input[type="submit"]{
+      background-color: rgb(255, 255, 255);
+      margin-top: 20px;
+      margin-left: 40%;
+      padding: 9px;
+      left: 50%;
+  }
+  .rdbtn{
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Hide the browser's default radio button */
+    .rdbtn input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+    /* When the radio button is checked, add a blue background */
+    .rdbtn input:checked ~ .checkmark {
+      background-color: #F3e5dc;
+    }
+    .shippingmethod{
+      display:block;
+      background-color: white;
+      width:95%;
+      height: 10%;
+      padding:10px 18px ;
+      border:2px;
+      transform: translate(15px,100px);
+      border-color: rgb(198, 191, 191);
+      border-style: solid;
+    }

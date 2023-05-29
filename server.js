@@ -23,6 +23,7 @@ const urlencodedParser =bodyParser.urlencoded({extended: false})
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
+const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
 ///////////////////////////////////////////////////////
 //const flash = require('connect-flash');
@@ -40,7 +41,10 @@ app.use('/imgs', express.static(__dirname + 'public/imgs'))
 app.use('/uploads', express.static(__dirname + 'public/imgs/uploads'))
 const dburi = 'mongodb+srv://nour_hesham:Nour11062003@cluster0.1kyqmes.mongodb.net/cluster0?retryWrites=true&w=majority'
 
-mongoose.connect(dburi).then(result => app.listen(port, () => console.info(`listening on port ${port}`))).catch(err => console.log(err))
+mongoose.connect(dburi,).then(result => 
+  app.listen(port, () => 
+  console.info(`listening on port ${port}`)))
+  .catch(err => console.log(err))
 /////////////
 
 /////////////////
@@ -283,8 +287,17 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 /////////////////////////////////////
-app.get('/editproduct',(req,res)=>{
-  const prod=products.findById(req.params.prodId)
+app.get('/editproduct/:prodId',(req,res)=>{
+  products.findById(req.params.prodId).then(function (prod){
+    res.render('editproduct',{product:prod});
+  })
+  
+})
+app.post('/deleteproduct-action/:prodId',(req,res)=>{
+  products.deleteOne({"_id": new ObjectID(req.params.prodId)}).then(result =>{
+    res.redirect('/');
+  }).catch(err=>console.log(err))
+  
 })
 
 // Custom error handling middleware

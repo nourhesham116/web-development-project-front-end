@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkoutform.css" />
+    
+    <title>Document</title>
+    
+</head>
+<body>
+    
+    <p class="title">CHECKOUT</p>
+        <div class="billing">
+        <form action="BILLING ADDRESS">
+          <p>BILLING ADDRESS</p>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="John">
+      
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Smith">
+
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" placeholder="Johnsmith@gmail.com">
+
+          <label for="address">Address Line</label>
+          <input type="text" id="address" name="addressline"  placeholder="New cairo,5th settlment">
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="cairo,egypt">
+
+      
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="Egypt">Egypt</option>
+            <option value="Australia">Australia</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+        
+          
+        </form>
+      </div> 
+
+      <div class="deliveryaddress">
+        <div>
+        <p> DELIVERY ADDRESS</p>
+        <button type="Button" class="addressbtn" >Same as billing address</button>
+        <button type="Button" class="addressbtn" id="add" >Add an alternative delivery address</button>
+        </div>
+        <div id="deliveryform" class="hidden">
+            <form action='/addproduct-action' method='post' enctype="multipart/form-data">
+                <label for="fname">First Name</label>
+                <input type="text"   name="fname"required></input>
+                <br>
+                <br>
+                <label for="fname">Last Name</label>
+                <input type="text" name="lname" required></input>
+                <br>
+                <br>
+                <label for="fname">Address Line</label>
+                <input type="text"  name="description" required ></input>
+                <br>
+            </form>
+        </div>
+    </div>
+    <div class="shippingmethod">
+        <p>SHIPPING METHOD</p>
+        <span>
+            <label class="rdbtn">EGP 343.00
+            <input type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <span class="expresstext">Express Courier</p>
+        </span>
+        
+
+
+
+    </div>
+    
+    <script src="C:\Users\DELL\Desktop\checkoutform.js"></script> 
+</body>
+</html>

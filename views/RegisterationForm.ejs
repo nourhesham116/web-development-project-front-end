@@ -14,7 +14,7 @@
     <!--<script src="../js/Validation.js"></script> -->
     <div class="createAndBenefits">
         <div class="regForm">
-
+   <div class="alert">
             <% if(typeof alert != 'undefined'){ %>
                 <% alert.forEach(function(error){%>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -25,7 +25,7 @@
                       </div>
                       <% }) %>
                       <% } %>
-
+                    </div>
             <form action='/RegisterationForm' method='post' onsubmit=return validate(this)>
                 <h2>Create Account</h2>
                 <p>Save your shipping information for faster checkout.

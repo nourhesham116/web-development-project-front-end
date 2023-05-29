@@ -105,3 +105,7 @@ div[class="benefits"]{
     letter-spacing: 0.2em;
     font-weight: 500;
 }
+.alert{
+    padding :0cqmin;
+    background-color:rgb(168, 142, 170);
+}

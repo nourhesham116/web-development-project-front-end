@@ -251,8 +251,11 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 /////////////////////////////////////
-app.get('/editproduct',(req,res)=>{
-  const prod=products.findById(req.params.prodId)
+app.get('/editproduct/:prodId',(req,res)=>{
+  products.findById(req.params.prodId).then(function (prod){
+    res.render('editproduct',{product:prod});
+  })
+  
 })
 
 module.exports = { app };

@@ -11,37 +11,36 @@
 <body>
     <%- include('./partials/Nav.ejs') %>
     <%- include('./partials/addtocart.ejs') %>
-    <script src="../js/Validation.js"></script>
+    <!--<script src="../js/Validation.js"></script> -->
     <div class="createAndBenefits">
         <div class="regForm">
-            <form action='/RegisterationForm-action' method='post' onsubmit=return validate(this)>
+
+            <% if(typeof alert != 'undefined'){ %>
+                <% alert.forEach(function(error){%>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= error.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <% }) %>
+                      <% } %>
+
+            <form action='/RegisterationForm' method='post' onsubmit=return validate(this)>
                 <h2>Create Account</h2>
                 <p>Save your shipping information for faster checkout.
                      Opt-in for our email list to receive early access to new products & exclusive offers.</p> 
                  <div>
                     <input type="text" name="Firstname" placeholder="First Name"required>
 
-                    <span style="color: red">
-                        <% if (Array.isArray(errorMessages) && errorMessages.includes('lastname is required')) { %>
-                            lastname is required                      <% }%>
-                        </span>
 
                     <input type="text" name="Lastname" placeholder="Last Name"required>
-                     
-                    <span style="color: red">
-                        <% if (Array.isArray(errorMessages) && errorMessages.includes('Password is required')) { %>
-                          Password is required.
-                        <% }%>
-                        </span>
-
+                    
                  </div> 
                  <div class="err"><span id="FnameERR"></span> <span id="LnameERR"></span></div>
                  <input type="email" name="email" placeholder="Email Address"required> 
                   
-                 <span style="color: red">
-                        <% if (Array.isArray(errorMessages) && errorMessages.includes('invalid email')) { %>
-                            invalid email                        <% }%>
-                        </span>
+                
 
                 <span id="eErr" class="err"></span>
                  <!-- <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> -->
@@ -57,24 +56,7 @@
 
                       
                  <span id="pErr" class="err">
-                    <span style="color: red">
-                           <% if (Array.isArray(errorMessages) && errorMessages.includes('Password is required')) { %>
-                            Password is required.
-                          <% } else if(Array.isArray(errorMessages) && errorMessages.includes('password must be atleast 8 caharcters')) { %>
-                            password must be atleast 8 caharcters    <% } 
-
-                            else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one lowercase letter')) { %>
-                                Password must contain at least one lowercase letter    <% } 
-
-                            else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one uppercase letter')) { %>
-                                Password must contain at least one uppercase letter    <% } 
-
-                                else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one digit')) { %>
-                                    Password must contain at least one digit    <% } 
-
-                                else if(Array.isArray(errorMessages) && errorMessages.includes('Password must contain at least one special character')) { %>
-                                    Password must contain at least one special character    <% } %>
-                      </span>
+                  
                     
                  </span>
                 <!-- <input type="password" name="passwordConfirm" placeholder="Confirm Password">-->

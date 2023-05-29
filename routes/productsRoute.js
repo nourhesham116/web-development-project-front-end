@@ -6,7 +6,7 @@ const Product=require("../models/product")
 router.get('/body', function(req, res, next) {
   Product.find({type:'body cleanser'}).then(function(product){
     res.render('body',{
-      productsList:product
+      productsList:product,userP: req.session.user,user: (req.session.user === undefined ? "" : req.session.user)
     })
   })
   
@@ -14,8 +14,8 @@ router.get('/body', function(req, res, next) {
 
   router.get('/allface', function(req, res, next) {
     Product.find({type:'Face moisturizer'}).then(function(product){
-      res.render('allface',{
-        productsList:product 
+      res.render('allface',
+        {  productsList:product,userP: req.session.user,user: (req.session.user === undefined ? "" : req.session.user) 
       })
     })
 
@@ -23,7 +23,7 @@ router.get('/body', function(req, res, next) {
     router.get('/Liptreatment', function(req, res, next) {
       Product.find({type:'lipbalm'}).then(function(product){
         res.render('Liptreatment',{
-          productsList:product 
+          productsList:product,userP: req.session.user,user: (req.session.user === undefined ? "" : req.session.user)
         })
       })
   
@@ -32,7 +32,7 @@ router.get('/body', function(req, res, next) {
       router.get('/skincarePage1', function(req, res, next) {
         Product.find({type:'cleanser'}).then(function(product){
           res.render('skincarePage1',{
-            productsList:product 
+            productsList:product,userP: req.session.user,user: (req.session.user === undefined ? "" : req.session.user)
           })
         })
     

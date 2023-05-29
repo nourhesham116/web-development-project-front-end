@@ -258,4 +258,10 @@ app.get('/editproduct/:prodId',(req,res)=>{
   
 })
 
+// Custom error handling middleware
+app.use((req, res, next) => {
+  res.status(404).render('Error404');
+});
+
+
 module.exports = { app };

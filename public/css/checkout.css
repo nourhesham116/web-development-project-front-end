@@ -131,3 +131,46 @@ body{
       border-color: rgb(198, 191, 191);
       border-style: solid;
     }
+    .summary{
+      display:block;
+    background-color: white;
+    width:40%;
+    padding:10px 18px ;
+    border:2px;
+    transform: translate(720px,150px);
+    border-color: rgb(198, 191, 191);
+    border-style: solid;
+  }
+  .billsummary{
+    width: 40%;
+  }
+  #apply{
+    background-color: #F3e5dc;
+    border-color: #F3e5dc;
+    transform: translate(320px,-45px);
+    height: 40px;
+  
+  
+  }
+  #coupon{
+    width: 300px;
+  }
+  .total{
+    transform: translate(450px,-35px);
+  }
+  .total2{
+    transform: translate(460px,-33px);
+  }
+   .total3{
+    transform: translate(460px,-32px);
+   }
+   .text{
+    transform: translate(3px,-30px);
+   }
+   .placeorder{
+    background-color: black;
+    color: white;
+    width: 40%;
+    height: 40px;
+    transform: translate(55px,100px);
+   }

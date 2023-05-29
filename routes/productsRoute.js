@@ -8,7 +8,10 @@ let type;
 router.get('/', (req, res) => {
   
   Product.find().then(function(product){
+   
     res.render('body',({  productsList:product,userP: req.session.user,user: (req.session.user === undefined ? "" : req.session.user) }))
+    
+    
   })
   });
   

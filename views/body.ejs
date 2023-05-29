@@ -59,10 +59,14 @@
                             </div>
                             </a>
                             <div class="shop">
-                                <% if(userP.Type=="admin"){ %>
+                                
+                                <% if(!userP||userP.Type=="client"){ %>
+                                    <span class=""><a href="#">ADD TO BAG</a></span>
+                                    <%}
+                                    else if(userP.Type=="admin"){ %>
+                                    
                                 <span class=""><a href="#">Edit</a></span>
-                                <%}
-                                else{%><span class=""><a href="#">ADD TO BAG</a></span><%}%>
+                                <%}%>
                                 <a href="#" class="price">
                                     <%= product.price %>
                                 </a>

@@ -109,6 +109,12 @@ check('Lastname','Lastname should contain min 3 characters')
 check('email')
     .exists().withMessage('Email is required')
     .isEmail().withMessage('Invalid email'),
+    check('password')
+    .exists().withMessage('Password is required')
+    .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
+    .withMessage('Password should contain at least one letter, one number, and one special character'),
+
 
 ],(req,res)=> {
 const errors = validationResult(req)
@@ -317,7 +323,5 @@ app.use((req, res, next) => {
 
 
 module.exports = { app };
-
-// ...
 
 

@@ -69,7 +69,7 @@
                                     else if(userP.Type=="admin"){ %>
                                     
                                 <span class=""><a href="/editproduct/<%=product._id%>">Edit</a></span>
-                               <span class=""><form action="/deleteproduct-action/<%=product._id%>" method="post">
+                               <span class=""><form action="/admindashboard/<%=product._id%>" method="post">
                                       <input type="hidden" name="id" value="<%=product._id%>">
                                       <button type="submit">Delete</button>
                                 </form></span>

@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
 app.use('/admindashboard', admindashboardRouter);
 //app.use('/admindashboard',admindashboardRouter)
 app.use('/',productsRouter)
-app.use('/addproduct-action',addproductsRouter)
+//app.use('/addproduct-action',addproductsRouter)
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -313,12 +313,12 @@ app.get('/editproduct/:prodId',(req,res)=>{
   })
   
 })
-app.post('/deleteproduct-action/:prodId',(req,res)=>{
+/*app.post('/deleteproduct-action/:prodId',(req,res)=>{
   products.deleteOne({"_id": new ObjectID(req.params.prodId)}).then(result =>{
     res.redirect('/');
   }).catch(err=>console.log(err))
   
-})
+})*/
 
 // Custom error handling middleware
 app.use((req, res, next) => {

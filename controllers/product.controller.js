@@ -1,4 +1,5 @@
 const products = require('../models/product');
+const  ObjectID = require('mongodb').ObjectId;
 const users=require('../models/users')
 const path = require('path');
 
@@ -65,8 +66,17 @@ const createProduct = (req, res) => {
    
   });
 };
-
+const deleteProduct = async (req, res) => {
+  try {
+   products.deleteOne({ _id: new ObjectID(req.params.prodId)}).then(result =>{
+    res.redirect('/');
+   })
+  } catch (err) {
+    console.log(err);
+  }
+};
 module.exports = {
-  createProduct
+  createProduct,
+  deleteProduct
 };
 

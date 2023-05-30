@@ -19,4 +19,5 @@ router.get('/', (req, res) => {
     }
   });
   router.post('/', productController.createProduct);
+  router.post('/:prodId',productController.deleteProduct)
   module.exports=router;

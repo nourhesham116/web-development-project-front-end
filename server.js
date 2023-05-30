@@ -3,6 +3,9 @@ const express = require('express');
 const ejs = require('ejs');
 const users = require('./models/users');
 const products = require('./models/product');
+//const Joi = require('joi');
+const bodyParser =require('body-parser')
+const { check, validationResult } = require('express-validator');
 
 ////////////////
 const cookieParser = require("cookie-parser");
@@ -16,13 +19,20 @@ const productsRouter = require("./routes/productsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const addproductsRouter = require("./routes/addproductsRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
+const urlencodedParser =bodyParser.urlencoded({extended: false})
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
+///////////////////////////////////////////////////////
+//const flash = require('connect-flash');
+//const { validateUser } = require('./middlewares/validation');
+//const { saveUser } = require('./controllers/auth.controllers');
 
 app.use(express.static('public'))
+//app.use(flash());
+
 //////////////
 
 app.use('/css', express.static(__dirname + 'public/css'))
@@ -46,6 +56,7 @@ app.use(session(
   )
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 /////////////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -89,7 +100,35 @@ app.post('/login-action', (req, res) => {
 app.get('/Myprofile', (req, res) => {
   res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
 });
+app.post('/RegisterationForm',urlencodedParser,[
+check('Firstname','Firstname should contain min 3 characters')
+.exists()
+.isLength({min:3}),
+check('Lastname','Lastname should contain min 3 characters')
+.exists()
+.isLength({min:3}),
+check('email')
+    .exists().withMessage('Email is required')
+    .isEmail().withMessage('Invalid email'),
+    check('password')
+    .exists().withMessage('Password is required')
+    .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
+    .withMessage('Password should contain at least one letter, one number, and one special character'),
+
+
+],(req,res)=> {
+const errors = validationResult(req)
+
+if(!errors.isEmpty()){
+  const alert = errors.array()
+  res.render('RegisterationForm',{
+    alert
+  })
+}
+})
 app.post('/RegisterationForm-action', async (req, res) => {
+
   const user = new users({
     Firstname: req.body.Firstname,
     Lastname: req.body.Lastname,
@@ -97,6 +136,7 @@ app.post('/RegisterationForm-action', async (req, res) => {
     Password: req.body.password,
     Type: req.body.type
   });
+  
   await user.save()
     .then(result => {
       res.redirect('/Account');
@@ -104,6 +144,7 @@ app.post('/RegisterationForm-action', async (req, res) => {
     .catch(err => {
       console.log(err);
     });
+  
 });
 app.get('/Account',(req,res)=>{
     
@@ -223,6 +264,9 @@ app.get('/productdetail', (req, res) => {
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
 })
+app.get('/checkout', (req, res) => {
+  res.render('checkout')
+})
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
@@ -282,4 +326,13 @@ app.use((req, res, next) => {
 });
 
 
+//app.get('/RegisterationForm', (req, res) => {
+ // res.render('RegisterationForm', { errorMessages: req.flash('error') });
+//});
+
+//app.post('/RegisterationForm', validateUser, saveUser);
+
+
 module.exports = { app };
+
+

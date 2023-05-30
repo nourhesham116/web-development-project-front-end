@@ -105,3 +105,38 @@ div[class="benefits"]{
     letter-spacing: 0.2em;
     font-weight: 500;
 }
+.alert {
+    background-color: #f8f0e3;
+    color: #ba4a00;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .alert .btn-close {
+    font-size: 1.25rem;
+    line-height: 1;
+    float: right;
+    color: #ba4a00;
+    opacity: 0.8;
+    transition: opacity 0.15s ease-in-out;
+  }
+  
+  .alert .btn-close:hover {
+    opacity: 1;
+  }
+  
+  .alert-warning {
+    background-color: #fff7eb;
+    border-color: #ffd3a5;
+  }
+  
+  .alert-warning .btn-close {
+    color: #ba4a00;
+  }
+  
+  .alert-warning .btn-close:hover {
+    color: #ba4a00;
+    opacity: 1;
+  }
+  

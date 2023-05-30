@@ -1,26 +1,69 @@
-const express = require('express');
-const router = express.Router();
-const Product = require('../models/product');
+const products = require('../models/product');
+const path = require('path');
 
-// Create a new product
-router.post('/', async (req, res) => {
-  try {
-    const product = new Product({
-      name: req.body.name,
-      price: req.body.price,
-      description: req.body.description,
-      category:req.body.category,
-      status:req.body.category,
-      //images
-    });
+const createProduct = (req, res) => {
+  let imgFile1, imgFile2, imgFile3, imgFile4;
+  let uploadPath1, uploadPath2, uploadPath3, uploadPath4;
 
-    await product.save();
+  console.log(req.files);
 
-    res.status(201).send(product);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
   }
-});
 
-module.exports = router;
+  imgFile1 = req.files.image1;
+  imgFile2 = req.files.image2;
+  imgFile3 = req.files.image3;
+  imgFile4 = req.files.image4;
+
+  uploadPath1 = path.resolve(__dirname, '..') + '/public/imgs/uploads/' + req.body.name + '_1' + path.extname(imgFile1.name);
+  uploadPath2 = path.resolve(__dirname, '..') + '/public/imgs/uploads/' + req.body.name + '_2' + path.extname(imgFile2.name);
+  uploadPath3 = path.resolve(__dirname, '..') + '/public/imgs/uploads/' + req.body.name + '_3' + path.extname(imgFile3.name);
+  uploadPath4 = path.resolve(__dirname, '..') + '/public/imgs/uploads/' + req.body.name + '_4' + path.extname(imgFile4.name);
+
+  imgFile1.mv(uploadPath1, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  });
+
+  imgFile2.mv(uploadPath2, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  });
+
+  imgFile3.mv(uploadPath3, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  });
+
+  imgFile4.mv(uploadPath4, function (err) {
+    if (err)
+      return res.status(500).send(err);
+  });
+
+  const prod = new products({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    category: req.body.category,
+    type: req.body.type,
+    image1: req.body.name + '_1' + path.extname(imgFile1.name),
+    image2: req.body.name + '_2' + path.extname(imgFile2.name),
+    image3: req.body.name + '_3' + path.extname(imgFile3.name),
+    image4: req.body.name + '_4' + path.extname(imgFile4.name)
+  });
+
+  prod.save()
+  .then(result => {
+    req.flash('successMessage', 'Product added successfully');
+    
+  })
+  .catch(err => {
+    console.log(err);
+   
+  });
+};
+
+module.exports = {
+  createProduct
+};

@@ -4,10 +4,10 @@
 // and listens for connections on the specified port.
 
 // Module dependencies
-import app from "../server.js";
-import mongoose from "mongoose";
-import { createServer } from "http";
-import dotenv from "dotenv";
+const mongoose = require("mongoose");
+const { createServer } = require("http");
+const dotenv = require("dotenv");
+const app = require("../server");
 
 dotenv.config();
 

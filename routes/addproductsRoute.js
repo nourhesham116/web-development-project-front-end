@@ -4,7 +4,7 @@ const users = require('../models/users');
 const products = require('../models/product');
 
 const path = require('path');
-router.post('/',(req, res) => {
+/*router.post('/',(req, res) => {
     let imgFile1,imgFile2,imgFile3,imgFile4;
     let uploadPath1,uploadPath2,uploadPath3,uploadPath4;
     console.log(req.files)
@@ -57,6 +57,6 @@ router.post('/',(req, res) => {
         console.log(err);
       });
   });
-  ///////////
+  ///////////*/
   
   module.exports=router;  

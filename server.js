@@ -12,7 +12,7 @@ const morgan = require("morgan");
 const multer = require('multer');
 const busboy = require('connect-busboy');//ashan swar
 //////////////////
-const prodRouter = require("./routes/productsRoute.js");
+const productsRouter = require("./routes/productsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const addproductsRouter = require("./routes/addproductsRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
@@ -55,8 +55,9 @@ app.get('/', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.use('/', prodRouter);
-app.use('/admindashboard',admindashboardRouter)
+app.use('/admindashboard', admindashboardRouter);
+//app.use('/admindashboard',admindashboardRouter)
+app.use('/',productsRouter)
 app.use('/addproduct-action',addproductsRouter)
 app.get('', (req, res) => {
 
@@ -104,6 +105,12 @@ app.post('/RegisterationForm-action', async (req, res) => {
       console.log(err);
     });
 });
+app.get('/Account',(req,res)=>{
+    
+  res.render('Account',{ user: (req.session.user === undefined ? "" : req.session.user) })
+  
+});
+
 /////////////
 /*app.post('/addproduct-action',(req, res) => {
   let imgFile1,imgFile2,imgFile3,imgFile4;
@@ -203,14 +210,15 @@ app.post('/addadmin-action', async (req, res, next) => {
 app.get('/productdetail', (req, res) => {
   res.render('productdetail', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
-app.get('/Account', (req, res) => {
+/*app.get('/Account', (req, res) => {
   if (req.session.user === undefined ? "" : req.session.user) {
     res.redirect('/myprofile')
   }
   else {
     res.render('Account', { user: (req.session.user === undefined ? "" : req.session.user) })
   }
-})
+})*/
+
 
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
@@ -241,9 +249,9 @@ app.get('/adminproducts', (req, res) => {
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-app.get('/RegisterationForm', (req, res) => {
+/*app.get('/RegisterationForm', (req, res) => {
   res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
+});*/
 app.get('/users', (req, res) => {
   res.render('users')
 })

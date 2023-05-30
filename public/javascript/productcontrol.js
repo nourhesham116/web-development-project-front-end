@@ -1,13 +1,4 @@
-document.getElementById("add").addEventListener("click", function() {
-    var form = document.getElementById("newproductdetails");
-    
-    // Toggle the display property
-    if (form.classList.contains("hidden")) {
-        form.classList.remove("hidden");
-    } else {
-        form.classList.add("hidden");
-    }
-});
+
 
 var products = []; // Array to store products
 

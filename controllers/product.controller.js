@@ -1,4 +1,5 @@
 const products = require('../models/product');
+const users=require('../models/users')
 const path = require('path');
 
 const createProduct = (req, res) => {
@@ -40,7 +41,9 @@ const createProduct = (req, res) => {
     if (err)
       return res.status(500).send(err);
   });
+  const price = parseFloat(req.body.price);
 
+  
   const prod = new products({
     name: req.body.name,
     price: req.body.price,
@@ -55,8 +58,7 @@ const createProduct = (req, res) => {
 
   prod.save()
   .then(result => {
-    req.flash('successMessage', 'Product added successfully');
-    
+    res.render('adminproducts', { successMessage: 'Product added successfully.' });
   })
   .catch(err => {
     console.log(err);

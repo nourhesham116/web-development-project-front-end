@@ -221,7 +221,7 @@ app.post('/addadmin-action', async (req, res, next) => {
   add.save()
     .then((result) => {
       console.log('registration successful!')
-      res.redirect('/admindashboard')
+      res.redirect('/admindashboard' )
       // res.render('admin/admin-dashboard.ejs')
     })
     .catch(err => {

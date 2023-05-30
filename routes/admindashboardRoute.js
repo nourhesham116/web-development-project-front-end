@@ -1,6 +1,7 @@
 const express=require('express');
 const router= express.Router();
 const users = require('../models/users');
+const flash = require('express-flash')
 const products = require('../models/product');
 const productController = require('../controllers/product.controller');
 router.get('/', (req, res) => {

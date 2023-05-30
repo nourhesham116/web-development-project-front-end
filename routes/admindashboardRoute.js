@@ -18,6 +18,9 @@ router.get('/', (req, res) => {
       res.send('you are not admin');
     }
   });
+  router.get('/adminproducts', (req, res) => {
+    res.render('adminproducts');
+  })
   router.post('/', productController.createProduct);
   router.post('/:prodId',productController.deleteProduct)
   module.exports=router;

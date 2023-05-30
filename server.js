@@ -67,9 +67,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/admindashboard', admindashboardRouter);
-//app.use('/admindashboard',admindashboardRouter)
-app.use('/',productsRouter)
-//app.use('/addproduct-action',addproductsRouter)
+app.use('/',productsRouter);
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -214,9 +212,9 @@ app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.get('/adminproducts', (req, res) => {
+/*app.get('/adminproducts', (req, res) => {
   res.render('adminproducts', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
+})*/
 
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')

@@ -132,9 +132,9 @@
         <h2 class="title">SOPHISTIQUÉ SKIN FACE</h2>
     </div>
 
-
+ <%productsList.forEach(product=>{ %>
     <ul>
-        <%productsList.forEach(product=>{ %>
+       
         <li class="item-a">
             <div class="box">
                 <a href="../html/Account.html">
@@ -163,20 +163,9 @@
                 <a href="#" class="price"><% product.price %></a>
             </div>
         </li>
-        <li class="item-a">
-            <div class="box">
-                <a href="../html/Account.html">
-                <div class img-slide>
-                    <img src="../imgs/cleanser1.jpg" width="350px" class="hide">
-                </div>
-                <div class="overlay"> <img src="../imgs/cleanser2.jpg"></div>
-
-
-            </div>
-            
-        </li>
-        <% });%>
-    </ul>
+        
+       
+    </ul> <% });%>
     <script>
         function appear() {
             let sq = document.getElementsByClassName("split");

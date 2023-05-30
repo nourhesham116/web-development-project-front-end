@@ -256,6 +256,9 @@ app.get('/Account', (req, res) => {
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
 })
+app.get('/checkout', (req, res) => {
+  res.render('checkout')
+})
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
 })

@@ -146,67 +146,9 @@ app.post('/RegisterationForm-action', async (req, res) => {
     });
   
 });
-app.get('/Account',(req,res)=>{
-    
-  res.render('Account',{ user: (req.session.user === undefined ? "" : req.session.user) })
-  
-});
 
-/////////////
-/*app.post('/addproduct-action',(req, res) => {
-  let imgFile1,imgFile2,imgFile3,imgFile4;
-  let uploadPath1,uploadPath2,uploadPath3,uploadPath4;
-  console.log(req.files)
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  imgFile1 = req.files.image1;
-  imgFile2 = req.files.image2;
-  imgFile3 = req.files.image3;
-  imgFile4 = req.files.image4;
-  uploadPath1 =__dirname+'/public/imgs/uploads/' + req.body.name+"_1" + path.extname(imgFile1.name);
-  uploadPath2 =__dirname+'/public/imgs/uploads/' + req.body.name +"_2"+ path.extname(imgFile2.name);
-  uploadPath3 =__dirname+'/public/imgs/uploads/' + req.body.name +"_3"+ path.extname(imgFile3.name);
-  uploadPath4 =__dirname+'/public/imgs/uploads/' + req.body.name +"_4"+ path.extname(imgFile4.name);
-  // Use the mv() method to place the file somewhere on your server
-  imgFile1.mv(uploadPath1, function (err) {
-    if (err)
-      return res.status(500).send(err);
-  })
-  imgFile2.mv(uploadPath2, function (err) {
-    if (err)
-      return res.status(500).send(err);
-  })
-  imgFile3.mv(uploadPath3, function (err) {
-    if (err)
-      return res.status(500).send(err);
-  })
-  imgFile4.mv(uploadPath4, function (err) {
-    if (err)
-      return res.status(500).send(err);
-  })
-  
-  const prod= new products({
-    name: req.body.name,
-    price: req.body.price,
-    description:req.body.description,
-    category:req.body.category,
-    type:req.body.type,
-    image1: req.body.name+"_1" + path.extname(imgFile1.name),
-    image2: req.body.name+"_2" + path.extname(imgFile2.name),
-    image3: req.body.name+"_3" + path.extname(imgFile3.name),
-    image4: req.body.name+"_4" + path.extname(imgFile4.name)
-    
-  });
-  prod.save()
-    .then(result => {
-      res.redirect('/adminproducts');
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-///////////*/
+
+/////////*/
 app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
@@ -232,33 +174,19 @@ app.post('/addadmin-action', async (req, res, next) => {
 
 ////////////////////////////
 
-/*app.get('/admindashboard', (req, res) => {
-  if (req.session.user !== undefined && req.session.user.Type === 'admin') {
-    users.find()
-      .then(result => {
-        res.render('admindashboard', { users: result, user: (req.session.user === undefined ? "" : req.session.user) });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  else {
-    res.send('you are not admin');
-  }
-});*/
-////////////////////
+
 
 app.get('/productdetail', (req, res) => {
   res.render('productdetail', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
-/*app.get('/Account', (req, res) => {
+app.get('/Account', (req, res) => {
   if (req.session.user === undefined ? "" : req.session.user) {
     res.redirect('/myprofile')
   }
   else {
     res.render('Account', { user: (req.session.user === undefined ? "" : req.session.user) })
   }
-})*/
+})
 
 
 app.get('/sophistiqueBeauty', (req, res) => {
@@ -313,12 +241,7 @@ app.get('/editproduct/:prodId',(req,res)=>{
   })
   
 })
-/*app.post('/deleteproduct-action/:prodId',(req,res)=>{
-  products.deleteOne({"_id": new ObjectID(req.params.prodId)}).then(result =>{
-    res.redirect('/');
-  }).catch(err=>console.log(err))
-  
-})*/
+
 
 // Custom error handling middleware
 app.use((req, res, next) => {

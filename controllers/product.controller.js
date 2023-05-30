@@ -53,13 +53,18 @@ const createProduct = (req, res) => {
     image4: req.body.name + '_4' + path.extname(imgFile4.name)
   });
 
-    await product.save();
+  prod.save()
+  .then(result => {
+    req.flash('successMessage', 'Product added successfully');
+    
+  })
+  .catch(err => {
+    console.log(err);
+   
+  });
+};
 
-    res.status(201).send(product);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
-  }
-});
+module.exports = {
+  createProduct
+};
 
-module.exports = router;

@@ -105,6 +105,7 @@ check('Lastname','Lastname should contain min 3 characters')
 check('email')
     .exists().withMessage('Email is required')
     .isEmail().withMessage('Invalid email'),
+    
     check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')

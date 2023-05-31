@@ -116,6 +116,7 @@ const getProductDetail = (req, res, next) => {
         next(err);
       });
   };
+  
 module.exports = {
   createProduct,
   deleteProduct,

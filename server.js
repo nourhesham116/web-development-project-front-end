@@ -1,4 +1,4 @@
-
+/////////////////////
 const express = require('express');
 const ejs = require('ejs');
 const users = require('./models/users');
@@ -25,6 +25,40 @@ const port = 3000
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
+//////////////////////
+app.get('/api',(req,res)=>{
+  res.render('api');
+})
+const axios = require('axios');
+const { ppid } = require('process');
+
+app.post('/analyze-skin', (req, res) => {
+ // const { imageUrl } = req.body; // Assuming you have a form field with the name "imageUrl"
+
+  // Set the necessary headers and request parameters
+  const apiKey = "3K2YwJO_kL3yAxtYy3Rf6Kl08k64ayY-"; // Replace with your Face++ API key
+  const apiSecret = 'UUvKKkbqWdqo2LHLdVYF7K8HLJxkx3FY'; // Replace with your Face++ API secret
+
+  const formData = {
+    api_key: apiKey,
+    api_secret: apiSecret,
+    image_url:"/public/imgs/Beautiful-young-woman-with-clean-fresh-skin.jpeg",
+  };
+
+  // Make the API request to analyze the skin
+  axios.post('https://api-us.faceplusplus.com/facepp/v1/skinanalyze', formData)
+    .then(response => {
+      const analysisResult = response.data;
+
+      // Pass the analysis result to the EJS template
+      res.render('template', { analysisResult });
+    })
+    .catch(err => {
+      console.log(err);
+      // Handle the error here
+    });
+});
+
 ///////////////////////////////////////////////////////
 //const flash = require('connect-flash');
 //const { validateUser } = require('./middlewares/validation');

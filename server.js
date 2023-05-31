@@ -141,7 +141,10 @@ app.get('/Myprofile', (req, res) => {
 app.post('/RegisterationForm', urlencodedParser, [
   check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
   check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
+  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email').custom(async (email) => {
+    const emailInUse = await users.isThisEmailInUse(email);
+    if (!emailInUse) throw new Error('Email already taken');
+  }),
   check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
@@ -163,11 +166,21 @@ app.post('/RegisterationForm', urlencodedParser, [
     });
 
     try {
-      await user.save();
-      res.redirect('/Account');
+      const emailInUse = await users.isThisEmailInUse(req.body.email);
+      if (emailInUse) {
+        // Email is available, save the user into the database
+        await user.save();
+        res.redirect('/Account');
+      } else {
+        // Email is already taken
+        const alert = [{ msg: 'Email already taken' }];
+        res.render('RegisterationForm', {
+          alert,
+          emailError: errors.mapped().email ? errors.mapped().email.msg : ''    });
+
+      }
     } catch (err) {
       console.log(err);
-      
     }
   }
 });

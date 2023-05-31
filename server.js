@@ -18,6 +18,7 @@ const busboy = require('connect-busboy');//ashan swar
 const productsRouter = require("./routes/productsRoute.js");
 const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
+const userRouter = require("./routes/userRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false})
 const app = express()
@@ -103,7 +104,7 @@ app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
-
+//app.use('/Account',userRouter)
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })

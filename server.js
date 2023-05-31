@@ -167,11 +167,6 @@ app.post('/addadmin-action', async (req, res, next) => {
     })
 });
 
-
-////////////////////////////
-
-
-
 app.get('/productdetail', (req, res) => {
   res.render('productdetail', { user: (req.session.user === undefined ? "" : req.session.user) })
 })

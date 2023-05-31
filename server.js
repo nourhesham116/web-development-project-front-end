@@ -68,6 +68,7 @@ app.get('/', (req, res) => {
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
+app.use('/product', productsRouter);
 
 app.get('', (req, res) => {
 
@@ -76,6 +77,7 @@ app.get('', (req, res) => {
 app.get('/index', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
+
 app.post('/login-action', (req, res) => {
   console.log("logged")
   var query = { Email: req.body.email, Password: req.body.password };
@@ -85,14 +87,16 @@ app.post('/login-action', (req, res) => {
         console.log(result[0]);
         req.session.user = result[0];
         res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user) });
-
       }
       else {
-        res.send('invalid data')
+        // Error message: Invalid email or password
+        res.render('Account', { error: 'Invalid email or password', email: req.body.email || '', password: req.body.password || '' });
       }
     })
     .catch(err => {
       console.log(err);
+      // Error message: An error occurred
+      res.render('Account', { error: 'An error occurred', email: req.body.email || '', password: req.body.password || '' });
     });
 });
 

@@ -99,10 +99,27 @@ const updateProduct = (req, res) => {
     });
 };
 
-
+const getProductDetail = (req, res, next) => {
+    const productId = req.params.id;
+  
+    products.findById(productId)
+      .then(product => {
+        if (!product) {
+          const error = new Error('Product not found');
+          error.statusCode = 404;
+          throw error;
+        }
+  
+        res.render('productdetail', { product });
+      })
+      .catch(err => {
+        next(err);
+      });
+  };
 module.exports = {
   createProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  getProductDetail
 };
 

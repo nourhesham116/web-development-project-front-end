@@ -16,6 +16,7 @@ const multer = require('multer');
 const busboy = require('connect-busboy');//ashan swar
 //////////////////
 const productsRouter = require("./routes/productsRoute.js");
+const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false})
@@ -63,8 +64,11 @@ app.get('/', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
+
+app.use('/Skinproducts',productsRouter);
+app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
-app.use('/',productsRouter);
+
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -105,6 +109,7 @@ check('Lastname','Lastname should contain min 3 characters')
 check('email')
     .exists().withMessage('Email is required')
     .isEmail().withMessage('Invalid email'),
+    
     check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
@@ -204,6 +209,8 @@ app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
+
+
 /*app.get('/adminproducts', (req, res) => {
   res.render('adminproducts', { user: (req.session.user === undefined ? "" : req.session.user) })
 })*/
@@ -211,11 +218,15 @@ app.get('/sophistiqueBeauty', (req, res) => {
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-/*app.get('/RegisterationForm', (req, res) => {
+app.get('/RegisterationForm', (req, res) => {
   res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});*/
+});
+
 app.get('/users', (req, res) => {
   res.render('users')
+})
+app.get('/bodymoisturizer', (req, res) => {
+  res.render('Skinproducts')
 })
 app.get('/Error404', (req, res) => {
   res.render('Error404')

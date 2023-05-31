@@ -138,50 +138,47 @@ app.get('/Myprofile', (req, res) => {
   res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
+
 app.post('/RegisterationForm', urlencodedParser, [
-  check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email').custom(async (email) => {
-    const emailInUse = await users.isThisEmailInUse(email);
-    if (!emailInUse) throw new Error('Email already taken');
-  }),
+  check('Firstname', 'Firstname should contain min 3 characters')
+    .exists()
+    .isLength({ min: 3 }),
+  check('Lastname', 'Lastname should contain min 3 characters')
+    .exists()
+    .isLength({ min: 3 }),
+  check('email')
+    .exists().withMessage('Email is required')
+    .isEmail().withMessage('Invalid email'),
   check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
     .withMessage('Password should contain at least one letter, one number, and one special character'),
-], async (req, res) => {
+], (req, res) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     const alert = errors.array();
-    res.render('RegisterationForm', { alert });
-  } else {
-    const user = new users({
-      Firstname: req.body.Firstname,
-      Lastname: req.body.Lastname,
-      Email: req.body.email,
-      Password: req.body.password,
-      Type: req.body.type
+    res.render('RegisterationForm', {
+      alert,
+      emailError: errors.array().find(error => error.param === 'email') || null,
     });
-
-    try {
-      const emailInUse = await users.isThisEmailInUse(req.body.email);
-      if (emailInUse) {
-        // Email is available, save the user into the database
-        await user.save();
-        res.redirect('/Account');
-      } else {
-        // Email is already taken
-        const alert = [{ msg: 'Email already taken' }];
-        res.render('RegisterationForm', {
-          alert,
-          emailError: errors.mapped().email ? errors.mapped().email.msg : ''    });
-
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  } else {
+    const email = req.body.email;
+    users.isThisEmailInUse(email)
+      .then(inUse => {
+        if (inUse) {
+          // Email is not in use, proceed with registration
+          res.render('RegisterationForm', { emailError: '', alert: [] });
+        } else {
+          // Email is already in use
+          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
+        }
+      })
+      .catch(error => {
+        console.log('Error checking email:', error);
+        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
+      });
   }
 });
 

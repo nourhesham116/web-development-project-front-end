@@ -39,6 +39,6 @@ router.get('/skincarePage1', function (req, res, next) {
   })
 
 });
-
+router.get('/:id', productController.getProductDetail);
 
 module.exports = router;

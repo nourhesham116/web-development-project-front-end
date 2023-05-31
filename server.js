@@ -68,6 +68,7 @@ app.get('/', (req, res) => {
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
+app.use('/product', productsRouter);
 
 app.get('', (req, res) => {
 

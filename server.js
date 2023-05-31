@@ -226,12 +226,12 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 /////////////////////////////////////
-app.get('/editproduct/:prodId',(req,res)=>{
+/*app.get('/editproduct/:prodId',(req,res)=>{
   products.findById(req.params.prodId).then(function (prod){
     res.render('editproduct',{product:prod});
   })
   
-})
+})*/
 
 
 // Custom error handling middleware

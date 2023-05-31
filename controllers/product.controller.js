@@ -75,8 +75,34 @@ const deleteProduct = async (req, res) => {
     console.log(err);
   }
 };
+
+const updateProduct = (req, res) => {
+  const prodId = req.params.prodId;
+
+  // Retrieve the updated product data from the request body
+  const updatedProduct = {
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    category: req.body.category,
+    type: req.body.type
+  };
+
+  // Update the product in the database
+  products.findByIdAndUpdate(prodId, updatedProduct, { new: true })
+    .then((updatedProd) => {
+      res.render('editproduct', { product: updatedProd, successMessage: 'Product updated successfully.' });
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/');
+    });
+};
+
+
 module.exports = {
   createProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct
 };
 

@@ -31,9 +31,7 @@ const path = require('path');
 //const { saveUser } = require('./controllers/auth.controllers');
 
 app.use(express.static('public'))
-//app.use(flash());
 
-//////////////
 
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/javascript'))

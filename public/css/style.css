@@ -39,8 +39,8 @@ div .detail{
 position:relative ; 
 }
 .box{
-    width: 310px;
-    height: 350px;
+    width: 350px;
+    height: 400px;
     box-shadow: 2px 2px 30px rgba(0,0,0,0,0.2);
     border-radius: 0px;
     overflow:hidden;
@@ -152,4 +152,18 @@ ul{
     padding-bottom: 7px;
     box-sizing: border-box;
     background-color: rgb(252, 252, 252);
+}
+#delete{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-size:small;
+    font-family:poppings;
+    color:black;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    
 }

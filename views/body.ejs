@@ -71,7 +71,7 @@
                                 <span class=""><a href="/editproduct/<%=product._id%>">Edit</a></span>
                                <span class=""><form action="/admindashboard/<%=product._id%>" method="post">
                                       <input type="hidden" name="id" value="<%=product._id%>">
-                                      <button type="submit">Delete</button>
+                                      <button id='delete'type="submit">Delete</button>
                                 </form></span>
                                 <%}%>
                                 <a href="#" class="price">

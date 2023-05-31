@@ -163,3 +163,17 @@ ul{
     box-sizing: border-box;
     background-color: rgb(252, 252, 252);
 }
+#delete{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-size:small;
+    font-family:poppings;
+    color:black;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    
+}

@@ -31,8 +31,8 @@ router.get('/bodycleanser', function (req, res, next) {
 });
 
 
-router.get('/skincarePage1', function (req, res, next) {
-  Product.find({ type: 'cleanser' }).then(function (product) {
+router.get('/allskin', function (req, res, next) {
+  Product.find({ category:"SKIN"}).then(function (product) {
     res.render('Skinproducts', {
       productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
     })
@@ -40,5 +40,29 @@ router.get('/skincarePage1', function (req, res, next) {
 
 });
 
+router.get('/facemoisturizer', function (req, res, next) {
+  Product.find({ type:"Face moisturizer"}).then(function (product) {
+    res.render('Skinproducts', {
+      productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
+    })
+  })
+
+});
+
+router.get('/cleanser', function (req, res, next) {
+  Product.find({ type: 'face cleanser' }).then(function (product) {
+    res.render('Skinproducts', {
+            productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
+          })
+  });
+});
+
+router.get('/toner', function (req, res, next) {
+  Product.find({ type: 'toner' }).then(function (product) {
+    res.render('Skinproducts', {
+            productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
+          })
+  });
+});
 
 module.exports = router;

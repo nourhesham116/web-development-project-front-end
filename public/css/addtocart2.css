@@ -1,0 +1,280 @@
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    /*opacity: 0;
+    visibility: hidden;*/
+    
+  }
+  #close{
+ transform: translate(35px,-5px);
+  }
+  #id{
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+  .right {
+    right: 0;
+    background-color:white;
+  }
+  .centeredd {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .headerr1{
+    width: 620px;
+    height:45px;
+    padding: 10px;
+    background-color:whitesmoke;
+    margin-bottom:-25px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    transform: translate(30px,150px);
+  }
+  .innerdetails{
+    text-align: left;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-weight: 300;
+  }
+  .innerdetails2{
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .innerdetails3{
+    font-size:15px;
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+  }
+  .headerr2{
+    max-width: 632px;
+    height:45px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    background-color:white;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+     -ms-flex: 4%;
+    flex: 4%;
+    padding:5px 5px 4px 4px;
+    transform: translate(9px,160px);
+  }
+  .product{
+    transform: translate(260px,190px);
+    font-family: 'Heebo', sans-serif;
+  }
+  .pic{
+    width:110px;
+    transform: translate(-210px,176px);
+  }
+  .pictxt{
+    font-size: 13px;
+    transform: translate(15px,30px);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  span {cursor:pointer; }
+  .number{
+      margin:100px;
+  }
+  #minus{
+      width:10px;
+      height:10px;
+      background:white;
+      padding:8px 5px 8px 5px;
+      border:1px solid white;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      margin-top: 20px;
+      margin-right:-115px;
+      position: absolute;
+     transform: translate(-140px,86px);
+      text-align:center;
+  }
+  #add{
+    width:10px;
+    height:7px;
+    background:white;
+    padding:8px 5px 8px 5px;
+    border:1px solid white;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 20px;
+    margin-right:-115px;
+    position: absolute;
+    transform: translate(-110px,86px);
+    text-align:center;
+  }
+  #value{
+    height:10px;
+    width: 10px;
+    text-align: center;
+    font-size: 20px;
+    border:1px solid white;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-right:-115px;
+    position: absolute;
+    transform: translate(-125px,87px);
+    text-align:center;
+}
+.remove{
+    background-color: white;
+    border:1px solid white;
+    text-decoration: underline;
+    transform: translate(-60px,110px);
+    font-family: 'Heebo', sans-serif;
+}
+.picprice{
+    transform: translate(268px,68px);
+    font-family: 'Oswald', sans-serif;
+}
+
+    .recommended{
+        width: 610px;
+        height:530px;
+        padding: 10px;
+        background-color:white;
+        margin: 0;
+        position: absolute;
+        top: 470px;
+        right:0px;
+        box-sizing: border-box;
+    }
+    .p3{
+    text-align:left;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    transform: translate(-15px,-110px);
+    }
+    .rec1{
+    transform: translate(-20px,-130px);
+    }
+    .rec2{
+   transform: translate(-40px,-130px);
+    }
+    .rec3{
+   transform: translate(-35px,-130px);
+    }
+    .column1 {
+        float: left;
+        width: 33.33%;
+        padding:1px;
+        box-sizing: border-box;
+      }
+      .row1::after {
+        content: "";
+        clear: both;
+        display: table;
+        box-sizing: border-box;
+      }
+      .newtext{
+       transform: translate(-20px,-110px);
+        font-size: 10px;
+
+      }
+      .textbtn{
+      width: 170px;
+transform: translate(-20px,-130px);
+      }
+      .onlinetext{
+        transform: translate(-30px,-110px);
+        font-size: 10px;
+      }
+      .gamedaytext{
+       transform: translate(-40px,-120px);
+        font-size: 10px;
+      }
+      
+      .text2btn{
+        width: 170px;
+        transform: translate(-30px,-130px);
+        }
+        .text3btn{
+            transform: translate(-35px,-100px);
+            width: 170px;
+            }
+        .title1{
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 15px;
+            transform: translate(-20px,-100px);
+        }
+        .title2{
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 15px;
+            transform: translate(-30px,-100px);
+        }
+        .title3{
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 15px;
+            transform: translate(-50px,-120px);
+        }
+      
+          .subtotal{
+            width: 610px;
+            height:130px;
+            padding: 10px;
+            background-color:whitesmoke;
+            margin: 0;
+            position: absolute;
+            transform: translate(65px,830px);
+          }
+          .subtext{
+            font-size: 15px;
+            top: 970px;
+          }
+         .number1,.number2{
+            color: black;
+         }
+          .subtext3{
+            font-size: 15px;
+            top: 970px;
+          }
+          
+          .cartfooter{
+            width: 610px;
+            height:160px;
+            padding: 10px;
+            background-color:whitesmoke;
+            margin: 0;
+            position: absolute;
+            transform: translate(60px,1020px);
+          }
+          .subtottext{
+            font-size: 15px;
+            top: 970px;
+          }
+          .costt{
+            transform: translate(530px,-32px);
+          }
+          .view{
+            background-color: white;
+            color: black;
+            border-radius: none;
+            width: 110px;
+            height: 50px;
+            transform: translate(-3px,-3px);
+          }
+          .checkout{
+            background-color: black;
+            color: white;
+            border-radius: none;
+            width: 110px;
+            height: 50px;
+            transform: translate(-3px,-3px);
+          }
+          .oneline{
+             align-items: center;
+             transform: translate(-20px,40px);
+          }

@@ -29,6 +29,6 @@ router.get('/', (req, res) => {
   });
   router.post('/', productController.createProduct);
   router.post('/:prodId',productController.deleteProduct)
-  //router.post('/editproduct',productController.updateProduct)
+  router.post('/editproduct/:prodId',productController.updateProduct)
 
   module.exports=router;

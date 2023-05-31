@@ -13,3 +13,19 @@ function ex(){
    
     
 }
+function count(meen) {
+    let minus = document.getElementById("minus");
+    let val = document.getElementById("value");
+    let add = document.getElementById("add");
+    let countNum = parseInt(val.innerHTML);
+    if (meen == 'minus') {
+        if (countNum > 1) {
+            let valuee = countNum - 1;
+            val.innerHTML = valuee;
+        }
+    }
+    if (meen == 'add') {
+        let valuee = countNum + 1;
+        val.innerHTML = valuee;
+    }
+}

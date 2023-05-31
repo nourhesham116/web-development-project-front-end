@@ -58,15 +58,16 @@
                       <label for="password">Password</label>
                       <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<%= typeof password !== 'undefined' ? password : '' %>">
                     </div>
-                    
+                  
                     <% if (typeof error !== 'undefined' && error && error !== 'An error occurred') { %>
-                        <div class="alert alert-danger" role="alert">
-                          <%= error %>
-                        </div>
-                      <% } %>
-                      
-                      <input type="submit" name="submit" value="SIGN-IN">
-                    </form>
+                      <div class="alert alert-danger" role="alert" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 10px; border-radius: 3px; font-size: 14px;">
+                        <%= error %>
+                      </div>
+                    <% } %>
+                  
+                    <input type="submit" name="submit" value="SIGN-IN" >
+                  </form>
+                  
                   
             </h2>
             

@@ -17,7 +17,6 @@ const busboy = require('connect-busboy');//ashan swar
 //////////////////
 const productsRouter = require("./routes/productsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
-const addproductsRouter = require("./routes/addproductsRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false})
 const app = express()

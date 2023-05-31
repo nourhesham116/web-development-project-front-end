@@ -21,6 +21,14 @@ router.get('/', (req, res) => {
   router.get('/adminproducts', (req, res) => {
     res.render('adminproducts');
   })
+  
+  router.get('/editproduct/:prodId',(req,res)=>{
+    products.findById(req.params.prodId).then(function (prod){
+      res.render('editproduct',{product:prod});
+    })
+  });
   router.post('/', productController.createProduct);
   router.post('/:prodId',productController.deleteProduct)
+  //router.post('/editproduct',productController.updateProduct)
+
   module.exports=router;

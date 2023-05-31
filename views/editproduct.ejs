@@ -5,34 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/admindashboard.css">
-    <link rel="stylesheet" href="../css/productcontrol.css">
+    <link rel="stylesheet" href="/css/admindashboard.css">
+    <link rel="stylesheet" href="/css/productcontrol.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Products</title>
+    <title>Edit Products</title>
 </head>
 
 <body>
+
     <%-include('./partials/admindesign.ejs') %>
 
-        <section id="interface">
-            <div class="navigation">
-                <div class="n1">
-                    <div><i id="menu-btn" class="fa fa-bars"></i>
-                    </div>
-                    <div class="search">
-                        <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search">
-                    </div>
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div><i id="menu-btn" class="fa fa-bars"></i>
                 </div>
-                <div class="profile">
-                    <i class="fa fa-bell"></i>
-                    <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="Search">
                 </div>
             </div>
-            <h2 class="i-name">
-                Products control
-            </h2>
+            <div class="profile">
+                <i class="fa fa-bell"></i>
+                <a href="/adminlogin"> <i class="fa fa-user-circle"></i></a>
+            </div>
+        </div>
+        <h2 class="i-name">
+            Products control
+        </h2>
 
             <div id="newproductdetails" >
                 <form action='/editproduct' method='post' enctype="multipart/form-data">
@@ -53,7 +54,8 @@
                         
                         <%if(product.category=="SKIN"){%>
                         <label>
-                            <input type="radio" value="SKIN"checked name="category"onload="dropdownSkin()">
+                            
+                            <input type="radio" value="SKIN" checked name="category" onload="dropdownSkin(this)" >
                             SKIN
                         </label>
                         <label>
@@ -68,7 +70,7 @@
                         </label>
                         <label>
                             
-                            <input type="radio" value="BEAUTY" checked name="category" onclick="dropdownBeauty()">
+                            <input type="radio" value="BEAUTY" checked name="category" onload="dropdownBeauty(this)">
                             BEAUTY
                         </label>
                     <%}%>
@@ -76,20 +78,22 @@
                     <br>
                     <div  style="width:200px;">
                         <select name="type" id="custom-select" >
-                          <option value="0" >:select</option>
+                          <option value="0" ><%=product.type%></option>
                           
                         </select>
-                        <input type="submit" name="submit" value="add product">
+                    </div>
+                        <input type="submit" name="submit" value="Edit product">
                         <% if (typeof successMessage !== 'undefined') { %>
                             <div class="success-box">
                               <%= successMessage %>
                             </div>
+                        </div>
                             <% } %>
                 </form>
                 
             </div>
 
-           <script src="../javascript/productcontrol.js"></script>
+           <script src="/javascript/productcontrol.js"></script>
            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
            <script>
              $(document).ready(function() {

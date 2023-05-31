@@ -39,7 +39,6 @@ function dropdownSkin(){
     let drop=document.getElementById("custom-select");
     var option;
    var L = drop.options.length ;
-   
    clearDropDown(L,drop);
    
     for(let i=0;i<arrSkin.length;i++){

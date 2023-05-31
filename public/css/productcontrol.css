@@ -26,9 +26,7 @@ body{
     margin-left: 20px;
    
 }
-.hidden{
-    display: none;
-}
+
 input[type="submit"]{
     background-color: rgb(255, 255, 255);
     margin-top: 20px;

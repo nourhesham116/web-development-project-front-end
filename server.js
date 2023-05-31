@@ -137,52 +137,39 @@ app.post('/login-action', (req, res) => {
 app.get('/Myprofile', (req, res) => {
   res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
 });
-app.post('/RegisterationForm',urlencodedParser,[
-check('Firstname','Firstname should contain min 3 characters')
-.exists()
-.isLength({min:3}),
-check('Lastname','Lastname should contain min 3 characters')
-.exists()
-.isLength({min:3}),
-check('email')
-    .exists().withMessage('Email is required')
-    .isEmail().withMessage('Invalid email'),
-    
-    check('password')
+
+app.post('/RegisterationForm', urlencodedParser, [
+  check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
+  check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
+  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
+  check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
     .withMessage('Password should contain at least one letter, one number, and one special character'),
+], async (req, res) => {
+  const errors = validationResult(req);
 
-
-],(req,res)=> {
-const errors = validationResult(req)
-
-if(!errors.isEmpty()){
-  const alert = errors.array()
-  res.render('RegisterationForm',{
-    alert
-  })
-}
-})
-app.post('/RegisterationForm-action', async (req, res) => {
-
-  const user = new users({
-    Firstname: req.body.Firstname,
-    Lastname: req.body.Lastname,
-    Email: req.body.email,
-    Password: req.body.password,
-    Type: req.body.type
-  });
-  
-  await user.save()
-    .then(result => {
-      res.redirect('/Account');
-    })
-    .catch(err => {
-      console.log(err);
+  if (!errors.isEmpty()) {
+    const alert = errors.array();
+    res.render('RegisterationForm', { alert });
+  } else {
+    const user = new users({
+      Firstname: req.body.Firstname,
+      Lastname: req.body.Lastname,
+      Email: req.body.email,
+      Password: req.body.password,
+      Type: req.body.type
     });
-  
+
+    try {
+      await user.save();
+      res.redirect('/Account');
+    } catch (err) {
+      console.log(err);
+      
+    }
+  }
 });
 
 

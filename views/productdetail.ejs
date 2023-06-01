@@ -36,20 +36,22 @@
             <div class="row">
                 <div class="column">
                     <!-- <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%"  onclick="expand(this);" > -->
+                    <img class="demo cursor" src="/imgs/uploads/<%= product.image1%>" style="width:50%" height="170px" onclick="expand(this);" >
+
                     <img class="demo cursor" src="/imgs/uploads/<%= product.image2%>" style="width:50%"  onclick="expand(this);" >
 
                     <!-- <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%"  onclick="expand(this);"> -->
-                    <img class="demo cursor" src="/imgs/uploads/<%= product.image3%>"style="width:50%"  onclick="expand(this);">
+                    <img class="demo cursor" src="/imgs/uploads/<%= product.image3%>"style="width:50%" height="170px" onclick="expand(this);">
 
                     <!-- <img src="../imgs/texture.jpeg" style="width:50%"  onclick="expand(this);"> -->
-                    <img src="/imgs/uploads/<%=product.image4%>" style="width:50%"  onclick="expand(this);">
+                    <img src="/imgs/uploads/<%=product.image4%>" style="width:50%" height="180px" onclick="expand(this);">
 
-                    "<%= product.imageURL %>
+                    <!-- "<%= product.imageURL %> -->
 
                 </div>
                 <div class="column2">
                     <!-- <img id="expandedImg" img src="../imgs/main product.jpeg" width="175%" height=800px> -->
-                    <img id="expandedImg" ><img src="/imgs/uploads/<%= product.image1%>"  width="175%" height=800px>
+                    <img id="expandedImg" src="/imgs/uploads/<%= product.image1%>"  width="175%" height=700px>
 
                 </div>
             </div>

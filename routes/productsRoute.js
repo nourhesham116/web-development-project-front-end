@@ -131,4 +131,5 @@ router.get('/eyecream', function (req, res, next) {
   });
 });
 router.get('/productdetail/:id', productController.getProductDetail);
+
 module.exports = router;

@@ -296,3 +296,17 @@ tbody tr td{
 .statvalue .val-box:nth-child(2) i{
     background:#D9E6F3;
 }
+
+#searchResults{
+    font-family:sans-serif;
+    height: fit-content;
+    z-index: 500;
+    position: absolute;
+    display:block;
+    top:3%;
+    margin-left: 0.06%;  
+    width:90%;
+    background-color:rgb(255, 255, 255);
+  
+    
+}

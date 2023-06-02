@@ -153,6 +153,39 @@ app.get('/Account', (req, res) => {
   }
 })
 
+app.get('/search',(req,res)=>{
+ res.render('search');
+})
+// app.post('/search',async(req,res)=>{
+//   let  payload=req.body.payload.trim();
+//   // console.log( payload);
+//   // let search= users.find({name:{$regex: new RegExp('^'+payload+'.*','i')}}).exec();
+//   // console.log(payload);
+//   // if (search) {
+//   //   // Limit search results to 10
+//   //   search = search.slice(0, 10);
+//   //   res.send({ payload: search });
+//   // } else {
+//   //   // Handle the case when search is undefined
+//   //   res.send({ payload: [] });
+//   // }
+//    payload = await users.find({
+//     name: { $regex: new RegExp('^' + payload + '.*', 'i') },
+//   }).exec();
+
+//   if (search) {
+//     // Limit search results to 10
+//     search = search.slice(0, 10);
+//     res.send({ payload: search });
+//   } else {
+//     // Handle the case when search is undefined
+//     res.send({ payload: [] });
+//   }
+// })
+
+
+
+
 
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')

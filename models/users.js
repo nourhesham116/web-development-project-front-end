@@ -21,6 +21,8 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  resetToken: String,
+  resetTokenExpiration: Date,
 }, { timestamps: true });
 
 userSchema.statics.isThisEmailInUse = async function (email) {

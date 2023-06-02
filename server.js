@@ -20,7 +20,7 @@ const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const userRouter = require("./routes/userRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
-const urlencodedParser =bodyParser.urlencoded({extended: false})
+const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
@@ -104,7 +104,7 @@ app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
-//app.use('/Account',userRouter)
+app.use('/Account',userRouter)
 app.get('', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
@@ -113,7 +113,7 @@ app.get('/index', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
-app.post('/login-action', (req, res) => {
+/*app.post('/login-action', (req, res) => {
   console.log("logged")
   var query = { Email: req.body.email, Password: req.body.password };
   users.find(query)
@@ -182,7 +182,7 @@ app.post('/RegisterationForm', urlencodedParser, [
       });
   }
 });
-
+*/
 
 /////////*/
 app.post('/addadmin-action', async (req, res, next) => {

@@ -37,7 +37,7 @@
                     If you haven’t logged in recently and are having trouble,
                     please reset your password to login.</p>
             </h2>
-            <button class="acc-buttons"> RESET PASSWORD</button>
+            <button class="acc-buttons"><a href="/Account/forgot-password"> RESET PASSWORD</a></button>
         </div>
         <div class="square2">
             <h2 class="h3-title-bold-uppercase">
@@ -49,7 +49,7 @@
                     your Pro Filt'r # to your profile and
                     more.
                 </p>
-                <form action="/login-action" method="post">
+                <form action="/Account/login-action" method="post">
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<%= typeof email !== 'undefined' ? email : '' %>">

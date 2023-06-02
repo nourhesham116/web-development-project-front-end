@@ -209,7 +209,7 @@ router.post('/reset-password', (req, res) => {
       return user.save();
     })
     .then(() => {
-      res.redirect('/login');
+      res.redirect('/');
     })
     .catch(err => console.log(err));
 });

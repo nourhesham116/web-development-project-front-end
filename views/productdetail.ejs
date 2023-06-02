@@ -35,128 +35,83 @@
         <div class="left-split">
             <div class="row">
                 <div class="column">
-                    <!-- <img class="demo cursor" src="../imgs/main product.jpeg" style="width:50%"  onclick="expand(this);" > -->
                     <img class="demo cursor" src="/imgs/uploads/<%= product.image1%>" style="width:50%" height="170px" onclick="expand(this);" >
 
                     <img class="demo cursor" src="/imgs/uploads/<%= product.image2%>" style="width:50%"  onclick="expand(this);" >
 
-                    <!-- <img class="demo cursor" src="../imgs/before&after.jpeg" style="width:50%"  onclick="expand(this);"> -->
                     <img class="demo cursor" src="/imgs/uploads/<%= product.image3%>"style="width:50%" height="170px" onclick="expand(this);">
 
-                    <!-- <img src="../imgs/texture.jpeg" style="width:50%"  onclick="expand(this);"> -->
                     <img src="/imgs/uploads/<%=product.image4%>" style="width:50%" height="180px" onclick="expand(this);">
-
-                    <!-- "<%= product.imageURL %> -->
-
                 </div>
                 <div class="column2">
-                    <!-- <img id="expandedImg" img src="../imgs/main product.jpeg" width="175%" height=800px> -->
                     <img id="expandedImg" src="/imgs/uploads/<%= product.image1%>"  width="175%" height=700px>
 
                 </div>
             </div>
         </div>
-        <div class="right-split">
             <div class="centered">
-               <!-- <p><a href="/index" > Home&nbsp</a> /Melt Awf Jelly Oil Makeup-Melting Cleanser</p> -->
-               <p><a href="/index" > Home&nbsp</a> /<%= product.name %> </p>
-
+                <br><br><br><br><br>
+                <div class="href">
+                    <p><a href="/index" > Home&nbsp</a> /<%= product.name %> </p>
+                </div>
                 <br>
-                <div class="box" style="background-color:rgb(174, 168, 187 )">
-                    <p>NEW</p>
-                </div>
-                <div class="heading">
-                    <!-- <p>MELT AWF JELLY OIL MAKEUP-MELTING CLEANSER</p> -->
-                    <p><%= product.name %></p>
-                    
-                </div>
-                <div class="price">
-                    <!-- <p>$ 34</p> -->
-                    <p><%= product.price %></p>
-                </div>
+                <div >
+                    <p class="box" style="background-color:rgb(174, 168, 187 )">NEW</p>
+                    <div class="heading">
+                        <p><%= product.name %></p> 
+                        <p><%= product.price %></p>
+                    </div>
+                </div>                
                 <div>
+                    <div class="star-review">
+                        <div class="fa fa-star checked"></div>
+                        <div class="fa fa-star checked"></div>
+                        <div class="fa fa-star checked"></div>
+                        <div class="fa fa-star"></div>
+                        <div class="fa fa-star"></div>
+                    </div>
                     <a class="review" href=#>4 Reviews</a>
-                </div>
-                <div class="header">
-                    <!-- <p>The jelly-oil cleanser so good, you'll put on makeup just to take it off</p> -->
-                    <p><%= product.description %></p>
-                </div>
-                <div class="star-review">
-                    <div class="fa fa-star checked"></div>
-                    <div class="fa fa-star checked"></div>
-                    <div class="fa fa-star checked"></div>
-                    <div class="fa fa-star"></div>
-                    <div class="fa fa-star"></div>
-                </div>
-                <div class="container">
-                    <div class="clean">
-                        <img src="/imgs/clean.png" width="45px" height="40px">
+                    <div class="header">
+                        <p><%= product.description %></p>
                     </div>
-                    <div class="text1">
-                        <p>Clean</p>
-                    </div>
-                    <div class="container2">
-                        <div class="crueltyfree">
+                    <div class="icon-container">
+                        <div class="icon-wrapper">
+                            <img src="/imgs/clean.png" width="45px" height="40px">
+                            <span>clean</span>
+                        </div>
+                        <div class="icon-wrapper">
                             <img src="/imgs/crueltyfree.png" width="45px" height="40px">
+                            <span>cruelty<br>free</span>
                         </div>
-                        <div class="text2">
-                            <p>Cruelty-<br>free</p>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/vegan.png" width="45px" height="40px">
+                            <span>vegan</span>
                         </div>
-                        <div class="container3">
-                            <div class="vegan">
-                                <img src="/imgs/vegan.png" width="45px" height="40px">
-                            </div>
-                            <div class="text3">
-                                <p>Vegan</p>
-                            </div>
-                            <div class="container4">
-                                <div class="glutenfree">
-                                    <img src="/imgs/glutenfree.png" width="45px" height="40px">
-                                </div>
-                                <div class="text4">
-                                    <p>Gluten-<br>free</p>
-                                </div>
-                            </div>
-                            <div class="container5">
-                                <div class="daytimeuse">
-                                    <img src="/imgs/daytimeuse.png" width="45px" height="40px">
-                                </div>
-                                <div class="text5">
-                                    <p>Daytime<br>use</p>
-                                </div>
-                            </div>
-                            <div class="container6">
-                                <div class="nighttimeuse">
-                                    <img src="/imgs/nighttimeuse.png" width="45px" height="40px">
-                                </div>
-                                <div class="text6">
-                                    <p>Nighttime<br>use</p>
-                                </div>
-                            </div>
-                            <div class="container7">
-                                <div class="Recyclable">
-                                    <img src="/imgs/recycle.png" width="45px" height="40px">
-                                </div>
-                                <div class="text7">
-                                    <p>Recyclable</p>
-                                </div>
-                            </div>
-                            <div class="container8">
-                                <div class="noouterbox">
-                                    <img src="/imgs/noouterbox.png" width="45px" height="40px">
-                                </div>
-                                <div class="text8">
-                                    <p>No<br>Outer<br>Box</p>
-                                </div>
-                            </div>
-                            <div class="container9">
-                                <div class="containsrecycledmaterials">
-                                    <img src="/imgs/containerrecycledmaterials.png" width="45px" height="40px">
-                                </div>
-                                <div class="text9">
-                                    <p>Contains<br>Recycled<br>Materials</p>
-                                </div>
-                            </div>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/glutenfree.png" width="45px" height="40px">
+                          <span>gluten free</span>
+                        </div>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/daytimeuse.png" width="45px" height="40px">
+                          <span>day time use</span>
+                        </div>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/nighttimeuse.png" width="45px" height="40px">
+                          <span>night time use</span>
+                        </div>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/noouterbox.png" width="45px" height="40px">
+                          <span>no outer box</span>
+                        </div>
+                        <div class="icon-wrapper">
+                            <img src="/imgs/containerrecycledmaterials.png" width="45px" height="40px">
+                          <span>recycled</span>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="container">
+                    
                             <div class="counter">
                                 <button id="minus" onclick=" count(this.id)">-</button>
                                 <p id="value">1 </p>
@@ -169,7 +124,7 @@
                                         <div class="posttext"> ADDED</div>
                                     </div>
                             </button>
-                        </div>
+                </div>
                         <div class="shipping">
                             <p>FREE standard shipping & returns on all U.S. orders</p>
                             <hr class="hr1">
@@ -180,9 +135,7 @@
                                     <ul class="slide">
                                         <li>9 LUXE OILS + MESS-FREE PUMP<br>REMOVE EVERY TYPE OF MAKEUP, WITHOUT THE
                                             DRAMA<br><br>STRAIGHT UP:</li>
-                                        <li class="para">Finally, look forward to taking off your makeup at the end of
-                                            the
-                                            day—for real. This innovative jelly-oil cleanser comes in a mess-free pump
+                                        <li class="para">This innovative jelly-oil cleanser comes in a mess-free pump
                                             and
                                             contains a custom blend of 9 luxe oils ready to erase every type of even
                                             waterproof and longwear makeup, without the drama.<br>For all skin types,
@@ -197,14 +150,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br>
             <div class="video">
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2>WATCH IT IN ACTION</h2>
+                <h2>&nbsp&nbspWATCH IT IN ACTION</h2>
                 <br>
                 <video controls loop width="100%" autoplay muted>
                     <source src="/imgs/melt_awf_-_desktop (1080p).mp4" type="video/mp4" width="200px" height="150px">
@@ -213,7 +161,7 @@
 
                 </div>
             </div>
-       
+        </div>
         <script>
             const button = document.querySelector(".addtocart");
             const done = document.querySelector(".done");

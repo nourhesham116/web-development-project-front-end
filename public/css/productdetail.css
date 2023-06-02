@@ -47,12 +47,15 @@ body{
   .left-split{
     position: sticky;
   }
+  .href{
+    transform: translate(50px);
+  }
   .centered {
     position: absolute;
     top: 10%;
     left: 70%;
     transform: translate(-50%, -50%);
-    text-align:right;
+    /* text-align:right; */
     font-family: 'Roboto', sans-serif;
     margin-left: 15px;
     
@@ -69,6 +72,8 @@ body{
     outline-offset: 5px;
     padding-top: -50px;
     padding-bottom: -50px;
+    transform: translate(50px);
+
   }
   .heading{
     font-family: 'Libre Franklin', sans-serif;
@@ -77,9 +82,10 @@ body{
     position: absolute;
     top: 120%;
     left: 20%;
-    transform: translate(-19%, -10%);
+    transform: translate(-30px, -120px);
     text-align:left;
     font-size: 25px;
+
   }
   .price{
     font-family: 'Montserrat', sans-serif;
@@ -99,7 +105,7 @@ body{
     position: absolute;
     top: 200%;
     left: 34%;
-    transform: translate(-50%, -20%);
+    transform: translate(12px, -240px);
     text-align:left;
     font-size: 14px;
     
@@ -110,7 +116,7 @@ body{
     position: absolute;
     top: 200%;
     left: 12%;
-    transform: translate(-50%, -20%);
+    transform: translate(5px, -240px);
     text-align:left;
   }
   .checked {
@@ -126,9 +132,12 @@ body{
     position: absolute;
     top: 220%;
     left: 20%;
-    transform: translate(-19.9%, -30%);
+    transform: translate(-27px, -260px);
     text-align:left;
     font-size: 13px;
+  }
+  .container{
+    transform: translate(40px,370px);
   }
   .container,.container2,.container3,.container4,.container5,.container6,.container7,.container8,.container9{
     display: flex;
@@ -435,7 +444,7 @@ body{
     position: absolute;
     top: 588%;
     left: 36%;
-    transform: translate(-19.9%, -30%);
+    transform: translate(-50px,-1000px);
     text-align:center;
     font-size: 14px;
     font-weight:400;
@@ -499,4 +508,33 @@ ul {
   font-family: 'Roboto', sans-serif;
     margin-left: 15px;
     font-weight: bolder;
+}
+
+.icon-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px; /* add some space between the icons */
+  transform: translate(5px,350px);
+}
+
+.icon-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px; /* add some space between the icon and the word */
+}
+
+.icon-wrapper img {
+  display: block;
+  width: 40px;
+  height: auto;
+}
+
+.icon-wrapper span {
+  display: flex;
+  align-items:center;
+  font-size: 14px;
+}
+.icon-wrapper span::after {
+  content: none;
 }

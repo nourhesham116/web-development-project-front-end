@@ -3,12 +3,15 @@ const router= express.Router();
 var bodyParser= require('body-parser');
 const users = require('../models/users');
 const userController = require('../controllers/User');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+const urlencodedParser =bodyParser.urlencoded({extended: false});
+const User =require("../controllers/User");
 
 const { check, validationResult } = require('express-validator');
 
 router.use(bodyParser.json())
-const urlencodedParser =bodyParser.urlencoded({extended: false});
-const User =require("../controllers/User");
+
 router.get('/', (req, res) => {
     if (req.session.user === undefined ? "" : req.session.user) {
       res.redirect('/myprofile')
@@ -117,8 +120,6 @@ router.get('/logout',(req,res)=>{
     
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
 
 router.get('/forgot-password', (req, res) => {
   res.render('forgot-password');

@@ -13,13 +13,21 @@ const { check, validationResult } = require('express-validator');
 router.use(bodyParser.json())
 
 router.get('/', (req, res) => {
-    if (req.session.user === undefined ? "" : req.session.user) {
-      res.redirect('/myprofile')
-    }
-    else {
-      res.render('Account', { user: (req.session.user === undefined ? "" : req.session.user) })
-    }
-  })
+  if (req.session.user) {
+    res.redirect('/Account/myprofile');
+  } else {
+    res.render('Account', { user: req.session.user });
+  }
+});
+
+router.get('/myprofile', (req, res) => {
+  const userP = req.session.user;
+  if (req.session.user) {
+    res.render('myprofile', { userP: req.session.user });
+  } else {
+    res.redirect('/Account');
+  }
+});
 
 router.get('/RegisterationForm',(req,res)=>{
     
@@ -48,9 +56,7 @@ router.post('/login-action', (req, res) => {
     });
 });
 
-router.get('/Myprofile', (req, res) => {
-  res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
-});
+
 
 
 router.post('/RegisterationForm', urlencodedParser, [

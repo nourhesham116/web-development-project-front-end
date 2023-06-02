@@ -144,14 +144,7 @@ app.post('/addadmin-action', async (req, res, next) => {
 app.get('/productdetail', (req, res) => {
   res.render('productdetail', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
-app.get('/Account', (req, res) => {
-  if (req.session.user === undefined ? "" : req.session.user) {
-    res.redirect('/myprofile')
-  }
-  else {
-    res.render('Account', { user: (req.session.user === undefined ? "" : req.session.user) })
-  }
-})
+
 
 app.get('/search',(req,res)=>{
  res.render('search');

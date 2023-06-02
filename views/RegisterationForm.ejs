@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/RegisterationForm.css">
   <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <title>Register</title>
   <style>
     .error-message {
@@ -17,6 +19,7 @@
 <body>
   <%- include('./partials/Nav.ejs') %>
   <%- include('./partials/addtocart.ejs') %>
+  <script src="../js/ajaxValidation.js"></script>
 
   <div class="createAndBenefits">
     <div class="regForm">
@@ -79,49 +82,89 @@
 
   <script src="../js/Validation.js"></script>
   <script>
-    const form = document.getElementById('registrationForm');
-    const firstnameInput = document.getElementById('firstnameInput');
-    const lastnameInput = document.getElementById('lastnameInput');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const firstnameError = document.getElementById('firstnameError');
-    const lastnameError = document.getElementById('lastnameError');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
-
-    form.addEventListener('submit', (event) => {
-      // Reset error messages
-      firstnameError.textContent = '';
-      lastnameError.textContent = '';
-      emailError.textContent = '';
-      passwordError.textContent = '';
-
-      // Validate first name field
-      if (firstnameInput.value.trim() === '') {
-        firstnameError.textContent = 'First name is required';
-        event.preventDefault();
+    $(document).ready(function() {
+      const firstnameInput = $('#firstnameInput');
+      const lastnameInput = $('#lastnameInput');
+      const emailInput = $('#emailInput');
+      const passwordInput = $('#passwordInput');
+      const firstnameError = $('#firstnameError');
+      const lastnameError = $('#lastnameError');
+      const emailError = $('#emailError');
+      const passwordError = $('#passwordError');
+    
+      // Event listener for firstname input field
+      firstnameInput.on('input', function() {
+        validateNameInput($(this), firstnameError);
+      });
+    
+      // Event listener for lastname input field
+      lastnameInput.on('input', function() {
+        validateNameInput($(this), lastnameError);
+      });
+    
+      // Event listener for email input field
+      emailInput.on('input', function() {
+        validateEmailInput($(this), emailError);
+      });
+    
+      // Event listener for password input field
+      passwordInput.on('input', function() {
+        validatePasswordInput($(this), passwordError);
+      });
+    
+      // Function to validate the name input field
+      function validateNameInput(inputField, errorElement) {
+        const value = inputField.val().trim();
+    
+        if (value.length < 3 || !/^[a-zA-Z]+$/.test(value)) {
+          errorElement.text('Invalid input. Please enter at least 3 characters and use only letters.');
+        } else {
+          errorElement.text('');
+        }
       }
-
-      // Validate last name field
-      if (lastnameInput.value.trim() === '') {
-        lastnameError.textContent = 'Last name is required';
-        event.preventDefault();
+    
+      // Function to validate the email input field
+      function validateEmailInput(inputField, errorElement) {
+        const value = inputField.val().trim();
+        const emailRegex = /\S+@\S+\.\S+/;
+    
+        if (!emailRegex.test(value)) {
+          errorElement.text('Invalid email address');
+        } else {
+          errorElement.text('');
+        }
       }
-
-      // Validate email field
-      const emailRegex = /\S+@\S+\.\S+/;
-      if (!emailRegex.test(emailInput.value)) {
-        emailError.textContent = 'Invalid email address';
-        event.preventDefault();
-      }
-
-      // Validate password field
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/;
-      if (passwordInput.value.length < 6 || !passwordRegex.test(passwordInput.value)) {
-        passwordError.textContent = 'Password should contain at least 6 characters, one letter, one number, and one special character';
-        event.preventDefault();
+    
+      // Function to validate the password input field
+      function validatePasswordInput(inputField, errorElement) {
+        const value = inputField.val().trim();
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/;
+        let errors = [];
+    
+        if (value.length < 6) {
+          errors.push('Password should contain at least 6 characters');
+        }
+    
+        if (!/[A-Za-z]/.test(value)) {
+          errors.push('Password should contain at least one letter');
+        }
+    
+        if (!/\d/.test(value)) {
+          errors.push('Password should contain at least one number');
+        }
+    
+        if (!/[@$!%*#?&]/.test(value)) {
+          errors.push('Password should contain at least one special character');
+        }
+    
+        if (errors.length > 0) {
+          errorElement.text(errors.join(', '));
+        } else {
+          errorElement.text('');
+        }
       }
     });
-  </script>
+    </script>
+    
 </body>
 </html>

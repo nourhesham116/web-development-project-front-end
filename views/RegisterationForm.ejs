@@ -1,96 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/RegisterationForm.css">
-    <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
-    <title>Register</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/RegisterationForm.css">
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <title>Register</title>
+  <style>
+    body {
+  font-family: 'Overpass Mono', monospace;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.password-requirements-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.password-requirements-list li {
+  margin-bottom: 5px;
+}
+
+.completed-requirements {
+  border-color: green;
+}
+
+.alert {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.alert .btn-close {
+  cursor: pointer;
+}
+
+  </style>
+  
 </head>
 <body>
-    <%- include('./partials/Nav.ejs') %>
-    <%- include('./partials/addtocart.ejs') %>
-    <!--<script src="../js/Validation.js"></script> -->
-    <div class="createAndBenefits">
-        <div class="regForm">
-   <div class="alert">
-            <% if(typeof alert != 'undefined'){ %>
-                <% alert.forEach(function(error){%>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <%= error.msg %>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <% }) %>
-                      <% } %>
-                    </div>
-            <form action='/Account/RegisterationForm' method='post' onsubmit=return validate(this)>
-                <h2>Create Account</h2>
-                <p>Save your shipping information for faster checkout.
-                     Opt-in for our email list to receive early access to new products & exclusive offers.</p> 
-                 <div>
-                    <input type="text" name="Firstname" placeholder="First Name"required>
+  <%- include('./partials/Nav.ejs') %>
+  <%- include('./partials/addtocart.ejs') %>
+  <script src="../js/ajaxValidation.js"></script>
 
+  <div class="createAndBenefits">
+    <div class="regForm">
+      <div class="alert">
+        <% if(typeof alert != 'undefined'){ %>
+          <% alert.forEach(function(error){%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <%= error.msg %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
 
-                    <input type="text" name="Lastname" placeholder="Last Name"required>
-                    
-                 </div> 
-                 <div class="err"><span id="FnameERR"></span> <span id="LnameERR"></span></div>
-                 <input type="email" name="email" placeholder="Email Address"required> 
-
-               
-                 <% if (typeof emailError !== 'undefined' && emailError && emailError !== 'An error occurred') { %>
-                    <div class="alert alert-danger" role="alert" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 10px; border-radius: 3px; font-size: 14px;">
-                      <%= emailError %>
-                    </div>
-                  <% } %>
-
-
-                <span id="eErr" class="err"></span>
-                 <!-- <input type="email" name="emailConfirm" placeholder="Confirm Email Address"> -->
-                 <span id="ecErr" class="err"></span>
-                 <p>
-                     By subscribing to Sophistiqué beauty and skin you consent to receive 
-                    recurring automated promotional and personalized marketing 
-                    messages (e.g. cart reminders) via email and text messages. 
-                    Consent is not a condition of any purchase. View Terms of Use & 
-                    Privacy Policy.
-                 </p>
-                 <input type="password" name="password" placeholder="Password" required>
-
-                      
-                 <span id="pErr" class="err">
-                  
-                    
-                 </span>
-                <!-- <input type="password" name="passwordConfirm" placeholder="Confirm Password">-->
-                 
-                  <input type="hidden" name="type" value="client">
-                  <input type="submit" name="submit" value="Create Account">
-            </form>
+      <form id="registrationForm" action="/Account/RegisterationForm" method="post">
+        <h2>Create Account</h2>
+        <p>Save your shipping information for faster checkout. Opt-in for our email list to receive early access to new products & exclusive offers.</p>
+        <div>
+            <div class="fn"><input type="text" name="Firstname" id="firstnameInput" placeholder="First Name" >
+            <span id="firstnameError" class="error-message"></span></div>
+          <div class="ln"><input type="text" name="Lastname" id="lastnameInput" placeholder="Last Name" >
+            <span id="lastnameError" class="error-message"></span></div>
+          
         </div>
-        <div class="benefits">
-            <h2>Account Benefits</h2>
-            <p>
-               <h4>GET YOUR FAVES FASTER</h4>
-                Save your order information to
-                make checkout a breeze.
-            </p>
-            <p>
-               <h4>EXCLUSIVE OFFERS + INFO</h4> 
-                Sign up to stay posted on hyper-
-                limited offers, online-only 
-                product drops, in-store events.
-            </p>
-            <p>
-               <h4>ORDER DETAILS</h4>
-                Receive important updates about 
-                your order, and track it every 
-                step of the way.
-            </p>
-        </div>
+        <input type="email" name="email" id="emailInput" placeholder="Email Address" >
+        <span id="emailError" class="error-message"></span>
+        
+        <% if (typeof emailError !== 'undefined' && emailError && emailError !== 'An error occurred') { %>
+          <div class="alert alert-danger" role="alert">
+            <%= emailError %>
+          </div>
+        <% } %>
+
+        <span id="eErr" class="err"></span>
+        
+        <input type="password" name="password" id="passwordInput" class="password-input" placeholder="Password">
+        <span id="passwordError" class="error-message"></span>
+        <ul id="passwordRequirementsList" class="password-requirements-list"></ul>
+
+
+        <input type="hidden" name="type" value="client">
+        <input type="submit" name="submit" value="Create Account">
+      </form>
     </div>
+    <div class="benefits">
+      <h2>Account Benefits</h2>
+      <p>
+        <h4>GET YOUR FAVES FASTER</h4>
+        Save your order information to make checkout a breeze.
+      </p>
+      <p>
+        <h4>EXCLUSIVE OFFERS + INFO</h4> 
+        Sign up to stay posted on hyper-limited offers, online-only product drops, in-store events.
+      </p>
+      <p>
+        <h4>ORDER DETAILS</h4>
+        Receive important updates about your order, and track it every step of the way.
+      </p>
+    </div>
+  </div>
+
+  <script src="../js/Validation.js"></script>
+  <script>
+    $(document).ready(function() {
+      const firstnameInput = $('#firstnameInput');
+      const lastnameInput = $('#lastnameInput');
+      const emailInput = $('#emailInput');
+      const passwordInput = $('#passwordInput');
+      const firstnameError = $('#firstnameError');
+      const lastnameError = $('#lastnameError');
+      const emailError = $('#emailError');
+      const passwordError = $('#passwordError');
+    
+      // Event listener for firstname input field
+      firstnameInput.on('input', function() {
+        validateNameInput($(this), firstnameError);
+      });
+    
+      // Event listener for lastname input field
+      lastnameInput.on('input', function() {
+        validateNameInput($(this), lastnameError);
+      });
+    
+      // Event listener for email input field
+      emailInput.on('input', function() {
+        validateEmailInput($(this), emailError);
+      });
+    
+      // Event listener for password input field
+      passwordInput.on('input', function() {
+        validatePasswordInput($(this), passwordError);
+      });
+    
+      // Function to validate the name input field
+      function validateNameInput(inputField, errorElement) {
+        const value = inputField.val().trim();
+    
+        if (value.length < 3 || !/^[a-zA-Z]+$/.test(value)) {
+        errorElement.text('Invalid input');
+        } else {
+          errorElement.text('');
+        }
+      }
+    
+      // Function to validate the email input field
+      function validateEmailInput(inputField, errorElement) {
+        const value = inputField.val().trim();
+        const emailRegex = /\S+@\S+\.\S+/;
+    
+        if (!emailRegex.test(value)) {
+          errorElement.text('Invalid email address');
+        } else {
+          errorElement.text('');
+        }
+      }
+    
+      function validatePasswordInput(inputField, errorElement) {
+  const value = inputField.val().trim();
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/;
+  let errors = [];
+  let unfulfilledRequirements = [];
+
+  if (value.length < 6) {
+    unfulfilledRequirements.push('Minimum 6 characters');
+  }
+
+  if (!/[A-Za-z]/.test(value)) {
+    unfulfilledRequirements.push('At least one letter');
+  }
+
+  if (!/\d/.test(value)) {
+    unfulfilledRequirements.push('At least one number');
+  }
+
+  if (!/[@$!%*#?&]/.test(value)) {
+    unfulfilledRequirements.push('At least one special character');
+  }
+
+  if (unfulfilledRequirements.length > 0) {
+    errorElement.text('Password must contain ' );
+    inputField.removeClass('completed-requirements');
+  } else {
+    errorElement.text('');
+    inputField.addClass('completed-requirements');
+  }
+
+  // Display unfulfilled requirements or clear the requirements list
+  const requirementsList = $('#passwordRequirementsList');
+  if (unfulfilledRequirements.length > 0) {
+    requirementsList.empty();
+    unfulfilledRequirements.forEach(function(requirement) {
+      requirementsList.append('<li class="password-requirement">' + requirement + '</li>');
+    });
+  } else {
+    requirementsList.empty();
+  }
+}
+
+
+    });
+  </script>
 </body>
 </html>

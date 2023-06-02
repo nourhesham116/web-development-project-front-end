@@ -7,10 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/analyze-skin" method="POST" enctype="multipart/form-data">
-        <label for="imageUrl">Image URL:</label>
-        <input type="text" id="imageUrl" name="imageUrl" required>
-        <button type="submit">Analyze Skin</button>
+    <form action="/analyze-image" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Analyze Image</button>
       </form>
       
 </body>

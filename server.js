@@ -33,32 +33,8 @@ app.get('/api',(req,res)=>{
 const axios = require('axios');
 const { ppid } = require('process');
 
-app.post('/analyze-skin', (req, res) => {
- // const { imageUrl } = req.body; // Assuming you have a form field with the name "imageUrl"
-
-  // Set the necessary headers and request parameters
-  const apiKey = "3K2YwJO_kL3yAxtYy3Rf6Kl08k64ayY-"; // Replace with your Face++ API key
-  const apiSecret = 'UUvKKkbqWdqo2LHLdVYF7K8HLJxkx3FY'; // Replace with your Face++ API secret
-
-  const formData = {
-    api_key: apiKey,
-    api_secret: apiSecret,
-    image_url:"/public/imgs/Beautiful-young-woman-with-clean-fresh-skin.jpeg",
-  };
-
-  // Make the API request to analyze the skin
-  axios.post('https://api-us.faceplusplus.com/facepp/v1/skinanalyze', formData)
-    .then(response => {
-      const analysisResult = response.data;
-
-      // Pass the analysis result to the EJS template
-      res.render('template', { analysisResult });
-    })
-    .catch(err => {
-      console.log(err);
-      // Handle the error here
-    });
-});
+const FormData = require('form-data');
+const fs = require('fs');
 
 ///////////////////////////////////////////////////////
 //const flash = require('connect-flash');
@@ -99,6 +75,35 @@ app.get('/', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
 
+app.get('/api',(req,res)=>{
+  render('api');
+})
+app.post('/analyze-image', async (req, res) => {
+  const axios = require('axios');
+const FormData = require('form-data');
+
+const data = new FormData();
+data.append('image',"" );
+data.append('max_face_num', '<REQUIRED>');
+
+const options = {
+  method: 'POST',
+  url: 'https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze',
+  headers: {
+    'X-RapidAPI-Key': '801872b67amsh1b8e41e63a543e0p117bfcjsn5ca14def1825',
+    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
+    ...data.getHeaders(),
+  },
+  data: data
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
+});
 
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
@@ -112,77 +117,6 @@ app.get('', (req, res) => {
 app.get('/index', (req, res) => {
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
-
-/*app.post('/login-action', (req, res) => {
-  console.log("logged")
-  var query = { Email: req.body.email, Password: req.body.password };
-  users.find(query)
-    .then(result => {
-      if (result.length > 0) {
-        console.log(result[0]);
-        req.session.user = result[0];
-        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user) });
-      }
-      else {
-        // Error message: Invalid email or password
-        res.render('Account', { error: 'Invalid email or password', email: req.body.email || '', password: req.body.password || '' });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      // Error message: An error occurred
-      res.render('Account', { error: 'An error occurred', email: req.body.email || '', password: req.body.password || '' });
-    });
-});
-
-app.get('/Myprofile', (req, res) => {
-  res.render('myprofile', { userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user) });
-});
-
-
-app.post('/RegisterationForm', urlencodedParser, [
-  check('Firstname', 'Firstname should contain min 3 characters')
-    .exists()
-    .isLength({ min: 3 }),
-  check('Lastname', 'Lastname should contain min 3 characters')
-    .exists()
-    .isLength({ min: 3 }),
-  check('email')
-    .exists().withMessage('Email is required')
-    .isEmail().withMessage('Invalid email'),
-  check('password')
-    .exists().withMessage('Password is required')
-    .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
-    .withMessage('Password should contain at least one letter, one number, and one special character'),
-], (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    const alert = errors.array();
-    res.render('RegisterationForm', {
-      alert,
-      emailError: errors.array().find(error => error.param === 'email') || null,
-    });
-  } else {
-    const email = req.body.email;
-    users.isThisEmailInUse(email)
-      .then(inUse => {
-        if (inUse) {
-          // Email is not in use, proceed with registration
-          res.render('RegisterationForm', { emailError: '', alert: [] });
-        } else {
-          // Email is already in use
-          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
-        }
-      })
-      .catch(error => {
-        console.log('Error checking email:', error);
-        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
-      });
-  }
-});
-*/
 
 /////////*/
 app.post('/addadmin-action', async (req, res, next) => {

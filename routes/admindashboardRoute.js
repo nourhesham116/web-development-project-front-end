@@ -21,11 +21,28 @@ router.get('/', (req, res) => {
   router.get('/adminproducts', (req, res) => {
     res.render('adminproducts');
   })
+
   
-  router.get('/editproduct/:prodId',(req,res)=>{
-    products.findById(req.params.prodId).then(function (prod){
-      res.render('editproduct',{product:prod});
-    })
+  router.post('/search', async (req, res) => {
+    let payload = req.body.payload.trim();
+  
+    try {
+      let searchResults = await users.find({
+        Firstname: { $regex: new RegExp('^' + payload + '.*', 'i') },
+      }).exec();
+  
+      if (searchResults) {
+        // Limit search results to 10
+        searchResults = searchResults.slice(0,3);
+        res.send({ payload: searchResults });
+      } else {
+        // Handle the case when searchResults is undefined
+        res.send({ payload: [] });
+      }
+    } catch (error) {
+      console.log('Error in search:', error);
+      res.send({ payload: [] });
+    }
   });
   router.post('/', productController.createProduct);
   router.post('/:prodId',productController.deleteProduct)

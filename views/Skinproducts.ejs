@@ -56,7 +56,13 @@
               </div>
               <div class="shop">
                 <% if (!userP || userP.Type == "client") { %>
-                <span class=""><a href="#">ADD TO BAG</a></span>
+                  <form action="/addtocart/add" method="post">
+                    <input type="hidden" name="product" value="<%= product._id %>">
+                    <input type="hidden" name="name" value="<%= product._name %>">
+                    <input type="hidden" name="price" value="<%= product._price %>">
+                    <input type="number" name="quantity" value="1">
+                    <span class=""><button type="submit">ADD TO BAG</button></span>
+                  </form>
                 <% } else if (userP.Type == "admin") { %>
                 <span class=""><a href="/admindashboard/editproduct/<%= product._id %>">Edit</a></span>
                 <span class="">

@@ -22,7 +22,7 @@ const userRouter = require("./routes/userRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
-const port = 3000
+const port = 8080
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
@@ -70,9 +70,10 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-
 app.get('/', (req, res) => {
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
+
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 
 app.get('/api',(req,res)=>{
@@ -110,13 +111,13 @@ app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
 app.use('/Account',userRouter)
-app.get('', (req, res) => {
+// app.get('', (req, res) => {
 
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
-app.get('/index', (req, res) => {
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
+//   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
+// })
+// app.get('/index', (req, res) => {
+//   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
+// })
 
 /////////*/
 app.post('/addadmin-action', async (req, res, next) => {
@@ -186,6 +187,12 @@ app.get('/sophistiqueBeauty', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.render('checkout')
 })
+app.get('/partials/addtocart', (req, res) => {
+
+  res.render('/partials/addtocart', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
+
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
@@ -240,19 +247,67 @@ app.get('/logout', (req, res) => {
 })*/
 
 
-// Custom error handling middleware
-app.use((req, res, next) => {
-  res.status(404).render('Error404');
-});
-
-
 //app.get('/RegisterationForm', (req, res) => {
  // res.render('RegisterationForm', { errorMessages: req.flash('error') });
 //});
 
 //app.post('/RegisterationForm', validateUser, saveUser);
 
+app.post('/addtocart/add', (req, res) => {
+  console.log('Form:'+req.body)
+  const cartItem = {
+    product: req.body.product,
+    quantity: parseInt(req.body.quantity),
+    price:0,
+    name:req.body.name
+  };
+  console.log(cartItem)
+  req.session.cart = req.session.cart || [];
+  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
+  if (cartIndex > -1) {
+    req.session.cart[cartIndex].quantity += cartItem.quantity;
+  } else {
+    req.session.cart.push(cartItem);
+  }
+  res.redirect('/');
+});
 
+app.get('/addtocart', (req, res) => {
+  const cart = req.session.cart || [];
+  res.render('partials/addtocart', { cart });
+});
+
+app.post('/addtocart/update', (req, res) => {
+  const cartItem = {
+    product: req.body.product,
+    quantity: parseInt(req.body.quantity)
+  };
+  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
+  if (cartIndex > -1) {
+    req.session.cart[cartIndex].quantity = cartItem.quantity;
+  }
+  res.redirect('/addtocart');
+});
+
+app.post('/addtocart/remove', (req, res) => {
+  const cartItem = {
+    product: req.body.product,
+    quantity: 0,
+    price:0,
+    name:req.body.name
+  };
+  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
+  if (cartIndex > -1) {
+    req.session.cart.splice(cartIndex, 1);
+  }
+  res.redirect('/addtocart');
+});
+
+
+// Custom error handling middleware
+app.use((req, res, next) => {
+  res.status(404).render('Error404');
+});
 module.exports = { app };
 
 

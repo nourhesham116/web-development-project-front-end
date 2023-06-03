@@ -21,6 +21,7 @@ const productsRouter = require("./routes/productsRoute.js");
 const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const userRouter = require("./routes/userRoute.js");
+const cartRouter=require("./routes/cartRoute")
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
@@ -28,6 +29,7 @@ const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
+
 //////////////////////
 app.get('/api',(req,res)=>{
   res.render('api');
@@ -159,16 +161,9 @@ app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
-app.use('/Account',userRouter)
-// app.get('', (req, res) => {
+app.use('/Account',userRouter);
+app.use('/addtocart',cartRouter);
 
-//   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-// })
-// app.get('/index', (req, res) => {
-//   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-// })
-
-/////////*/
 app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
@@ -196,39 +191,31 @@ app.get('/productdetail', (req, res) => {
 })
 
 
-app.get('/search',(req,res)=>{
- res.render('search');
+app.get('/bsearch',(req,res)=>{
+ res.render('bsearch');
 })
-// app.post('/search',async(req,res)=>{
-//   let  payload=req.body.payload.trim();
-//   // console.log( payload);
-//   // let search= users.find({name:{$regex: new RegExp('^'+payload+'.*','i')}}).exec();
-//   // console.log(payload);
-//   // if (search) {
-//   //   // Limit search results to 10
-//   //   search = search.slice(0, 10);
-//   //   res.send({ payload: search });
-//   // } else {
-//   //   // Handle the case when search is undefined
-//   //   res.send({ payload: [] });
-//   // }
-//    payload = await users.find({
-//     name: { $regex: new RegExp('^' + payload + '.*', 'i') },
-//   }).exec();
 
-//   if (search) {
-//     // Limit search results to 10
-//     search = search.slice(0, 10);
-//     res.send({ payload: search });
-//   } else {
-//     // Handle the case when search is undefined
-//     res.send({ payload: [] });
-//   }
-// })
+app.post('/bsearch', async (req, res) => {
+  let payload = req.body.payload.trim();
+  try {
+    let prodsearch = await products.find({
+    
+       type: { $regex: new RegExp('^' + payload + '.*', 'i')}
+    }).exec();
 
-
-
-
+    if (prodsearch) {
+      // Limit search results to 3
+      prodsearch = prodsearch.slice(0, 3);
+      res.send({ payload: prodsearch });
+    } else {
+      // Handle the case when prodsearch is undefined
+      res.send({ payload: [] });
+    }
+  } catch (error) {
+    console.log('Error in search:', error);
+    res.send({ payload: [] });
+  }
+});
 
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
@@ -262,17 +249,9 @@ app.get('/sophistiqueBeauty', (req, res) => {
 })
 
 
-
-/*app.get('/adminproducts', (req, res) => {
-  res.render('adminproducts', { user: (req.session.user === undefined ? "" : req.session.user) })
-})*/
-
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-app.get('/RegisterationForm', (req, res) => {
-  res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
 
 app.get('/users', (req, res) => {
   res.render('users')
@@ -287,75 +266,14 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
-/////////////////////////////////////
-/*app.get('/editproduct/:prodId',(req,res)=>{
-  products.findById(req.params.prodId).then(function (prod){
-    res.render('editproduct',{product:prod});
-  })
-  
-})*/
-
-
-//app.get('/RegisterationForm', (req, res) => {
- // res.render('RegisterationForm', { errorMessages: req.flash('error') });
-//});
-
-//app.post('/RegisterationForm', validateUser, saveUser);
-
-app.post('/addtocart/add', (req, res) => {
- // console.log('Form:'+req.body)
- 
-  const cartItem = {
-    product: req.body.product,
-    quantity: parseInt(req.body.quantity),
-    price:req.body.price,
-    image:req.body.image,
-    name:req.body.name
-  };
-  console.log(cartItem)
-  req.session.cart = req.session.cart || [];
-  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
-  if (cartIndex > -1) {
-    req.session.cart[cartIndex].quantity += cartItem.quantity;
-  } else {
-    req.session.cart.push(cartItem);
-  }
-  res.redirect('/');
-});
-
-
-
-app.post('/addtocart/update', (req, res) => {
-  const cartItem = {
-    product: req.body.product,
-    quantity: parseInt(req.body.quantity)
-  };
-  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
-  if (cartIndex > -1) {
-    req.session.cart[cartIndex].quantity = cartItem.quantity;
-  }
-  res.redirect('/');
-});
-
-app.post('/addtocart/remove', (req, res) => {
-  const cartItem = {
-    product: req.body.product,
-    quantity: 0,
-    price:0,
-    name:req.body.name
-  };
-  const cartIndex = req.session.cart.findIndex(item => item.product === cartItem.product);
-  if (cartIndex > -1) {
-    req.session.cart.splice(cartIndex, 1);
-  }
-  res.redirect('/');
-});
-
-
-// Custom error handling middleware
 app.use((req, res, next) => {
   res.status(404).render('Error404');
 });
+
+
+
+
+
 module.exports = { app };
 
 

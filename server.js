@@ -159,8 +159,9 @@ app.get('/bsearch',(req,res)=>{
 app.post('/bsearch', async (req, res) => {
   let payload = req.body.payload.trim();
   try {
-    let prodsearch = await Product.find({
-    type: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    let prodsearch = await products.find({
+    
+       type: { $regex: new RegExp('^' + payload + '.*', 'i')}
     }).exec();
 
     if (prodsearch) {

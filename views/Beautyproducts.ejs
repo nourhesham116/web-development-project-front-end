@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skincare</title>
     <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="../css/Nav.css">
+    <link rel="stylesheet" href="../css/beautynav.css">
     <link rel="stylesheet" href="../css/Addtocart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +19,10 @@
 </head>
 
 <body>
-    <%- include('./partials/Nav.ejs') %>
+    <%- include('./partials/beautynav.ejs') %>
         <%- include('./partials/addtocart.ejs') %>
         <div class="h2">
-            <h2 class="title">SOPHISTIQUÉ <%= productsList[0].type%></h2>
+            <h2 class="title">SOPHISTIQUÉ</h2>
           </div>
         
           <div class="product-grid">
@@ -70,23 +70,7 @@
             <% }) %>
           </div>
         
-          <div class="pagination">
-            <% if (currentPage > 1) { %>
-            <a href="?page=<%= currentPage - 1 %>">Previous</a>
-            <% } %>
-        
-            <% for (let i = 1; i <= totalPages; i++) { %>
-            <% if (i === currentPage) { %>
-            <span class="current-page"><%= i %></span>
-            <% } else { %>
-            <a href="?page=<%= i %>"><%= i %></a>
-            <% } %>
-            <% } %>
-        
-            <% if (currentPage < totalPages) { %>
-            <a href="?page=<%= currentPage + 1 %>">Next</a>
-            <% } %>
-          </div>
+      
         </body>
         
         </html>

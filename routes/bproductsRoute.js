@@ -113,5 +113,20 @@ router.get('/', function (req, res, next) {
       })
     })
   });
+  router.get('/allface', function (req, res, next) {
+    Product.find({ category:'BEAUTY'}).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
+      })
+    })
+  });
+
+  router.get('/new', function (req, res, next) {
+    Product.find({ type:'bnew'}).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
+      })
+    })
+  });
   
   module.exports = router;

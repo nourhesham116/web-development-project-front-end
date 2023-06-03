@@ -152,8 +152,8 @@ app.get('/productdetail', (req, res) => {
 })
 
 
-app.get('/search',(req,res)=>{
- res.render('search');
+app.get('/bsearch',(req,res)=>{
+ res.render('bsearch');
 })
 // app.post('/search',async(req,res)=>{
 //   let  payload=req.body.payload.trim();
@@ -234,6 +234,7 @@ app.get('/logout', (req, res) => {
 app.use((req, res, next) => {
   res.status(404).render('Error404');
 });
+
 
 app.post('/bsearch', async (req, res) => {
   let payload = req.body.payload.trim();

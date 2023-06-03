@@ -58,9 +58,10 @@
                 <% if (!userP || userP.Type == "client") { %>
                   <form action="/addtocart/add" method="post">
                     <input type="hidden" name="product" value="<%= product._id %>">
-                    <input type="hidden" name="name" value="<%= product._name %>">
-                    <input type="hidden" name="price" value="<%= product._price %>">
-                    <input type="number" name="quantity" value="1">
+                    <input type="hidden" name="name" value="<%= product.name %>">
+                    <input type="hidden" name="price" value="<%= product.price %>">
+                    <input type="hidden" name="image" value="<%= product.image1 %>">
+                    <input type="number" name="quantity" value="1" hidden>
                     <span class=""><button type="submit">ADD TO BAG</button></span>
                   </form>
                 <% } else if (userP.Type == "admin") { %>

@@ -26,7 +26,8 @@ router.get('/', function (req, res, next) {
           userP: req.session.user,
           user: req.session.user || null,
           currentPage: page,
-          totalPages: totalPages
+          totalPages: totalPages,
+          cart:(req.session.cart===undefined?"":req.session.cart)
         });
       });
     })

@@ -22,7 +22,7 @@ const userRouter = require("./routes/userRoute.js");
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
-const port = 8080
+const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
@@ -70,7 +70,16 @@ app.use(express.urlencoded({ extended: true }));
 /////////////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.get('', (req, res) => {
 
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
+app.get('/index', (req, res) => {
+
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
 app.get('/', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
@@ -255,11 +264,13 @@ app.get('/logout', (req, res) => {
 //app.post('/RegisterationForm', validateUser, saveUser);
 
 app.post('/addtocart/add', (req, res) => {
-  console.log('Form:'+req.body)
+ // console.log('Form:'+req.body)
+ 
   const cartItem = {
     product: req.body.product,
     quantity: parseInt(req.body.quantity),
-    price:0,
+    price:req.body.price,
+    image:req.body.image,
     name:req.body.name
   };
   console.log(cartItem)
@@ -273,10 +284,7 @@ app.post('/addtocart/add', (req, res) => {
   res.redirect('/');
 });
 
-app.get('/addtocart', (req, res) => {
-  const cart = req.session.cart || [];
-  res.render('partials/addtocart', { cart });
-});
+
 
 app.post('/addtocart/update', (req, res) => {
   const cartItem = {
@@ -287,7 +295,7 @@ app.post('/addtocart/update', (req, res) => {
   if (cartIndex > -1) {
     req.session.cart[cartIndex].quantity = cartItem.quantity;
   }
-  res.redirect('/addtocart');
+  res.redirect('/');
 });
 
 app.post('/addtocart/remove', (req, res) => {
@@ -301,7 +309,7 @@ app.post('/addtocart/remove', (req, res) => {
   if (cartIndex > -1) {
     req.session.cart.splice(cartIndex, 1);
   }
-  res.redirect('/addtocart');
+  res.redirect('/');
 });
 
 

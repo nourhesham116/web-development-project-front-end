@@ -35,6 +35,7 @@ const { ppid } = require('process');
 
 const FormData = require('form-data');
 const fs = require('fs');
+const Product = require('./models/product');
 
 ///////////////////////////////////////////////////////
 //const flash = require('connect-flash');
@@ -251,6 +252,34 @@ app.use((req, res, next) => {
 //});
 
 //app.post('/RegisterationForm', validateUser, saveUser);
+
+app.get('/search', (req, res) => {
+  res.render('search')
+})
+
+app.post('/search', async (req, res) => {
+  let payload = req.body.payload.trim();
+
+  try {
+    let searchResult = await Product.find({
+      name: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    }).exec();
+
+    if (searchResult) {
+      // Limit search results to 10
+      searchResult = searchResult.slice(0,3);
+      res.send({ payload: searchResult });
+    } else {
+      // Handle the case when searchResults is undefined
+      res.send({ payload: [] });
+    }
+  } catch (error) {
+    console.log('Error in search:', error);
+    res.send({ payload: [] });
+  }
+});
+
+
 
 
 module.exports = { app };

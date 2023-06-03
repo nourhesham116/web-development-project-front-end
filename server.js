@@ -182,10 +182,6 @@ app.get('/search',(req,res)=>{
 //   }
 // })
 
-
-
-
-
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
 })
@@ -218,17 +214,9 @@ app.get('/sophistiqueBeauty', (req, res) => {
 })
 
 
-
-/*app.get('/adminproducts', (req, res) => {
-  res.render('adminproducts', { user: (req.session.user === undefined ? "" : req.session.user) })
-})*/
-
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-app.get('/RegisterationForm', (req, res) => {
-  res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
 
 app.get('/users', (req, res) => {
   res.render('users')

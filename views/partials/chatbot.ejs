@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/chatbot.css">
+
+    <title>ChatBot</title>
+</head>
+<body>
+    <div id="chatIcon">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chatPopup">
+        <div id="chatCloseButton">
+            <i class="fas fa-times"></i>
+        </div>
+        <div id="chatContent">
+            <div class="chatMessage userMessage">
+                <div class="avatar"></div>
+                <div class="messageBubble">
+                    <div class="messageText">Hello, how can I assist you today?</div>
+                </div>
+            </div>
+            <div class="chatMessage">
+                <div class="avatar"></div>
+                <div class="messageBubble">
+                    <div class="messageText">Sure, go ahead and ask your question.</div>
+                </div>
+            </div>
+            <div class="chatMessage userMessage">
+                <div class="avatar"></div>
+                <div class="messageBubble">
+                    <div class="messageText">I have a question about a product.</div>
+                </div>
+            </div>
+            <div class="chatMessage">
+                <div class="avatar"></div>
+                <div class="messageBubble">
+                    <div class="messageText">Here is the answer to your question.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="chatInputContainer">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendMessageButton">Send</button>
+        </div>
+        
+        <div class="typingIndicator">
+            <div class="avatar"></div>
+            <div class="messageBubble"></div>
+        </div>
+    </div>
+
+    <script>
+        const chatIcon = document.getElementById('chatIcon');
+        const chatPopup = document.getElementById('chatPopup');
+        const chatCloseButton = document.getElementById('chatCloseButton');
+
+        chatIcon.addEventListener('click', () => {
+          chatPopup.style.transform = 'translateY(0)';
+        });
+
+        chatCloseButton.addEventListener('click', () => {
+          chatPopup.style.transform = 'translateY(100%)';
+        });
+
+        const chatInput = document.getElementById('chatInput');
+        const sendMessageButton = document.getElementById('sendMessageButton');
+        const typingIndicator = document.querySelector('.typingIndicator');
+
+        sendMessageButton.addEventListener('click', () => {
+          const userMessage = chatInput.value.trim();
+
+          if (userMessage !== '') {
+            addChatMessage(userMessage, 'userMessage');
+            chatInput.value = '';
+
+            // Simulate typing indicator before generating answer
+            showTypingIndicator();
+
+            // Call the AI model or perform any other necessary actions to generate the answer
+            generateAnswer(userMessage);
+          }
+        });
+
+        function generateAnswer(userMessage) {
+            //bnendah el api
+          setTimeout(() => {
+            // elapi byrod
+            const answer = 'Here is the answer to your question.';
+
+            hideTypingIndicator();// lama yrod 3lih
+
+            addChatMessage(answer, 'chatMessage');
+          }, 2000);
+        }
+
+        function addChatMessage(message, messageType) {
+          const chatContent = document.getElementById('chatContent');
+          const messageContainer = document.createElement('div');
+          messageContainer.className = `chatMessage ${messageType}`;
+          messageContainer.innerHTML = `
+            <div class="avatar"></div>
+            <div class="messageBubble">
+              <div class="messageText">${message}</div>
+            </div>
+          `;
+          chatContent.insertBefore(messageContainer, chatContent.lastElementChild);
+
+          chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+          typingIndicator.style.display = 'flex';
+        }
+
+        function hideTypingIndicator() {
+          typingIndicator.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

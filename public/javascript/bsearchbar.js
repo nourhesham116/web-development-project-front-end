@@ -1,3 +1,5 @@
+const Product = require("../models/product");
+
 function sendproduct(f) {
     const prodsearch = document.getElementById("prodsearch");
     let match3 = f.value.match(/^[a-zA-Z]*/);
@@ -26,11 +28,10 @@ function sendproduct(f) {
           
           payload1.forEach((product, index) => {
             if (index > 0) prodsearch.innerHTML += '<hr>';
-            prodsearch.innerHTML += `<p>${product.name}</p>`;
+            prodsearch.innerHTML += `<p>${product.type}</p>`;
           });
         });
       return;
     }
     prodsearch.innerHTML = '';
   }
-  

@@ -155,32 +155,27 @@ app.get('/productdetail', (req, res) => {
 app.get('/bsearch',(req,res)=>{
  res.render('bsearch');
 })
-// app.post('/search',async(req,res)=>{
-//   let  payload=req.body.payload.trim();
-//   // console.log( payload);
-//   // let search= users.find({name:{$regex: new RegExp('^'+payload+'.*','i')}}).exec();
-//   // console.log(payload);
-//   // if (search) {
-//   //   // Limit search results to 10
-//   //   search = search.slice(0, 10);
-//   //   res.send({ payload: search });
-//   // } else {
-//   //   // Handle the case when search is undefined
-//   //   res.send({ payload: [] });
-//   // }
-//    payload = await users.find({
-//     name: { $regex: new RegExp('^' + payload + '.*', 'i') },
-//   }).exec();
 
-//   if (search) {
-//     // Limit search results to 10
-//     search = search.slice(0, 10);
-//     res.send({ payload: search });
-//   } else {
-//     // Handle the case when search is undefined
-//     res.send({ payload: [] });
-//   }
-// })
+app.post('/bsearch', async (req, res) => {
+  let payload = req.body.payload.trim();
+  try {
+    let prodsearch = await Product.find({
+    type: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    }).exec();
+
+    if (prodsearch) {
+      // Limit search results to 3
+      prodsearch = prodsearch.slice(0, 3);
+      res.send({ payload: prodsearch });
+    } else {
+      // Handle the case when prodsearch is undefined
+      res.send({ payload: [] });
+    }
+  } catch (error) {
+    console.log('Error in search:', error);
+    res.send({ payload: [] });
+  }
+});
 
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
@@ -236,26 +231,8 @@ app.use((req, res, next) => {
 });
 
 
-app.post('/bsearch', async (req, res) => {
-  let payload = req.body.payload.trim();
-  try {
-    let prodsearch = await Product.find({
-      name: { $regex: new RegExp('^' + payload + '.*', 'i') },
-    }).exec();
 
-    if (prodsearch) {
-      // Limit search results to 3
-      prodsearch = prodsearch.slice(0, 3);
-      res.send({ payload: prodsearch });
-    } else {
-      // Handle the case when prodsearch is undefined
-      res.send({ payload: [] });
-    }
-  } catch (error) {
-    console.log('Error in search:', error);
-    res.send({ payload: [] });
-  }
-});
+
 
 module.exports = { app };
 

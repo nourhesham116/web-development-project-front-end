@@ -234,6 +234,28 @@ app.get('/logout', (req, res) => {
 app.use((req, res, next) => {
   res.status(404).render('Error404');
 });
+
+app.post('/bsearch', async (req, res) => {
+  let payload = req.body.payload.trim();
+  try {
+    let prodsearch = await Product.find({
+      name: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    }).exec();
+
+    if (prodsearch) {
+      // Limit search results to 3
+      prodsearch = prodsearch.slice(0, 3);
+      res.send({ payload: prodsearch });
+    } else {
+      // Handle the case when prodsearch is undefined
+      res.send({ payload: [] });
+    }
+  } catch (error) {
+    console.log('Error in search:', error);
+    res.send({ payload: [] });
+  }
+});
+
 module.exports = { app };
 
 

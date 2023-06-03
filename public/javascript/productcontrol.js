@@ -34,7 +34,7 @@ document.getElementById("newproductdetails").addEventListener("submit", function
 
 });
 const arrSkin=["new","Face moisturizer","face cleanser","toner","mask and treatment","lip care","eye cream","suncream","body cleanser","scrub","body mists","body moisturizer"];
-const arrBeauty=["foundation","prime+set","concelar","powder","contour","blush","bronzing","highlighter","brushes","lipgloss","lipstick","lipcombos","lipbalm","eyeshadow","mascara"]
+const arrBeauty=["foundation","prime+set","concelar","powder","blush","bronzing","highlighter","brushes","lipgloss","lipstick","lipcombos","lipbalm","eyeshadow","mascara","eyeliner"];
 function dropdownSkin(){
     let drop=document.getElementById("custom-select");
     var option;

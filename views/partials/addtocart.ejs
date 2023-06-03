@@ -14,115 +14,143 @@
 <title>Add to cart</title>
 </head>
 <body>
-     <!--add to bag-->
-     <div>
-        <div class="split right">
-             <button id="close" onclick="ex();">X</button>
-            <div class="centeredd">
-                <div class="headerr1">
-                    
-                    <span class="innerdetails">
-                        YOUR BAG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span class="innerdetails2">
-                        0 items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span class="innerdetails3">
-                        EGP0.00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    
-                </div>
-
-                <div class="headerr2">
-                    <p>WELCOME&nbsp;BACK&nbsp;!</p>
-                </div>
-                <div class="gift">
-                    <p class="p2">Add EGP‌5,100.00 to your cart to qualify<br> for a FREE gift!</p>
-                    <button class="btn3">ADD YOUR GIFT</button>
-                </div>
-                <div class="bag">
-                    <p class="p1">YOUR BAG IS EMPTY</p>
-                    <a href="/sophistiqueBeauty">
-                    <button class="btn1"> SHOP SOPHISTIQUÉ BEAUTY</button>
-                    </a>
-                    <br>
-                    <br>
-                    <a href="/skincarepage1">
-                    <button class="btn2"> SHOP SOPHISTIQUÉ SKIN</button>
-                    </a>
-                </div>
-            </div>
-            <div class="recommended">
-                <p class="p3">RECOMMENDED PRODUCTS</p>
-                <div class="row1">
-                    <div class="column1">
-                        <img src="../imgs/main product.jpeg" style="width:70%">
-                        <p class="newtext">NEW</p>
-                        <p class="title1">MELT AWF JELLY OIL MAKEUP-MELTING CLEANSER</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <br><br>
-                        <p><button class="textbtn">ADD TO BAG<br>EGP1,400.00</button></p>
-                    </div>
-
-                    <div class="column1">
-                        <img src="../imgs/nflbag.jpeg" style="width:70%">
-                        <p class="onlinetext">ONLINE EXCLUSIVE</p>
-                        <p class="title2">NFL STADIUM BAG</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <br><br><br><br>
-                        <p><button class="text2btn">ADD TO BAG <br> EGP1,050.00</button></p>
-                    </div>
-                    <div class="column1">
-                        <img src="../imgs/velvet.jpeg" style="width:70%">
-                        <p class="gamedaytext">GAME DAY LIMITED EDITION<br>ONLINE EXCLUSIVE</p>
-                        <p class="title3">FENTY ICON VELVET LIQUID</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <p Class="gamedaytext"> RIRI</p>
-                        <p><button class="text3btn">ADD TO BAG <br> EGP1,200.00</button></p>
-                    </div>
-                </div>
-            </div>
-            <div class="subtotal">
-                <p class="subtext">&nbsp;&nbsp;&nbsp;SubTotal-0 items</p>
-                <p class="costt">EGP0.00</p>
-                <p class="subtext2">&nbsp;&nbsp;&nbsp;Need assistance?</p>
-                <p>&nbsp;&nbsp;&nbsp;call&nbsp;<a class="number" href=#>1-855-440-7474</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="number" href=#>Free 30 Day Returns</a>
-                </p>
-            </div>
-            <div class="cartfooter">
-                <p class="subtottext">&nbsp;&nbsp;SubTotal-0&nbsp;items</p>
-                <p class="cost">EGP0.00</p>
-                <span class="oneline">
-                    <button class="view">&nbsp;VIEW BAG</button>
-                    <a href="/checkout">
-                    <button class="checkout">&nbsp;&nbsp;CHECKOUT</button>
-                    </a>
-                </span>
-            </div>
-        </div>
-
-
-
-    </div>
-    </div>
-    <!--add to bag ends-->
+   
+    <ul>
+      <% 
+      if(cart==='')
+      {%>
+          <div>
+              <div class="split right">
+                   <button id="close" onclick="ex();">X</button>
+                  <div class="centeredd">
+                      <div class="headerr1">
+                          
+                          <span class="innerdetails">
+                              YOUR BAG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          </span>
+                          <span class="innerdetails2">
+                              0 items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          </span>
+                          <span class="innerdetails3">
+                              EGP0.00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          </span>
+                          
+                      </div>
+      
+                      <div class="headerr2">
+                          <p>WELCOME&nbsp;BACK&nbsp;!</p>
+                      </div>
+      
+      
+                      
+                      <div class="gift">
+                          <p class="p2">Add EGP5,100.00 to your cart to qualify<br> for a FREE gift!</p>
+                          <button class="btn3">ADD YOUR GIFT</button>
+                      </div>
+                      <div class="bag">
+                          <p class="p1">YOUR BAG IS EMPTY</p>
+                          <a href="/sophistiqueBeauty">
+                          <button class="btn1"> SHOP SOPHISTIQUÉ BEAUTY</button>
+                          </a>
+                          <br>
+                          <br>
+                          <a href="/skincarepage1">
+                          <button class="btn2"> SHOP SOPHISTIQUÉ SKIN</button>
+                          </a>
+                      </div>
+                  </div>
+      
+      
+      
+                  <div class="recommended">
+                      <p class="p3">RECOMMENDED PRODUCTS</p>
+                      <div class="row1">
+                          <div class="column1">
+                              <img src="../imgs/main product.jpeg" style="width:70%">
+                              <p class="newtext">NEW</p>
+                              <p class="title1">MELT AWF JELLY OIL MAKEUP-MELTING CLEANSER</p>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <br><br>
+                              <p><button class="textbtn">ADD TO BAG<br>EGP1,400.00</button></p>
+                          </div>
+      
+                          <div class="column1">
+                              <img src="../imgs/nflbag.jpeg" style="width:70%">
+                              <p class="onlinetext">ONLINE EXCLUSIVE</p>
+                              <p class="title2">NFL STADIUM BAG</p>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <br><br><br><br>
+                              <p><button class="text2btn">ADD TO BAG <br> EGP1,050.00</button></p>
+                          </div>
+                          <div class="column1">
+                              <img src="../imgs/velvet.jpeg" style="width:70%">
+                              <p class="gamedaytext">GAME DAY LIMITED EDITION<br>ONLINE EXCLUSIVE</p>
+                              <p class="title3">FENTY ICON VELVET LIQUID</p>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <p Class="gamedaytext"> RIRI</p>
+                              <p><button class="text3btn">ADD TO BAG <br> EGP1,200.00</button></p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="subtotal">
+                      <p class="subtext">&nbsp;&nbsp;&nbsp;SubTotal-0 items</p>
+                      <p class="costt">EGP0.00</p>
+                      <p class="subtext2">&nbsp;&nbsp;&nbsp;Need assistance?</p>
+                      <p>&nbsp;&nbsp;&nbsp;call&nbsp;<a class="number" href=#>1-855-440-7474</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a class="number" href=#>Free 30 Day Returns</a>
+                      </p>
+                  </div>
+                  <div class="cartfooter">
+                      <p class="subtottext">&nbsp;&nbsp;SubTotal-0&nbsp;items</p>
+                      <p class="cost">EGP0.00</p>
+                      <span class="oneline">
+                          <button class="view">&nbsp;VIEW BAG</button>
+                          <a href="/checkout">
+                          <button class="checkout">&nbsp;&nbsp;CHECKOUT</button>
+                          </a>
+                      </span>
+                  </div>
+              </div>
+      
+      
+      
+          </div>
+          </div>
+     <%  }
+      else{
+      cart.forEach(item => { %>
+      <li>
+        <%= item.product%> - <%= item.quantity %>
+        <form action="/addtocart/update" method="post">
+          <input type="hidden" name="product" value="<%= item.product %>">
+          <input type="hidden" name="name" value="<%= item.name %>">
+          <input type="number" name="quantity" value="<%= item.quantity %>">
+          <button type="submit">Update</button>
+        </form>
+        <form action="/addtocart/remove" method="post">
+          <input type="hidden" name="product" value="<%= item.product %>">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+      <% })
+   } %>
+    </ul>
 </body>

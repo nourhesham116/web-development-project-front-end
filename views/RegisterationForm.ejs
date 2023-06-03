@@ -82,102 +82,140 @@
   <script src="../js/Validation.js"></script>
   <script>
     $(document).ready(function() {
-      const firstnameInput = $('#firstnameInput');
-      const lastnameInput = $('#lastnameInput');
-      const emailInput = $('#emailInput');
-      const passwordInput = $('#passwordInput');
-      const firstnameError = $('#firstnameError');
-      const lastnameError = $('#lastnameError');
-      const emailError = $('#emailError');
-      const passwordError = $('#passwordError');
-    
-      // Event listener for firstname input field
-      firstnameInput.on('input', function() {
-        validateNameInput($(this), firstnameError);
+  const firstnameInput = $('#firstnameInput');
+  const lastnameInput = $('#lastnameInput');
+  const emailInput = $('#emailInput');
+  const passwordInput = $('#passwordInput');
+  const firstnameError = $('#firstnameError');
+  const lastnameError = $('#lastnameError');
+  const emailError = $('#emailError');
+  const passwordError = $('#passwordError');
+  const formError = $('#formError'); 
+
+  // Event listener for firstname input field
+  firstnameInput.on('input', function() {
+    validateNameInput($(this), firstnameError);
+  });
+
+  // Event listener for lastname input field
+  lastnameInput.on('input', function() {
+    validateNameInput($(this), lastnameError);
+  });
+
+  // Event listener for email input field
+  emailInput.on('input', function() {
+    validateEmailInput($(this), emailError);
+  });
+
+  // Event listener for password input field
+  passwordInput.on('input', function() {
+    validatePasswordInput($(this), passwordError);
+  });
+
+  // Form submission handler
+  $('#registrationForm').on('submit', function(event) {
+    let isValid = true; // Track the overall form validation
+
+    // Validate firstname
+    if (firstnameInput.val().trim() === '') {
+      validateNameInput(firstnameInput, firstnameError);
+      isValid = false;
+    }
+
+    // Validate lastname
+    if (lastnameInput.val().trim() === '') {
+      validateNameInput(lastnameInput, lastnameError);
+      isValid = false;
+    }
+
+    // Validate email
+    if (emailInput.val().trim() === '') {
+      validateEmailInput(emailInput, emailError);
+      isValid = false;
+    }
+
+    // Validate password
+    if (passwordInput.val().trim() === '') {
+      validatePasswordInput(passwordInput, passwordError);
+      isValid = false;
+    }
+
+    // Prevent the form from submitting if any field is empty
+    if (!isValid) {
+      event.preventDefault();
+      formError.text('Please fill in all fields.');
+      formError.show();
+      formError.css('color', 'red');
+    }
+  });
+
+  // Function to validate the name input field
+  function validateNameInput(inputField, errorElement) {
+    const value = inputField.val().trim();
+
+    if (value.length === 0) {
+      errorElement.text('This field is required');
+    } else if (value.length < 3 || !/^[a-zA-Z]+$/.test(value)) {
+      errorElement.text('Invalid input');
+    } else {
+      errorElement.text('');
+    }
+  }
+
+  // Function to validate the email input field
+  function validateEmailInput(inputField, errorElement) {
+    const value = inputField.val().trim();
+    const emailRegex = /\S+@\S+\.\S+/;
+
+    if (!emailRegex.test(value)) {
+      errorElement.text('Invalid email address');
+    } else {
+      errorElement.text('');
+    }
+  }
+
+  function validatePasswordInput(inputField, errorElement) {
+    const value = inputField.val().trim();
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/;
+    let errors = [];
+    let unfulfilledRequirements = [];
+
+    if (value.length < 6) {
+      unfulfilledRequirements.push('Minimum 6 characters');
+    }
+
+    if (!/[A-Za-z]/.test(value)) {
+      unfulfilledRequirements.push('At least one letter');
+    }
+
+    if (!/\d/.test(value)) {
+      unfulfilledRequirements.push('At least one number');
+    }
+
+    if (!/[@$!%*#?&]/.test(value)) {
+      unfulfilledRequirements.push('At least one special character');
+    }
+
+    if (unfulfilledRequirements.length > 0) {
+      errorElement.text('Password must contain');
+      inputField.removeClass('completed-requirements');
+    } else {
+      errorElement.text('');
+      inputField.addClass('completed-requirements');
+    }
+
+    // Display unfulfilled requirements or clear the requirements list
+    const requirementsList = $('#passwordRequirementsList');
+    if (unfulfilledRequirements.length > 0) {
+      requirementsList.empty();
+      unfulfilledRequirements.forEach(function(requirement) {
+        requirementsList.append('<li class="password-requirement">' + requirement + '</li>');
       });
-    
-      // Event listener for lastname input field
-      lastnameInput.on('input', function() {
-        validateNameInput($(this), lastnameError);
-      });
-    
-      // Event listener for email input field
-      emailInput.on('input', function() {
-        validateEmailInput($(this), emailError);
-      });
-    
-      // Event listener for password input field
-      passwordInput.on('input', function() {
-        validatePasswordInput($(this), passwordError);
-      });
-    
-      // Function to validate the name input field
-      function validateNameInput(inputField, errorElement) {
-        const value = inputField.val().trim();
-    
-        if (value.length < 3 || !/^[a-zA-Z]+$/.test(value)) {
-        errorElement.text('Invalid input');
-        } else {
-          errorElement.text('');
-        }
-      }
-    
-      // Function to validate the email input field
-      function validateEmailInput(inputField, errorElement) {
-        const value = inputField.val().trim();
-        const emailRegex = /\S+@\S+\.\S+/;
-    
-        if (!emailRegex.test(value)) {
-          errorElement.text('Invalid email address');
-        } else {
-          errorElement.text('');
-        }
-      }
-    
-      function validatePasswordInput(inputField, errorElement) {
-  const value = inputField.val().trim();
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/;
-  let errors = [];
-  let unfulfilledRequirements = [];
-
-  if (value.length < 6) {
-    unfulfilledRequirements.push('Minimum 6 characters');
+    } else {
+      requirementsList.empty();
+    }
   }
-
-  if (!/[A-Za-z]/.test(value)) {
-    unfulfilledRequirements.push('At least one letter');
-  }
-
-  if (!/\d/.test(value)) {
-    unfulfilledRequirements.push('At least one number');
-  }
-
-  if (!/[@$!%*#?&]/.test(value)) {
-    unfulfilledRequirements.push('At least one special character');
-  }
-
-  if (unfulfilledRequirements.length > 0) {
-    errorElement.text('Password must contain ' );
-    inputField.removeClass('completed-requirements');
-  } else {
-    errorElement.text('');
-    inputField.addClass('completed-requirements');
-  }
-
-  // Display unfulfilled requirements or clear the requirements list
-  const requirementsList = $('#passwordRequirementsList');
-  if (unfulfilledRequirements.length > 0) {
-    requirementsList.empty();
-    unfulfilledRequirements.forEach(function(requirement) {
-      requirementsList.append('<li class="password-requirement">' + requirement + '</li>');
-    });
-  } else {
-    requirementsList.empty();
-  }
-}
-
-
-    });
+});
   </script>
 </body>
 </html>

@@ -6,6 +6,8 @@ const products = require('./models/product');
 //const Joi = require('joi');
 const bodyParser =require('body-parser')
 const { check, validationResult } = require('express-validator');
+require("dotenv").config();
+const { Configuration,OpenAIApi } = require("openai");
 
 ////////////////
 const cookieParser = require("cookie-parser");
@@ -86,9 +88,46 @@ app.get('/', (req, res) => {
   cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 
-app.get('/api',(req,res)=>{
-  render('api');
-})
+const configuration = new Configuration({ 
+  apiKey:  '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'});
+const openai=new OpenAIApi(configuration)
+
+app.post('/chatbot', async (req, res) => {
+  try {
+    const { prompt } = req.body;
+
+    // Generate chatbot response
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: prompt,
+      max_tokens: 64,
+      temperature: 0,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ['\n'],
+    });
+
+    // Return the response
+    res.status(200).json({
+      success: true,
+      data: response.data.choices[0].text.trim(),
+    });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'There was an error processing the request.',
+    });
+  }
+});
+
+
+
+
+//app.get('/api',(req,res)=>{
+ // render('api');
+//})
 app.post('/analyze-image', async (req, res) => {
   const axios = require('axios');
 const FormData = require('form-data');

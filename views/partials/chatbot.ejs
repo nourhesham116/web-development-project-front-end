@@ -1,126 +1,221 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/chatbot.css">
+<!-- chatbot.ejs -->
 
-    <title>ChatBot</title>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Chatbot Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #chatbot-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 400px;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 9999;
+  transition: transform 0.3s ease-in-out;
+}
+
+#chatbot-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+#chatbot-header-container h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#chatbot-header-container i {
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#chatbot-content {
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.user-message-container {
+  justify-content: flex-end;
+}
+
+.chatbot-message-container {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+
+.user-message-bubble {
+  background-color: #F7DCF7;
+  color: #333;
+}
+
+.chatbot-message-bubble {
+  background-color: #E1F1FF;
+  color: #333;
+}
+
+.profile-icon {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+#user-input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-top: 1px solid #ccc;
+  outline: none;
+}
+
+/* Chatbot Icon */
+#chatbot-icon-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+  </style>
 </head>
 <body>
-    <div id="chatIcon">
-        <i class="fas fa-comments"></i>
+  <!-- Chatbot Icon -->
+  <div id="chatbot-icon-container">
+    <i class="fas fa-comment" id="chatbot-icon"></i>
+  </div>
+
+  <!-- Chatbot Container -->
+  <div id="chatbot-container" class="chatbot-closed">
+    <div id="chatbot-header-container">
+      <h2>John Doe</h2>
+      <i class="fas fa-phone"></i>
+      <i class="fas fa-video"></i>
     </div>
-
-    <div id="chatPopup">
-        <div id="chatCloseButton">
-            <i class="fas fa-times"></i>
-        </div>
-        <div id="chatContent">
-            <div class="chatMessage userMessage">
-                <div class="avatar"></div>
-                <div class="messageBubble">
-                    <div class="messageText">Hello, how can I assist you today?</div>
-                </div>
-            </div>
-            <div class="chatMessage">
-                <div class="avatar"></div>
-                <div class="messageBubble">
-                    <div class="messageText">Sure, go ahead and ask your question.</div>
-                </div>
-            </div>
-            <div class="chatMessage userMessage">
-                <div class="avatar"></div>
-                <div class="messageBubble">
-                    <div class="messageText">I have a question about a product.</div>
-                </div>
-            </div>
-            <div class="chatMessage">
-                <div class="avatar"></div>
-                <div class="messageBubble">
-                    <div class="messageText">Here is the answer to your question.</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="chatInputContainer">
-            <input type="text" id="chatInput" placeholder="Type your message...">
-            <button id="sendMessageButton">Send</button>
-        </div>
-        
-        <div class="typingIndicator">
-            <div class="avatar"></div>
-            <div class="messageBubble"></div>
-        </div>
+    <div id="chatbot-content">
+      <ul id="chat-log"></ul>
     </div>
+    <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
+  </div>
 
-    <script>
-        const chatIcon = document.getElementById('chatIcon');
-        const chatPopup = document.getElementById('chatPopup');
-        const chatCloseButton = document.getElementById('chatCloseButton');
+  <!-- Chatbot Script -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Chatbot Script
+    // Chatbot Script
+document.addEventListener('DOMContentLoaded', function() {
+  const chatbotIcon = document.getElementById('chatbot-icon-container');
+  const chatbotContainer = document.getElementById('chatbot-container');
+  const chatLog = document.getElementById('chat-log');
+  const userInput = document.getElementById('user-input');
 
-        chatIcon.addEventListener('click', () => {
-          chatPopup.style.transform = 'translateY(0)';
-        });
+  chatbotIcon.addEventListener('click', function() {
+    chatbotContainer.style.transform = 'translateX(0)';
+  });
 
-        chatCloseButton.addEventListener('click', () => {
-          chatPopup.style.transform = 'translateY(100%)';
-        });
+  function closeChatbot() {
+    chatbotContainer.style.transform = 'translateX(100%)';
+  }
 
-        const chatInput = document.getElementById('chatInput');
-        const sendMessageButton = document.getElementById('sendMessageButton');
-        const typingIndicator = document.querySelector('.typingIndicator');
+  function scrollToBottom() {
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
 
-        sendMessageButton.addEventListener('click', () => {
-          const userMessage = chatInput.value.trim();
+  function addUserMessage(message) {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="message-container user-message-container">
+        <div class="message-bubble user-message-bubble">
+          <i class="fas fa-user-circle profile-icon"></i>
+          ${message}
+        </div>
+      </div>`;
+    chatLog.appendChild(li);
+    scrollToBottom();
+  }
 
-          if (userMessage !== '') {
-            addChatMessage(userMessage, 'userMessage');
-            chatInput.value = '';
+  function addChatbotMessage(message) {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="message-container chatbot-message-container">
+        <div class="message-bubble chatbot-message-bubble">
+          <i class="fas fa-robot profile-icon"></i>
+          ${message}
+        </div>
+      </div>`;
+    chatLog.appendChild(li);
+    scrollToBottom();
+  }
 
-            // Simulate typing indicator before generating answer
-            showTypingIndicator();
+  function sendMessageToChatbot(message) {
+    addUserMessage(message);
 
-            // Call the AI model or perform any other necessary actions to generate the answer
-            generateAnswer(userMessage);
-          }
-        });
+    // Send user message to the server
+    axios.post('/chatbot', {
+      message: message
+    })
+    .then(function(response) {
+      addChatbotMessage(response.data.message);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 
-        function generateAnswer(userMessage) {
-            //bnendah el api
-          setTimeout(() => {
-            // elapi byrod
-            const answer = 'Here is the answer to your question.';
+    userInput.value = '';
+  }
 
-            hideTypingIndicator();// lama yrod 3lih
+  userInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      const message = userInput.value.trim();
+      if (message !== '') {
+        sendMessageToChatbot(message);
+      }
+    }
+  });
 
-            addChatMessage(answer, 'chatMessage');
-          }, 2000);
-        }
+  userInput.focus();
+});
 
-        function addChatMessage(message, messageType) {
-          const chatContent = document.getElementById('chatContent');
-          const messageContainer = document.createElement('div');
-          messageContainer.className = `chatMessage ${messageType}`;
-          messageContainer.innerHTML = `
-            <div class="avatar"></div>
-            <div class="messageBubble">
-              <div class="messageText">${message}</div>
-            </div>
-          `;
-          chatContent.insertBefore(messageContainer, chatContent.lastElementChild);
-
-          chatContent.scrollTop = chatContent.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-          typingIndicator.style.display = 'flex';
-        }
-
-        function hideTypingIndicator() {
-          typingIndicator.style.display = 'none';
-        }
-    </script>
+    
+  </script>
 </body>
 </html>

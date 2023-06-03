@@ -1,94 +1,90 @@
-body{
-    margin: 0;
+body {
+    margin: 20 20px; 
     padding: 10px;
     background-color: #fffffd;
-}
-.title{
-    padding: 30px 20px;
-    margin: 20px;
-    font-size: 22px;
-    letter-spacing: 0.2em;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #000;
-    font-family: 'Overpass Mono', monospace;
+  }
+  .h2{
+    position: relative;
+    top:40px;
+    padding-left:20px ;
+    font-size: 10px;
+    color: rgb(58, 58, 58);
+    font-weight:lighter;
+    padding-bottom: 50px;
     font-family: 'Space Grotesk', sans-serif;
-}
-.headerIMG{
-    overflow-clip-margin: content-box;
-    /*overflow: clip;*/
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    height: 100%;
-    object-fit:inherit;
-    display: flexbox;
-    padding-top: 30px;
-   
-}
-a{
-    text-decoration: none;
-}
-/*div{
-    position: relative;
+  }
+  .product-grid {
+    list-style-type: none;
+    margin: 0 10px;
+    padding: 0;
     display: flex;
-}
-*/
-div .detail{
-position:relative ; 
-}
-.box{
-    width: 350px;
-    height: 400px;
-    box-shadow: 2px 2px 30px rgba(0,0,0,0,0.2);
-    border-radius: 0px;
-    overflow:hidden;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .product-item {
+    width: calc(25% - 20px);
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  .box {
     position: relative;
-    
-
-}
-.overlay {
+    width: 100%;
+    height: 0;
+    padding-bottom: 120%; /* Adjust the height ratio as needed */
+    overflow: hidden;
+  }
+  
+  .box img {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    height: 100%;
     width: 100%;
-    opacity: 0;
-    transition: 0.2s ease;
-    background-color: white;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
   }
-.img-slide{
+  
+  box:hover img {
+    opacity: 0.5; /* Adjust the opacity value as desired */
+  }
+  
+  .box:hover .overlay {
+    opacity: 0; /* Hide the overlay on hover */
+  }
+  
+  .box:hover .overlay:hover {
+    opacity: 1; /* Show the overlay again on overlay hover */
+  }
+  
+  .box:hover .overlay:hover img {
+    opacity: 1; /* Show the overlay image on overlay hover */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    box-sizing:content-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
   
-}
-.detail{
-    width: 310px;
-    height: 100px;
-    display: block;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(252, 252, 252);
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 9px;
-    padding-right: 9px;
-    margin: 0;
-}
-.type{
-    display: flex;
-    flex-direction: column;
-    
-}
-.type a{
+  .box:hover .overlay {
+    opacity: 1;
+  }
+  
+  .detail {
+    margin-top: 10px;
+  }
+  
+  .product-grid li {
+    list-style: none;
+  }
+  
+  .type a {
     color: #222222;
     margin: 5px 0px;
     font-weight: 700;
@@ -96,84 +92,69 @@ position:relative ;
     font-family: 'Overpass Mono', monospace;
     font-family: 'Space Grotesk', sans-serif;
     font-size: small;
-
-}
-.type span{
-    color: rgba(26,26,26,26,0.5);
+  }
+  
+  .name {
+    color: rgba(26, 26, 26, 26, 0.5);
     font-size: small;
     font-weight: 500;
     font-family: 'Overpass Mono', monospace;
     font-family: 'Space Grotesk', sans-serif;
-}
-.shop{
-    border-style:groove;
+    
+  }
+   a{
+    text-decoration: none;
+  }
+  
+  .shop {
+    border-style: groove;
     border-collapse: collapse;
     border-width: thin;
-    align-content:space-between;
+    align-content: space-between;
     font-weight: 600;
     font-size: 1.1rem;
     font-size: smaller;
-    font-family:poppings;
-    color:black;
+    font-family: poppings;
+    color: black;
     letter-spacing: 0.5px;
-    display: block;
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
-}
-.shop span,a{
-    color:black;
-}
-.shop span{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.price{
-    text-align: right;
-    display: inline;
-    float: right;
-}
-.item-a{
-    display: inline;
-    float: left;
-    border: 4px;
-    border-style:solid;
-    border-color: transparent;
-    
-    
-}
-.box:hover .overlay {
-    opacity: 1;
   }
-ul{
-    
-    display:block;
-}
-.checked {
+  
+  .shop span,
+  .shop a {
     color: black;
   }
-.unchecked {
-    color: rgb(158, 156, 156);
-}
-.stars{
-    width: 310px;
-    display: block;
-    justify-content: space-between;
-    align-items: center;
-    padding-left:  20px;
-    padding-bottom: 7px;
-    box-sizing: border-box;
-    background-color: rgb(252, 252, 252);
-}
-#delete{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1.1rem;
-    font-size:small;
-    font-family:poppings;
-    color:black;
-    letter-spacing: 0.5px;
-    padding: 10px;
-    
-}
+  
+  .shop span {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination a,
+  .pagination span {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #000;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-right: 5px;
+  }
+  
+  .pagination a:hover {
+    background-color: #ddd;
+  }
+  
+  .pagination .current-page {
+    background-color:rgb(226, 206, 226);
+    color: #fff;
+  }
+  

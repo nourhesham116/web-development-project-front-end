@@ -5,83 +5,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/beautynav.css">
-    <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/sophistique beauty main .js"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skincare</title>
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/Nav.css">
+    <link rel="stylesheet" href="../css/Addtocart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap"
+        rel="stylesheet">
+
 </head>
 
-<%- include('./partials/beautynav.ejs') %>
-<%- include('./partials/addtocart.ejs') %>
-
-<br>
-    <div class="h2">
-        <h2 class="title">
-          SOPHISTIQUÉ 
-        </h2>
-    </div>
-    </div>
-
-
-    
-<ul>
-        <%productsList.forEach(product=>{%>
-            
-                <li class="item-a">
-                    <div class="box">
-
-                        <a href="productdetail">
-                             <a href="/productdetail/product/<%=product.id%>"> </a>
-                             </a>
-
-                            <div class img-slide>
-                                <img src="../imgs/uploads/<%= product.image1%>"  width="350px" height="450px" class="hide">
-                            </div>
-                            <div class="overlay"> <img src="../imgs/uploads/<%= product.image2%>" width="350px" height="450px"></div>
-
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span> <%=product.name %></span>
-                            <a href="#">
-                                <%= product.description %>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star unchecked"></span>
-                    </div>
-                    </a>
-                    <div class="shop">
-                        
-                        <% if(!userP||userP.Type=="client"){ %>
-                            <span class=""><a href="#">ADD TO BAG</a></span>
-                            <%}
-                            else if(userP.Type=="admin"){ %>
-                            
-                        <span class=""><a href="/admindashboard/editproduct/<%=product._id%>">Edit</a></span>
-                       <span class=""><form action="/admindashboard/<%=product._id%>" method="post">
-                              <input type="hidden" name="id" value="<%=product._id%>">
-                              <button id='delete'type="submit">Delete</button>
-                        </form></span>
-                        <%}%>
-                        <a href="#" class="price">
-                            <%= product.price %>
-                        </a>
-                    </div>
-                </li>
-           
-        </ul>
-  <%  })%>
-                
-
-</body>
-
-</html>
+<body>
+    <%- include('./partials/Nav.ejs') %>
+        <%- include('./partials/addtocart.ejs') %>
+        <div class="h2">
+            <h2 class="title">SOPHISTIQUÉ <%= productsList[0].type%></h2>
+          </div>
+        
+          <div class="product-grid">
+            <% productsList.forEach(product => { %>
+            <div class="product-item">
+              <div class="box">
+                <a href="productdetail">
+                  <a href="#"></a>
+                </a>
+                <div class="img-slide">
+                  <img src="../imgs/uploads/<%= product.image1 %>" width="350px" height="350px" class="hide">
+                </div>
+                <div class="overlay">
+                  <img src="../imgs/uploads/<%= product.image2 %>" width="350px" height="350px">
+                </div>
+              </div>
+              <div class="detail">
+                <div class="type">
+                  <div class="name"><%= product.name %></div>
+                  <a href="Skinproducts/productdetail/<%= product._id %>"><%= product.description %></a>
+                </div>
+              </div>
+              <div class="stars">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star unchecked"></span>
+              </div>
+              <div class="shop">
+                <% if (!userP || userP.Type == "client") { %>
+                <span class=""><a href="#">ADD TO BAG</a></span>
+                <% } else if (userP.Type == "admin") { %>
+                <span class=""><a href="/admindashboard/editproduct/<%= product._id %>">Edit</a></span>
+                <span class="">
+                  <form action="/admindashboard/<%= product._id %>" method="post">
+                    <input type="hidden" name="id" value="<%= product._id %>">
+                    <button id='delete' type="submit">Delete</button>
+                  </form>
+                </span>
+                <% } %>
+                <a href="#" class="price"><%= product.price %></a>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        
+          <div class="pagination">
+            <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>">Previous</a>
+            <% } %>
+        
+            <% for (let i = 1; i <= totalPages; i++) { %>
+            <% if (i === currentPage) { %>
+            <span class="current-page"><%= i %></span>
+            <% } else { %>
+            <a href="?page=<%= i %>"><%= i %></a>
+            <% } %>
+            <% } %>
+        
+            <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>">Next</a>
+            <% } %>
+          </div>
+        </body>
+        
+        </html>

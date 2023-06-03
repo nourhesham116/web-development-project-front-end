@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
   if (req.session.user) {
     res.redirect('/Account/myprofile');
   } else {
-    res.render('Account', { user: req.session.user });
+    res.render('Account', { user: req.session.user ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
   }
 });
 
 router.get('/myprofile', (req, res) => {
   const userP = req.session.user;
   if (req.session.user) {
-    res.render('myprofile', { userP: req.session.user });
+    res.render('myprofile', { userP: req.session.user ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
   } else {
     res.redirect('/Account');
   }
@@ -31,7 +31,7 @@ router.get('/myprofile', (req, res) => {
 
 router.get('/RegisterationForm',(req,res)=>{
     
-    res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) })
+    res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)})
     
 });
 router.post('/login-action', (req, res) => {
@@ -42,7 +42,7 @@ router.post('/login-action', (req, res) => {
       if (result.length > 0) {
         console.log(result[0]);
         req.session.user = result[0];
-        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user) });
+        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user),cart: (req.session.cart === undefined ? "" : req.session.cart) });
       }
       else {
         // Error message: Invalid email or password

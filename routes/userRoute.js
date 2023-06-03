@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
   if (req.session.user) {
     res.redirect('/Account/myprofile');
   } else {
-    res.render('Account', { user: req.session.user });
+    res.render('Account', { user: req.session.user ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
   }
 });
 
 router.get('/myprofile', (req, res) => {
   const userP = req.session.user;
   if (req.session.user) {
-    res.render('myprofile', { userP: req.session.user });
+    res.render('myprofile', { userP: req.session.user ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
   } else {
     res.redirect('/Account');
   }
@@ -31,7 +31,7 @@ router.get('/myprofile', (req, res) => {
 
 router.get('/RegisterationForm',(req,res)=>{
     
-    res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) })
+    res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)})
     
 });
 router.post('/login-action', (req, res) => {
@@ -42,7 +42,7 @@ router.post('/login-action', (req, res) => {
       if (result.length > 0) {
         console.log(result[0]);
         req.session.user = result[0];
-        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user) });
+        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user),cart: (req.session.cart === undefined ? "" : req.session.cart) });
       }
       else {
         // Error message: Invalid email or password
@@ -59,56 +59,7 @@ router.post('/login-action', (req, res) => {
 
 
 
-router.post('/RegisterationForm', urlencodedParser, [
-  check('Firstname', 'Firstname should contain min 3 characters').isLength({ min: 3 }),
-  check('Lastname', 'Lastname should contain min 3 characters').isLength({ min: 3 }),
-  check('email', 'Invalid email').isEmail(),
-  check('password')
-    .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
-    .withMessage('Password should contain at least one letter, one number, and one special character'),
-], (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    const alert = errors.array();
-    res.render('RegisterationForm', {
-      alert,
-      emailError: errors.array().find(error => error.param === 'email') || null,
-    });
-  } else {
-    const email = req.body.email;
-    users.isThisEmailInUse(email)
-      .then(inUse => {
-        if (inUse) {
-          // Email is not in use, proceed with registration
-          const user = new users({
-            Firstname: req.body.Firstname,
-            Lastname: req.body.Lastname,
-            Email: req.body.email,
-            Password: req.body.password,
-            Type: req.body.type,
-          });
-
-          return user.save();
-        } else {
-          // Email is already in use
-          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
-          return null;
-        }
-      })
-      .then(result => {
-        if (result) {
-          res.redirect('/Account');
-        }
-      })
-      .catch(err => {
-        console.log('Error checking email:', err);
-        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
-      });
-  }
-});
-
+router.post('/RegisterationForm',userController.registerUser);
 
 
 //router.post('/myprofile', User.GetUser)

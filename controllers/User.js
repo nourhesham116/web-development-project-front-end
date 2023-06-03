@@ -48,54 +48,46 @@ const editUser = (req, res) => {
     });
 };
 
-const validateRegistrationForm = [
-  check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
-  check('password')
-    .exists()
-    .withMessage('Password is required')
-    .isLength({ min: 6 })
-    .withMessage('Password should contain at least 6 characters')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
-    .withMessage('Password should contain at least one letter, one number, and one special character')
-];
 
-const checkEmailAvailability = (req, res, next) => {
-  const email = req.body.email;
-  users
-    .isThisEmailInUse(email)
-    .then((inUse) => {
-      if (inUse) {
-        // Email is already in use
-        res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
-      } else {
-        next();
-      }
-    })
-    .catch((error) => {
-      console.log('Error checking email:', error);
-      res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
-    });
-};
+const registerUser = (req, res) => {
+  const errors = validationResult(req);
 
-const processRegistrationForm = async (req, res) => {
-  try {
-    const { Firstname, Lastname, Email, Password, Type } = req.body;
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(Password, salt);
-    const newUser = new users({
-      Firstname,
-      Lastname,
-      Email,
-      hashedPassword,
-      Type
+  if (!errors.isEmpty()) {
+    const alert = errors.array();
+    res.render('RegisterationForm', {
+      alert,
+      emailError: errors.array().find(error => error.param === 'email') || null,
     });
-    await newUser.save();
-    console.log('Registration successful!');
-    res.redirect('/myprofile');
-  } catch (error) {
-    console.log(error);
+  } else {
+    const email = req.body.email;
+    users.isThisEmailInUse(email)
+      .then(inUse => {
+        if (inUse) {
+          // Email is not in use, proceed with registration
+          const user = new users({
+            Firstname: req.body.Firstname,
+            Lastname: req.body.Lastname,
+            Email: req.body.email,
+            Password: req.body.password,
+            Type: req.body.type,
+          });
+
+          return user.save();
+        } else {
+          // Email is already in use
+          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
+          return null;
+        }
+      })
+      .then(result => {
+        if (result) {
+          res.redirect('/Account');
+        }
+      })
+      .catch(err => {
+        console.log('Error checking email:', err);
+        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
+      });
   }
 };
 
@@ -103,7 +95,5 @@ module.exports = {
   checkemail,
   editUser,
   GetUser,
-  validateRegistrationForm,
-  checkEmailAvailability,
-  processRegistrationForm
+  registerUser
 };

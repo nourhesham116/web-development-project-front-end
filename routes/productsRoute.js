@@ -26,7 +26,8 @@ router.get('/', function (req, res, next) {
           userP: req.session.user,
           user: req.session.user || null,
           currentPage: page,
-          totalPages: totalPages
+          totalPages: totalPages,
+          cart:(req.session.cart===undefined?"":req.session.cart)
         });
       });
     })
@@ -55,6 +56,7 @@ router.get('/bodymoisturizer', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+          
         });
       });
   });
@@ -106,6 +108,7 @@ router.get('/bodycleanser', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+         
         });
       });
   });
@@ -130,6 +133,7 @@ router.get('/allskin', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+          
         });
       });
   });
@@ -154,6 +158,7 @@ router.get('/facemoisturizer', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+          
         });
       });
   });
@@ -178,6 +183,7 @@ router.get('/newmeltawf', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+         
         });
       });
   });
@@ -203,6 +209,7 @@ router.get('/new', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+        
         });
       });
   });
@@ -245,7 +252,8 @@ router.get('/face', function (req, res, next) {
           userP: req.session.user,
           user: req.session.user ? req.session.user : "",
           currentPage: page,
-          totalPages: totalPages
+          totalPages: totalPages,
+          cart:(req.session.cart===undefined?"":req.session.cart)
         });
       });
   });
@@ -281,6 +289,7 @@ router.get('/body', function (req, res, next) {
           user: req.session.user ? req.session.user : "",
           currentPage: page,
           totalPages: totalPages
+          
         });
       });
   });

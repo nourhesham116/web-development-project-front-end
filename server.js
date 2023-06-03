@@ -19,13 +19,15 @@ const productsRouter = require("./routes/productsRoute.js");
 const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const userRouter = require("./routes/userRoute.js");
+const cartRouter=require("./routes/cartRoute")
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
-const port = 3000
+const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
+
 //////////////////////
 app.get('/api',(req,res)=>{
   res.render('api');
@@ -35,6 +37,7 @@ const { ppid } = require('process');
 
 const FormData = require('form-data');
 const fs = require('fs');
+const Product = require('./models/product');
 
 ///////////////////////////////////////////////////////
 //const flash = require('connect-flash');
@@ -69,10 +72,20 @@ app.use(express.urlencoded({ extended: true }));
 /////////////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.get('', (req, res) => {
 
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
+app.get('/index', (req, res) => {
 
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
 app.get('/', (req, res) => {
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
+
+  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 
 app.get('/api',(req,res)=>{
@@ -109,16 +122,9 @@ app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
-app.use('/Account',userRouter)
-app.get('', (req, res) => {
+app.use('/Account',userRouter);
+app.use('/addtocart',cartRouter);
 
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
-app.get('/index', (req, res) => {
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) })
-})
-
-/////////*/
 app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
@@ -176,16 +182,18 @@ app.get('/search',(req,res)=>{
 //   }
 // })
 
-
-
-
-
 app.get('/sophistiqueBeauty', (req, res) => {
   res.render('sophistiqueBeauty')
 })
 app.get('/checkout', (req, res) => {
   res.render('checkout')
 })
+app.get('/partials/addtocart', (req, res) => {
+
+  res.render('/partials/addtocart', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+})
+
 app.get('/allface', (req, res) => {
   res.render('allface', { user: (req.session.user === undefined ? "" : req.session.user) })
 })
@@ -206,17 +214,9 @@ app.get('/sophistiqueBeauty', (req, res) => {
 })
 
 
-
-/*app.get('/adminproducts', (req, res) => {
-  res.render('adminproducts', { user: (req.session.user === undefined ? "" : req.session.user) })
-})*/
-
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })
-app.get('/RegisterationForm', (req, res) => {
-  res.render('RegisterationForm', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
 
 app.get('/users', (req, res) => {
   res.render('users')
@@ -231,55 +231,9 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
-app.get('/bsearch', (req, res) => {
-  res.render('bsearch');
-});
-
-app.post('/bsearch', async (req, res) => {
-  let payload = req.body.payload.trim();
-  try {
-    let prodsearch = await Product.find({
-    type: { $regex: new RegExp('^' + payload + '.*', 'i') },
-    }).exec();
-
-    if (prodsearch) {
-      // Limit search results to 3
-      prodsearch = prodsearch.slice(0, 3);
-      res.send({ payload: prodsearch });
-    } else {
-      // Handle the case when prodsearch is undefined
-      res.send({ payload: [] });
-    }
-  } catch (error) {
-    console.log('Error in search:', error);
-    res.send({ payload: [] });
-  }
-});
-
-/////////////////////////////////////
-/*app.get('/editproduct/:prodId',(req,res)=>{
-  products.findById(req.params.prodId).then(function (prod){
-    res.render('editproduct',{product:prod});
-  })
-  
-})*/
-
-
-// Custom error handling middleware
 app.use((req, res, next) => {
   res.status(404).render('Error404');
 });
-
-
-
-
-//app.get('/RegisterationForm', (req, res) => {
- // res.render('RegisterationForm', { errorMessages: req.flash('error') });
-//});
-
-//app.post('/RegisterationForm', validateUser, saveUser);
-
-
 module.exports = { app };
 
 

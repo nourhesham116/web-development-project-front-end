@@ -1,5 +1,4 @@
 const users = require("../models/users");
-const table=document.querySelectorAll('.email');
 
 function sendData(e) {
     const searchResults = document.getElementById("searchResults");

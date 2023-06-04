@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skincare</title>
     <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="../css/Nav.css">
-    <link rel="stylesheet" href="../css/Addtocart.css">
+    <link rel="stylesheet" href="../css/Nav.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,7 +29,7 @@
           <div class="product-grid">
             <% productsList.forEach(product => { %>
             <div class="product-item">
-              <div class="box">
+              <div class="box1">
                 <a href="productdetail">
                   <a href="#"></a>
                 </a>
@@ -42,8 +41,8 @@
                 </div>
               </div>
               <div class="detail">
-                <div class="type">
-                  <div class="name"><%= product.name %></div>
+                <div class="type1">
+                  <div class="name1"><%= product.name %></div>
                   <a href="Skinproducts/productdetail/<%= product._id %>"><%= product.description %></a>
                 </div>
               </div>
@@ -54,7 +53,7 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star unchecked"></span>
               </div>
-              <div class="shop">
+              <div class="shop1">
                 <% if (!userP || userP.Type == "client") { %>
                   <form action="/addtocart/add" method="post">
                     <input type="hidden" name="product" value="<%= product._id %>">
@@ -73,7 +72,7 @@
                   </form>
                 </span>
                 <% } %>
-                <a href="#" class="price"><%= product.price %></a>
+                <a href="#" class="price1"><%= product.price %></a>
               </div>
             </div>
             <% }) %>

@@ -88,75 +88,7 @@ app.get('/', (req, res) => {
 
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
   cart: (req.session.cart === undefined ? "" : req.session.cart)  })
-})
-
-const configuration = new Configuration({ 
-  apiKey:  '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'});
-const openai=new OpenAIApi(configuration)
-
-app.post('/chatbot', async (req, res) => {
-  try {
-    const { prompt } = req.body;
-
-    // Generate chatbot response
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: prompt,
-      max_tokens: 64,
-      temperature: 0,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-      stop: ['\n'],
-    });
-
-    // Return the response
-    res.status(200).json({
-      success: true,
-      data: response.data.choices[0].text.trim(),
-    });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({
-      success: false,
-      error: 'There was an error processing the request.',
-    });
-  }
 });
-
-
-
-
-//app.get('/api',(req,res)=>{
- // render('api');
-//})
-app.post('/analyze-image', async (req, res) => {
-  const axios = require('axios');
-const FormData = require('form-data');
-
-const data = new FormData();
-data.append('image',"" );
-data.append('max_face_num', '<REQUIRED>');
-
-const options = {
-  method: 'POST',
-  url: 'https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze',
-  headers: {
-    'X-RapidAPI-Key': '801872b67amsh1b8e41e63a543e0p117bfcjsn5ca14def1825',
-    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
-    ...data.getHeaders(),
-  },
-  data: data
-};
-
-try {
-	const response = await axios.request(options);
-	console.log(response.data);
-} catch (error) {
-	console.error(error);
-}
-});
-
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);

@@ -57,6 +57,8 @@ router.get('/bodymoisturizer', function (req, res, next) {
           currentPage: page,
           totalPages: totalPages
           
+          
+          
         });
       });
   });

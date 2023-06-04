@@ -40,7 +40,8 @@
     margin-top: 50px;
     display: flex;
     align-items: center;
-    transform: translate(-18px,2px);
+    
+    
     
   }
   .innerdetails{
@@ -73,7 +74,9 @@
      -ms-flex: 4%;
     flex: 4%;
     padding:5px 5px 4px 4px;
-    transform: translate(-18px,27px);
+   
+  
+   
   }
   
   .gift{
@@ -87,7 +90,7 @@
     right:0px;
     top: 150px;
     right:0px;
-    transform: translate(-21px,45px);
+  
   }
   .p2{
     text-align:center;
@@ -138,10 +141,11 @@
         padding: 10px;
         background-color:white;
         margin: 0;
-        position: absolute;
+         position: absolute; 
         top: 470px;
         right:0px;
         box-sizing: border-box;
+        transform: translate(-60px,-2px);
         
     }
     .p3{
@@ -211,6 +215,7 @@
             right:0px;
             top: 960px;
             right:0px;
+            transform: translate(-40px,40px);
           }
           .subtext{
             font-size: 15px;
@@ -300,3 +305,53 @@
              align-items: center;
              transform: translate(-20px,40px);
           }
+          .remove{
+            background-color: white;
+            border:1px solid white;
+            text-decoration: underline;
+            transform: translate(-50px,49px);
+            font-family: 'Heebo', sans-serif;
+        }
+        .update{
+          background-color: white;
+          border:1px solid white;
+          text-decoration: underline;
+          transform: translate(-126px,70px);
+          font-family: 'Heebo', sans-serif;
+      }
+      .quantity{
+        width: 30px;
+       transform: translate(-130px,70px);
+      }
+     
+      .product{
+        float: right;
+        transform: translate(-20px,-40px);
+      }
+     
+    .addtobag{
+      background-color: white;
+      border:1px solid white;
+    }
+    .cartimage{
+      float: left;
+      height:95px;
+      width:95px;
+    }
+    .price{
+      float: right;
+      transform: translate(90px,40px);
+    }
+    .name{
+      transform: translate(-90px,30px);
+    }
+    .cartfooter{
+      width: 660px;
+      height:160px;
+      padding: 10px;
+      background-color:whitesmoke;
+      margin: 0;
+      position: absolute;
+  transform: translate(-50px,39px);
+      
+    }

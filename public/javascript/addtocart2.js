@@ -14,18 +14,17 @@ function ex(){
     
 }
 function count(meen) {
+    let quantityinput=document.getElementById("quantity");
     let minus = document.getElementById("minus");
     let val = document.getElementById("value");
     let add = document.getElementById("add");
     let countNum = parseInt(val.innerHTML);
     if (meen == 'minus') {
         if (countNum > 1) {
-            let valuee = countNum - 1;
-            val.innerHTML = valuee;
+          quantityinput.value=parseInt(quantityinput.value)-1;
         }
     }
     if (meen == 'add') {
-        let valuee = countNum + 1;
-        val.innerHTML = valuee;
+        quantityinput.value=parseInt(quantityinput.value)+1;
     }
 }

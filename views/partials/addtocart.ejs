@@ -10,7 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/Addtocart.css" />
+
 <script src="../javascript/addtocartbutton.js"></script>
+<script src="../javascript/addtocart2.js"></script>
 <title>Add to cart</title>
 </head>
 <body>
@@ -110,19 +112,40 @@
                     </div>
                     
                 <%}
+                
                 else{for(let i=0;i<cart.length;i++){%>
+                    
                     <li>
-        <%= cart[i].product%> - <%= cart[i].quantity %>
+                        <!-- <tr>
+                        <td><%= cart[i].name %></td>
+                        <td><%= cart[i].quantity %></td>
+                         <td><%= cart[i].price %></td>
+                        <td><%= parseFloat(cart[i].quantity) * parseFloat(cart[i].price ) %></td>
+                       
+                        </tr> -->
+     <div>
+        
+        <p class="name"> <%= cart[i].name%> </p>
+         <p class="product"><%= cart[i].quantity %> product </p> 
+         <p class="price">EGP<%=(cart[i].quantity)*(cart[i].price)%></p>
+        
+                    
         <form action="/addtocart/update" method="post">
+            <img src="<%=cart[i].image%>" alt="<%=cart[i].name%>" class="cartimage">
           <input type="hidden" name="product" value="<%=cart[i].product%>">
           <input type="hidden" name="name" value="<%=cart[i].name%>">
-          <input type="number" name="quantity" value="<%=cart[i].quantity%>">
-          <button type="submit">Update</button>
+          <!-- <button id="minus" type="button" onclick="count(this.id)">-</button> -->
+          <input type="number" class="quantity" name="quantity" value="<%=cart[i].quantity%>">
+          <!-- <button id="add" type="button" onclick="count(this.id)">+</button> -->
+          <button class="update"type="submit">update</button>
         </form>
+    
+
         <form action="/addtocart/remove" method="post">
           <input type="hidden" name="product" value="<%=cart[i].product %>">
-          <button type="submit">Remove</button>
+          <button  class="remove" type="submit">Remove</button>
         </form>
+    
         <div class="recommended">
             <p class="p3">RECOMMENDED PRODUCTS</p>
             <div class="row1">
@@ -164,6 +187,27 @@
                 </div>
             </div>
         </div>
+        <div class="subtotal">
+            <span>
+            <p class="subtext">&nbsp;SubTotal-0 items</p>
+            <p class="costt">EGP0.00</p>
+            </span>
+            <p class="subtext2">&nbsp;Need assistance?</p>
+            <p>&nbsp;call&nbsp;<a class="number1" href=#>1-855-440-7474</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="number2" href=#>Free 30 Day Returns</a>
+            </p>
+        </div>
+        <div class="cartfooter">
+            <p class="subtottext">&nbsp;&nbsp;SubTotal-0&nbsp;items</p>
+            <p class="cost">EGP0.00</p>
+            <span class="oneline">
+                <button class="view">&nbsp;VIEW BAG</button>
+                <a href="/checkout">
+                <button class="checkout">&nbsp;&nbsp;CHECKOUT</button>
+                </a>
+            </span>
+        </div>
+        
       </li>
       
                 <%}}%>

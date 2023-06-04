@@ -40,8 +40,8 @@
                 </div>
               </div>
               <div class="detail">
-                <div class="type">
-                  <div class="name"><%= product.name %></div>
+                <div class="type2">
+                  <div class="name2"><%= product.name %></div>
                   <a href="Skinproducts/productdetail/<%= product._id %>"><%= product.description %></a>
                 </div>
               </div>
@@ -52,9 +52,9 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star unchecked"></span>
               </div>
-              <div class="shop">
+              <div class="shop2">
                 <% if (!userP || userP.Type == "client") { %>
-                <span class=""><a href="#">ADD TO BAG</a></span>
+                <span class=""><a href="#">ADD TO BAG </a></span>
                 <% } else if (userP.Type == "admin") { %>
                 <span class=""><a href="/admindashboard/editproduct/<%= product._id %>">Edit</a></span>
                 <span class="">
@@ -64,7 +64,7 @@
                   </form>
                 </span>
                 <% } %>
-                <a href="#" class="price"><%= product.price %></a>
+                <a href="#" class="price2"><%= product.price %></a>
               </div>
             </div>
             <% }) %>

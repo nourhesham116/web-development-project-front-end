@@ -21,6 +21,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
   
   .product-item {
     width: calc(25% - 20px);
@@ -88,7 +89,16 @@ body {
     color: #222222;
     margin: 5px 0px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
+    font-family: 'Overpass Mono', monospace;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: small;
+  }
+  .type2 a {
+    color: #222222;
+    margin: 5px 0px;
+    font-weight: 700;
+    letter-spacing: 0px;
     font-family: 'Overpass Mono', monospace;
     font-family: 'Space Grotesk', sans-serif;
     font-size: small;
@@ -102,11 +112,34 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     
   }
+  .name2 {
+    color: rgba(26, 26, 26, 26, 0.5);
+    font-size: small;
+    font-weight: 500;
+    font-family: 'Overpass Mono', monospace;
+    font-family: 'Space Grotesk', sans-serif;
+    
+  }
    a{
     text-decoration: none;
   }
   
   .shop1 {
+    border-style: groove;
+    border-collapse: collapse;
+    border-width: thin;
+    align-content: space-between;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-size: smaller;
+    font-family: poppings;
+    color: black;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .shop2 {
     border-style: groove;
     border-collapse: collapse;
     border-width: thin;

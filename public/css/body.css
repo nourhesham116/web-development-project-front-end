@@ -121,7 +121,20 @@ body {
     justify-content: space-between;
     padding: 10px;
   }
-  
+  #delete,#add-to-bag{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-size:small;
+    font-family:poppings;
+    color:black;
+    letter-spacing: 0.5px;
+    padding: 10px;
+
+}
   .shop1 span,
   .shop1 a {
     color: black;

@@ -61,7 +61,7 @@
                     <input type="hidden" name="price" value="<%= product.price %>">
                     <input type="hidden" name="image" value="/imgs/uploads/<%= product.image1%>">
                     <input type="number" name="quantity" value="1" hidden>
-                    <span class="addtobag"><button type="submit">ADD TO BAG</button></span>
+                    <span class="addtobag"><button id="add-to-bag" type="submit">ADD TO BAG</button></span>
                   </form>
                 <% } else if (userP.Type == "admin") { %>
                 <span class=""><a href="/admindashboard/editproduct/<%= product._id %>">Edit</a></span>

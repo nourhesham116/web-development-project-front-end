@@ -201,3 +201,15 @@ nav .wrapper {
 
     width: 100%;
 }
+#search-box{
+    height: 20px;
+    padding: 11px 15px;
+    text-transform: unset;
+    width: 1000px;
+    font-size: 18px;
+    letter-spacing: .1em;
+    line-height: 24px;
+    background-color: rgb(243, 243, 235);
+    border: none;
+
+}

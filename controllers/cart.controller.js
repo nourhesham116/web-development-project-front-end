@@ -21,8 +21,8 @@ const addItemToCart = (req, res) => {
       } else {
         req.session.cart.push(cartItem);
       }
-  
-      res.redirect('/');
+      const currentUrl = req.headers.referer;
+      res.redirect(currentUrl);
     } catch (error) {
       console.error('Error adding to cart:', error);
       res.status(500).send('Error adding to cart');

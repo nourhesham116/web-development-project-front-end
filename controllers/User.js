@@ -7,6 +7,7 @@ const products = require('../models/product');
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
 const { check, validationResult } = require('express-validator');
 
+
 const GetUser = (req, res) => {
   var query = { Email: req.body.email, Password: req.body.password };
   users
@@ -48,7 +49,6 @@ const editUser = (req, res) => {
     });
 };
 
-
 const registerUser = (req, res) => {
   const errors = validationResult(req);
 
@@ -64,24 +64,28 @@ const registerUser = (req, res) => {
       .then(inUse => {
         if (inUse) {
           // Email is not in use, proceed with registration
-          const user = new users({
-            Firstname: req.body.Firstname,
-            Lastname: req.body.Lastname,
-            Email: req.body.email,
-            Password: req.body.password,
-            Type: req.body.type,
-          });
+          bcrypt.hash(req.body.password, 10) 
+            .then((hashedPassword) => {
+              const user = new users({
+                Firstname: req.body.Firstname,
+                Lastname: req.body.Lastname,
+                Email: req.body.email,
+                Password: hashedPassword,
+                Type: req.body.type,
+              });
 
-          return user.save();
+              return user.save();
+            })
+            .then(result => {
+              res.redirect('/Account');
+            })
+            .catch(err => {
+              console.log('Error hashing password:', err);
+              res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
+            });
         } else {
           // Email is already in use
           res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
-          return null;
-        }
-      })
-      .then(result => {
-        if (result) {
-          res.redirect('/Account');
         }
       })
       .catch(err => {
@@ -90,6 +94,9 @@ const registerUser = (req, res) => {
       });
   }
 };
+
+
+
 
 module.exports = {
   checkemail,

@@ -13,8 +13,12 @@
     
   }
   #close{
-    float:right;
-   
+    /* float:right; */
+   background-color:transparent;
+   border: none;
+   width: 50px;
+   height: 50px;
+   font-size: large;
   }
   #id{
     margin-bottom: 20px;
@@ -26,10 +30,13 @@
     background-color:white;
   }
   .centeredd {
-    position: absolute;
+    position:sticky;
     left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 10px;
+    /* float: left; */
+    /* transform: translate(-40px); */
     text-align: center;
+    margin-top: -40px;
   }
   .headerr1{
     width: 640px;
@@ -37,7 +44,7 @@
     padding: 10px;
     background-color:whitesmoke;
     margin-bottom:-25px;
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     
@@ -74,6 +81,7 @@
      -ms-flex: 4%;
     flex: 4%;
     padding:5px 5px 4px 4px;
+    transform: translateY(10px);
    
   
    
@@ -145,7 +153,7 @@
         top: 470px;
         right:0px;
         box-sizing: border-box;
-        transform: translate(-60px,-2px);
+        transform: translate(-50px,-2px);
         
     }
     .p3{
@@ -317,7 +325,7 @@
       }
       .quantity{
         width: 30px;
-       transform: translate(-130px,70px);
+       transform: translate(-70px,30px);
       }
      
       .product{

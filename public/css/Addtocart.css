@@ -276,10 +276,6 @@
             top: 1150px;
             right:0px;
           }
-          .subtottext{
-            font-size: 15px;
-            top: 970px;
-          }
           .cost{
             float: right;
             top:1000px;
@@ -355,3 +351,9 @@
   transform: translate(-50px,39px);
       
     }
+    .subtottext{
+      font-size: 15px;
+      top: 970px;
+      transform: translate(-200px,0px);
+    }
+    

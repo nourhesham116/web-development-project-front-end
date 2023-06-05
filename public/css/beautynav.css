@@ -221,3 +221,9 @@ nav .wrapper {
   .icons a:hover {
     font-size: larger;
   }
+  #add-to-bag-button{
+    border: none;
+    background-color: rgb(254, 254, 254);
+    align-items: center;
+    margin-top: 7px;
+  }

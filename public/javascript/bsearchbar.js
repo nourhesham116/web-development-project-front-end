@@ -32,12 +32,17 @@ function sendproduct(f) {
             prodsearch.innerHTML = '<p>Sorry. Nothing Found</p>';
             return;
           }
-          
           payload1.forEach((product, index) => {
             if (index > 0) prodsearch.innerHTML += '<hr>';
-            prodsearch.innerHTML += `<p>${product.name}</p>`;
+          
+            const productLink = document.createElement('a');
+            productLink.href = `/Skinproducts/productdetail/${product._id}`;
+            productLink.innerHTML = `<p>${product.name}</p>`;
+            
+            prodsearch.appendChild(productLink);
             prodsearch.innerHTML += `<p>${product.price}EGP</p>`;
           });
+          
         });
       return;
     }

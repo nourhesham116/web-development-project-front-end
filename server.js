@@ -6,9 +6,6 @@ const products = require('./models/product');
 //const Joi = require('joi');
 const bodyParser =require('body-parser')
 const { check, validationResult } = require('express-validator');
-require("dotenv").config();
-const { Configuration,OpenAIApi } = require("openai");
-
 ////////////////
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
@@ -29,12 +26,39 @@ const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
-
-//////////////////////
-app.get('/api',(req,res)=>{
-  res.render('api');
-})
+////////////////
+const Fs = require('fs');
 const axios = require('axios');
+const Formdata = require('form-data');
+
+const imagePath = 'C:/Users/Nour Hesham/Desktop/public/imgs/gril3.jpg'
+const formData = new Formdata();
+///////////////
+/*formData.append('api_key', 'CbZBp_2WMw5EMfSJFF7zno5l1ro8ZtMB');
+formData.append('api_secret', '5M-hajpRYpDQGRaqc05RjabqL1F5UTjK');
+
+Fs.readFile(imagePath, (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  
+  const base64Image = Buffer.from(data).toString('base64');
+  formData.append('image_base64', base64Image);
+
+  axios.post('https://api-us.faceplusplus.com/facepp/v1/skinanalyze', formData, {
+    headers: formData.getHeaders()
+  })
+    .then(response => {
+      console.log(response.data.result.eye_pouch);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});*/
+//skinAnalysis();*/
+/////////////////////////
+
 const { ppid } = require('process');
 
 const FormData = require('form-data');
@@ -95,7 +119,9 @@ app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
 app.use('/Account',userRouter);
 app.use('/addtocart',cartRouter);
-
+app.get('/skinAnalysis',(req,res)=>{
+res.render('skinAnalysis');
+});
 app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)

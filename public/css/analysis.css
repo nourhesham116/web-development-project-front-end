@@ -1,0 +1,66 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(226, 206, 226);
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    #skinAnalysisForm {
+      background-color: rgb(238, 220, 215);
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="file"] {
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    button[type="submit"] {
+      background-color:black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    #resultsContainer {
+      background-color:rgb(226, 206, 226);
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #analysisResults {
+      margin-top: 10px;
+    }
+  

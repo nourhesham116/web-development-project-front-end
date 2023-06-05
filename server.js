@@ -6,9 +6,6 @@ const products = require('./models/product');
 //const Joi = require('joi');
 const bodyParser =require('body-parser')
 const { check, validationResult } = require('express-validator');
-require("dotenv").config();
-const { Configuration,OpenAIApi } = require("openai");
-
 ////////////////
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
@@ -29,12 +26,69 @@ const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
-
+//const axios = require('axios');
 //////////////////////
-app.get('/api',(req,res)=>{
-  res.render('api');
-})
+const API_KEY = 'your_api_key';
+
+const Fs = require('fs');
 const axios = require('axios');
+const Formdata = require('form-data');
+
+const imagePath = path.join(__dirname, '../public/imgs', 'girl.png');
+const formData = new Formdata();
+/*async function analyzeSkin() {
+const data = new Formdata();
+data.append('image',imagePath );
+data.append('max_face_num', '1');
+
+const options = {
+  method: 'POST',
+  url: 'https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze',
+  headers: {
+    'X-RapidAPI-Key': '9ef28e2594msh70a2a82edf792e5p158565jsnaa6eea7ce44d',
+    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
+    ...data.getHeaders(),
+  },
+  data: data
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
+}
+analyzeSkin();*/
+///////////////
+formData.append('image', Fs.createReadStream(imagePath));
+formData.append('max_face_num', '1');
+
+
+  axios.post('https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze', formData, {
+  headers: {
+    ...formData.getHeaders(),
+    'X-RapidAPI-Key': '9ef28e2594msh70a2a82edf792e5p158565jsnaa6eea7ce44d',
+    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
+  }
+})
+  .then(response => {
+    
+    const { result } = response.data;
+    const { face_num, face_list } = result;
+
+    console.log('Skin Analysis Result:', result);
+    console.log('Number of Detected Faces:', face_num);
+    console.log('Face List:', face_list);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+
+//skinAnalysis();*/
+/////////////////////////
+
 const { ppid } = require('process');
 
 const FormData = require('form-data');

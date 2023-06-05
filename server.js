@@ -214,6 +214,36 @@ app.get('/adminlogin', (req, res) => {
 app.get('/users', (req, res) => {
   res.render('users')
 })
+app.get('/remusers', (req, res) => {
+  users.find()
+        .then(result => {
+          res.render('remusers', { users: result, user: (req.session.user === undefined ? "" : req.session.user) });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+ 
+})
+
+app.post('/remusers', async (req, res) => {
+  const { userId } = req.body;
+  
+  try {
+    // Find the user by ID and remove it
+    const deletedUser = await users.findByIdAndRemove(userId);
+    
+    if (deletedUser) {
+      // User successfully deleted
+      res.status(200).json({ message: 'User deleted successfully' });
+    } else {
+      // User not found
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    // Error occurred while deleting the user
+    res.status(500).json({ error: 'Failed to delete the user' });
+  }
+});
 app.get('/bodymoisturizer', (req, res) => {
   res.render('Skinproducts')
 })

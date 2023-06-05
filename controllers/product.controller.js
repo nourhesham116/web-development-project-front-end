@@ -2,7 +2,7 @@ const products = require('../models/product');
 const  ObjectID = require('mongodb').ObjectId;
 const users=require('../models/users')
 const path = require('path');
-
+const fs = require('fs');
 const createProduct = (req, res) => {
   let imgFile1, imgFile2, imgFile3, imgFile4;
   let uploadPath1, uploadPath2, uploadPath3, uploadPath4;
@@ -68,13 +68,55 @@ const createProduct = (req, res) => {
 };
 const deleteProduct = async (req, res) => {
   try {
-   products.deleteOne({ _id: new ObjectID(req.params.prodId)}).then(result =>{
-    res.redirect('/');
-   })
+    const productId = req.params.prodId;
+    const product = await products.findOne({ _id: new ObjectID(productId) });
+
+    if (!product) {
+      return res.status(404).send('Product not found');
+    }
+
+    const photoPath1 = path.join(__dirname, '../public/imgs/uploads', product.image1);
+    const photoPath2 = path.join(__dirname, '../public/imgs/uploads', product.image2);
+    const photoPath3 = path.join(__dirname, '../public/imgs/uploads', product.image3);
+    const photoPath4 = path.join(__dirname, '../public/imgs/uploads', product.image4);
+    fs.unlink(photoPath1, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error deleting photo');
+      }
+fs.unlink(photoPath2,(err)=>{
+  if (err) {
+    console.log(err);
+    return res.status(500).send('Error deleting photo');
+  }
+});
+fs.unlink(photoPath3,(err)=>{
+  if (err) {
+    console.log(err);
+    return res.status(500).send('Error deleting photo');
+  }
+});
+fs.unlink(photoPath4,(err)=>{
+  if (err) {
+    console.log(err);
+    return res.status(500).send('Error deleting photo');
+  }
+});
+      products.deleteOne({ _id: new ObjectID(productId) })
+        .then(() => {
+          res.redirect('/');
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send('Error deleting product from the database');
+        });
+    });
   } catch (err) {
     console.log(err);
+    res.status(500).send('Server error');
   }
 };
+
 
 const updateProduct = (req, res) => {
   const prodId = req.params.prodId;

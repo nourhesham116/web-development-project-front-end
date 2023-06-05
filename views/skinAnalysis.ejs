@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skin Analysis</title>
+  <style>
+    .form-row {
+      margin-bottom: 10px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>Skin Analysis</h1>
+
+  <form id="skinAnalysisForm">
+    <div class="form-row">
+      <label for="imageUpload">Upload an image:</label>
+      <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required>
+    </div>
+
+    <button type="submit">Analyze</button>
+  </form>
+
+  <div id="resultsContainer" style="display: none;">
+    <h2>Analysis Results</h2>
+    <div id="analysisResults"></div>
+  </div>
+
+  <script>
+    // Populate the form with the API results
+    function populateResults(results) {
+  const analysisResultsContainer = document.getElementById('analysisResults');
+  analysisResultsContainer.innerHTML = '';
+
+  for (const [key, value] of Object.entries(results.result)) {
+    const resultRow = document.createElement('div');
+    resultRow.classList.add('form-row');
+
+    const label = document.createElement('label');
+    label.textContent = key.replace(/_/g, ' ');
+
+    const input = document.createElement('input');
+    input.type = 'text';
+
+    if (key === 'skin_type') {
+      // Special handling for skin_type result
+      input.value = value.skin_type;
+      
+    } else {
+      input.value = value.value;
+      input.readOnly = true;
+    }
+
+    resultRow.appendChild(label);
+    resultRow.appendChild(input);
+
+    analysisResultsContainer.appendChild(resultRow);
+  }
+
+  document.getElementById('resultsContainer').style.display = 'block';
+}
+
+    // Handle form submission
+    document.getElementById('skinAnalysisForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const imageFile = document.getElementById('imageUpload').files[0];
+      const formData = new FormData();
+      formData.append('api_key', 'CbZBp_2WMw5EMfSJFF7zno5l1ro8ZtMB');
+      formData.append('api_secret', '5M-hajpRYpDQGRaqc05RjabqL1F5UTjK');
+      formData.append('image_file', imageFile);
+
+      axios.post('https://api-us.faceplusplus.com/facepp/v1/skinanalyze', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then(response => {
+        console.log(response.data);
+        populateResults(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>

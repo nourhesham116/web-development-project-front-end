@@ -26,66 +26,36 @@ const port = 3000;
 const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
-//const axios = require('axios');
-//////////////////////
-const API_KEY = 'your_api_key';
-
+////////////////
 const Fs = require('fs');
 const axios = require('axios');
 const Formdata = require('form-data');
 
-const imagePath = path.join(__dirname, '../public/imgs', 'girl.png');
+const imagePath = 'C:/Users/Nour Hesham/Desktop/public/imgs/gril3.jpg'
 const formData = new Formdata();
-/*async function analyzeSkin() {
-const data = new Formdata();
-data.append('image',imagePath );
-data.append('max_face_num', '1');
-
-const options = {
-  method: 'POST',
-  url: 'https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze',
-  headers: {
-    'X-RapidAPI-Key': '9ef28e2594msh70a2a82edf792e5p158565jsnaa6eea7ce44d',
-    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
-    ...data.getHeaders(),
-  },
-  data: data
-};
-
-try {
-	const response = await axios.request(options);
-	console.log(response.data);
-} catch (error) {
-	console.error(error);
-}
-}
-analyzeSkin();*/
 ///////////////
-formData.append('image', Fs.createReadStream(imagePath));
-formData.append('max_face_num', '1');
+/*formData.append('api_key', 'CbZBp_2WMw5EMfSJFF7zno5l1ro8ZtMB');
+formData.append('api_secret', '5M-hajpRYpDQGRaqc05RjabqL1F5UTjK');
 
-
-  axios.post('https://skin-analysis.p.rapidapi.com/face/effect/skin_analyze', formData, {
-  headers: {
-    ...formData.getHeaders(),
-    'X-RapidAPI-Key': '9ef28e2594msh70a2a82edf792e5p158565jsnaa6eea7ce44d',
-    'X-RapidAPI-Host': 'skin-analysis.p.rapidapi.com',
+Fs.readFile(imagePath, (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
   }
-})
-  .then(response => {
-    
-    const { result } = response.data;
-    const { face_num, face_list } = result;
+  
+  const base64Image = Buffer.from(data).toString('base64');
+  formData.append('image_base64', base64Image);
 
-    console.log('Skin Analysis Result:', result);
-    console.log('Number of Detected Faces:', face_num);
-    console.log('Face List:', face_list);
+  axios.post('https://api-us.faceplusplus.com/facepp/v1/skinanalyze', formData, {
+    headers: formData.getHeaders()
   })
-  .catch(error => {
-    console.error(error);
-  });
-
-
+    .then(response => {
+      console.log(response.data.result.eye_pouch);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});*/
 //skinAnalysis();*/
 /////////////////////////
 
@@ -149,7 +119,9 @@ app.use('/admindashboard', admindashboardRouter);
 app.use('/product', productsRouter);
 app.use('/Account',userRouter);
 app.use('/addtocart',cartRouter);
-
+app.get('/skinAnalysis',(req,res)=>{
+res.render('skinAnalysis');
+});
 app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)

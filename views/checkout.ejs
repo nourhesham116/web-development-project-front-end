@@ -14,8 +14,8 @@
     
     <p class="title">CHECKOUT</p>
         <div class="billing">
-        <form action="BILLING ADDRESS">
-          <p>BILLING ADDRESS</p>
+        <form action='' id="myform">
+          <p>DELIVERY ADDRESS</p> 
           <label for="fname">First Name</label>
           <input type="text" id="fname" name="firstname" placeholder="John">
       
@@ -40,33 +40,12 @@
             <option value="canada">Canada</option>
             <option value="usa">USA</option>
           </select>
-        
+          <br>
+          <br>
+          <button type="button" id="submit">Submit</button>
           
         </form>
       </div> 
-
-      <div class="deliveryaddress">
-        <div>
-        <p> DELIVERY ADDRESS</p>
-        <button type="Button" class="addressbtn" >Same as billing address</button>
-        <button type="Button" class="addressbtn" id="add" >Add an alternative delivery address</button>
-        </div>
-        <div id="deliveryform" class="hidden">
-            <form action='/addproduct-action' method='post' enctype="multipart/form-data">
-                <label for="fname">First Name</label>
-                <input type="text"   name="fname"required></input>
-                <br>
-                <br>
-                <label for="fname">Last Name</label>
-                <input type="text" name="lname" required></input>
-                <br>
-                <br>
-                <label for="fname">Address Line</label>
-                <input type="text"  name="description" required ></input>
-                <br>
-            </form>
-        </div>
-    </div>
     <div class="shippingmethod">
         <p>SHIPPING METHOD</p>
         <span>

@@ -1,9 +1,10 @@
 .footer{
     background-color: black;
-    position:block;
-    height:1200px;
+    position:relative;
+    z-index: 200px;
+    height:1300px;
     font-family:'Bona Nova', serif;
-    margin: 0px;
+    top:400px;
 }
 
 .h3{

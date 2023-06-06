@@ -114,3 +114,35 @@ function validateAdmin(form){
     }
 }
   
+const passwordInput = document.getElementById('RESETpassword');
+const passwordError = document.getElementById('RESETpassword-error');
+
+// Define a regular expression pattern to match the password requirements
+const passwordPattern = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d)[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,}$/;
+
+passwordInput.addEventListener('keyup', () => {
+  const password = passwordInput.value;
+
+  // Validate the password against the pattern
+  if (!passwordPattern.test(password)) {
+    passwordError.textContent = 'Password must be at least 8 characters and contain at least one special character and one number';
+    passwordError.style.color = 'red';
+  } else {
+    passwordError.textContent = 'Valid password';
+    passwordError.style.color = 'green';
+    // Make an AJAX request to check if the password is already in use
+    fetch('/check-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.isPasswordInUse) {
+        passwordError.textContent = 'Password is already in use, please choose a different password';
+        passwordError.style.color = 'red';
+      }
+    })
+    .catch(err => console.log(err));
+  }
+});

@@ -29,9 +29,11 @@ const mongoose = require('mongoose')
 const  ObjectID = require('mongodb').ObjectId;
 const path = require('path');
 ////////////////
+const cors=require('cors');
 const Fs = require('fs');
 const axios = require('axios');
 const Formdata = require('form-data');
+app.use(cors());
 
 const imagePath = 'C:/Users/Nour Hesham/Desktop/public/imgs/gril3.jpg'
 const formData = new Formdata();

@@ -130,13 +130,24 @@
                         </div>
                     </li>
 
-
-                    <div class="icons">
-                        <a href="/Account"><i class="fa fa-user-circle"></i></a>
-                        <a href="#"><i class="fa fa-heart"></i></a>
-                        <button id="add-to-bag-button" onclick="appear()"> <i class="fa fa-shopping-bag"></i> </button>
-                        
-                    </div>
+                    <li> <a href="/Account/myprofile"><i class="fa fa-user-circle"></i></a></li>
+                    <li>
+                         <a href="#"><i class="fa fa-search"></a></i>
+                         <div class="mega-box">
+                            <div class="content">
+                                <div class="row">
+                                        <input type="text" id="search-box" onkeyup="sendproduct(this)" placeholder="what are you looking for?">     
+                                    <div id="prodsearch">
+                                    </div>
+                                    <script src="../javascript/bsearchbar.js"></script>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li> <button id="add-to-bag-button" onclick="appear()"> <i class="fa fa-shopping-bag"></i> </button>
+                    </li>
                 </ul>
 
             </div>

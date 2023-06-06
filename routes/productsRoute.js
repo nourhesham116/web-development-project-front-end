@@ -7,7 +7,7 @@ const ITEMS_PER_PAGE = 5;
 //const Product = new  mongoose.model('Product', productSchema);
 router.get('/', function (req, res, next) {
   const page = req.query.page || 1; // Get the current page from the query parameters
-   // Define the number of items per page
+  const ITEMS_PER_PAGE = 10; // Define the number of items per page
 
   // Calculate the skip value based on the current page and items per page
   const skip = (page - 1) * ITEMS_PER_PAGE;
@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
           user: req.session.user || null,
           currentPage: page,
           totalPages: totalPages,
-          cart:(req.session.cart===undefined?"":req.session.cart)
+          cart: (req.session.cart === undefined ? "" : req.session.cart)
         });
       });
     })

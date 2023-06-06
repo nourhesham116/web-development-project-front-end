@@ -18,149 +18,78 @@
 <body>
     <!--nav and add to cart partials-->
     <%- include('./partials/Nav.ejs') %>
-     <%- include('./partials/addtocart.ejs') %>
-   
-    <div>
-        <a href='productdetail'><img id="big-melt-image"
-                src="../imgs/FS366458-FS-Melt-Awf-Launch_HP_Takeover_Hero_Desktop_1400x.webp" width="100%" height="675px"></a>
-        <a href="#"><img id="small-melt-image" src="../imgs/ pic 728px.webp" width="100%" height="675px"></a>
-    </div>
-    <div>
-        <video controls loop width="100%" autoplay muted>
-            <source src="../imgs/melt_awf_-_desktop (1080p).mp4" type="video/mp4">
-        </video>
-    </div>
-    <div>
-        <img src="../imgs/(1).jpg" width="100%">
-    </div>
-    <div class="glazeandswatch">
-        <div class="container-glaze">
-            <img id="glaze" src="../imgs//glaze-rhode.webp">
-            <div class="centered">glaze</div>
-            <div class="centered2">glaze</div>
-        </div>
-        <div class="container-swatch">
-            <img id="swatch" src="../imgs/Glaze_02_RhodeMap_Swatch_2000x2000_183aae18-ab1e-4a09-8b32-9d96a3e9de02_320x.webp">
-            <div class="sentenseSwatch">
-                <strong>glaze now, glow later.</strong>
+        <%- include('./partials/addtocart.ejs') %>
+
+            <div>
+                <a href='productdetail'><img id="big-melt-image"
+                        src="../imgs/FS366458-FS-Melt-Awf-Launch_HP_Takeover_Hero_Desktop_1400x.webp" width="100%"
+                        height="675px"></a>
+                <a href="#"><img id="small-melt-image" src="../imgs/ pic 728px.webp" width="100%" height="675px"></a>
+            </div>
+            <div>
+                <video controls loop width="100%" autoplay muted>
+                    <source src="../imgs/melt_awf_-_desktop (1080p).mp4" type="video/mp4">
+                </video>
+            </div>
+            <div>
+                <img src="../imgs/(1).jpg" width="100%">
+            </div>
+            <div class="glazeandswatch">
+                <div class="container-glaze">
+                    <img id="glaze" src="../imgs//glaze-rhode.webp">
+                    <div class="centered">glaze</div>
+                    <div class="centered2">glaze</div>
+                </div>
+                <div class="container-swatch">
+                    <img id="swatch"
+                        src="../imgs/Glaze_02_RhodeMap_Swatch_2000x2000_183aae18-ab1e-4a09-8b32-9d96a3e9de02_320x.webp">
+                    <div class="sentenseSwatch">
+                        <strong>glaze now, glow later.</strong>
+                    </div>
+                    <br>
+                    <div class="theRestOfSwatchSentense">
+                        <p>Meet the PEPTIDE GLAZING FLUID<strong>.&nbsp;</strong></p>
+                        <p> Hailey’s secret to DEWY, radiant skin.</p>
+                        <button class="b1" onclick="location.href='productdetail';"> Buy now </button>
+                    </div>
+                </div>
             </div>
             <br>
-            <div class="theRestOfSwatchSentense">
-                <p>Meet the PEPTIDE GLAZING FLUID<strong>.&nbsp;</strong></p>
-                <p> Hailey’s secret to DEWY, radiant skin.</p>
-                <button class="b1" onclick="location.href='productdetail';"> Buy now </button>
-            </div>
-        </div>
-    </div>
-    <br>
-    
-    <!-- start slider down here-->
-    <div class="product">
-        <h2 class="product-category">BEST SELLING</h2>
-        <button class="pre-btn">
-            <img src="../imgs/arrow.png">
-        </button>
-        <button class="nxt-btn">
-            <img src="../imgs/arrow.png">
-        </button>
-        <div class="product-container">
 
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/15.webp" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
-                </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
+            <!-- start slider down here-->
             
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/cleanser1.jpg" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
+                <div class="product">
+                    <button class="pre-btn">
+                        <img src="../imgs/arrow.png">
+                    </button>
+                    <button class="nxt-btn">
+                        <img src="../imgs/arrow.png">
+                    </button>
+                    <div class="product-container">
+                        <% productsList.slice(0, 4).forEach((product, index) => { %>
+                            <% if (product.category === 'SKIN') { %>
+                                <div class="product-card" id="product<%= index %>">
+                                    <div class="product-image">
+                                        <span class="discount-tag">50% OFF</span>
+                                        <img src="../imgs/uploads/<%= product.image1 %>" class="product-thumb" alt>
+                                        <button class="card-btn">add to cart</button>
+                                    </div>
+                                    <div class="product-info">
+                                        <p class="product-short-description">
+                                            <%= product.description %>
+                                            <a href="#" class="price">$‌47.00</a>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/moisturizer1.jpg" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
-                </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/melt1.jpg" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
-                </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/toner1.jpg" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
-                </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag">50% OFF</span>
-                    <img src="../imgs/toner1.jpg" class="product-thumb" alt>
-                    <button class="card-btn">add to wishlist</button>
-
-                </div>
-                <div class="product-info">
-                    <h2 class="product-brand">Fenty Beauty</h2>
-                    <p class="product-short-description"> a short line here</p>
-                    <span class="price">600 egp</span>
-                    <span class="actual-price">1200 egp</span>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="../javascript/SliderScript.js"></script>
-    <%- include('./partials/footer.ejs') %>
-</body>
-
+                <script src="../javascript/SliderScript.js"></script>
+             
+         
+               <% include('./partials/footer.ejs') %>
+            
+              </body>
 </html>

@@ -99,20 +99,42 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', './views')
 app.set('view engine', 'ejs')
 app.get('', (req, res) => {
-
   res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
   cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 app.get('/index', (req, res) => {
-
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
-  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
-})
-app.get('/', (req, res) => {
-
-  res.render('index', { user: (req.session.user === undefined ? "" : req.session.user),
-  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
+  // Retrieve the products with the category "SKIN"
+  Product.find({ category: 'SKIN' })
+    .then(function (productsList) {
+      // Render the index template with the product list
+      res.render('index', {
+        productsList: productsList,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).send('An error occurred');
+    });
 });
+
+app.get('/', (req, res) => {
+  Product.find({ category: 'SKIN' })
+    .then(function (productsList) {
+      // Render the index template with the product list
+      res.render('index', {
+        productsList: productsList,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).send('An error occurred');
+    });
+});
+
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
 app.use('/admindashboard', admindashboardRouter);

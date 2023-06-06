@@ -395,6 +395,7 @@ body{
   font-size:13px;
   position:relative;
   background:black;
+  color: white;
   cursor:pointer;
   height:30px;
   width:360px;

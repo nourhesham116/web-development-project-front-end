@@ -111,19 +111,29 @@
                 </div>
                
                 <div class="container">
+                   
+                  
                     
                             <div class="counter">
                                 <button id="minus" onclick=" count(this.id)">-</button>
                                 <p id="value">1 </p>
                                 <button id="add" onclick="count(this.id)">+</button>
                             </div>
-                            <button class="addtocart">
+                            <form action="/addtocart/add" method="post">
+                                <input type="hidden" name="product" value="<%= product._id %>">
+                                <input type="hidden" name="name" value="<%= product.name %>">
+                                <input type="hidden" name="price" value="<%= product.price %>">
+                                <input type="hidden" name="image" value="/imgs/uploads/<%= product.image1%>">
+                                <input type="number" name="quantity" value="1" hidden>
+                               <button class="addtocart" type="submit">ADD TO CART</button>
+                              </form>
+                            <!-- <button class="addtocart">
                                 <div class="pretext">
                                     <div class="addtocartclass">ADD TO CART</div>
                                     <div class="pretext done">
                                         <div class="posttext"> ADDED</div>
                                     </div>
-                            </button>
+                            </button> -->
                 </div>
                         <div class="shipping">
                             <p>FREE standard shipping & returns on all U.S. orders</p>

@@ -167,6 +167,7 @@ router.get('/', function (req, res, next) {
     });
   });
   
-  
+  router.get('/Beautyproducts/productdetail/:id', productController.getProductDetail);
+
     
   module.exports = router;

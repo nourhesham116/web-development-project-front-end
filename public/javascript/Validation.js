@@ -116,6 +116,8 @@ function validateAdmin(form){
   
 const passwordInput = document.getElementById('RESETpassword');
 const passwordError = document.getElementById('RESETpassword-error');
+const submitButton = document.getElementById('submit-button');
+
 
 // Define a regular expression pattern to match the password requirements
 const passwordPattern = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d)[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,}$/;
@@ -127,9 +129,11 @@ passwordInput.addEventListener('keyup', () => {
   if (!passwordPattern.test(password)) {
     passwordError.textContent = 'Password must be at least 8 characters and contain at least one special character and one number';
     passwordError.style.color = 'red';
+    submitButton.disabled = true;
   } else {
     passwordError.textContent = 'Valid password';
     passwordError.style.color = 'green';
+    submitButton.disabled = false;
     // Make an AJAX request to check if the password is already in use
     fetch('/check-password', {
       method: 'POST',

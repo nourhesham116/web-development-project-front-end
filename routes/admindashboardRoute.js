@@ -4,6 +4,9 @@ const users = require('../models/users');
 const flash = require('express-flash')
 const products = require('../models/product');
 const productController = require('../controllers/product.controller');
+const isAdmin = (user) => {
+  return user !== undefined && user.Type === 'admin';
+};
 router.get('/', (req, res) => {
     if (req.session.user !== undefined && req.session.user.Type === 'admin') {
       users.find()
@@ -15,11 +18,16 @@ router.get('/', (req, res) => {
         });
     }
     else {
-      res.send('you are not admin');
+      res.render('Error404');
     }
   });
   router.get('/adminproducts', (req, res) => {
+    if(isAdmin(req.session.user)){
     res.render('adminproducts');
+    }
+    else{
+      res.render('Error404');
+    }
   })
 
   

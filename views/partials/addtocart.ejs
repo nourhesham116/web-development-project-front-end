@@ -1,122 +1,128 @@
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/Addtocart.css" />
-<script src="../javascript/addtocartbutton.js"></script>
-<script src="../javascript/addtocart2.js"></script>
-<title>Add to cart</title>
-</head>
-<body>
-    <!--add to bag-->
-    <div>
-        <div class="split right">
-            <div class="centeredd">
-                <div class="headerr1">
-
-                    <span class="innerdetails">
-                        YOUR BAG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span class="innerdetails2">
-                        <%=cart.length%> items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <!-- <span class="innerdetails3">
-                        EGP0.00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span> -->
-                    <button id="close" onclick="ex();">X</button>
-
-
-                </div>
-
-                <div class="headerr2">
-                    <p>WELCOME&nbsp;BACK&nbsp;!</p>
-                </div>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/Addtocart.css" />
+    <script src="../javascript/addtocartbutton.js"></script>
+    <script src="../javascript/addtocart2.js"></script>
+    <title>Add to cart</title>
+    </head>
+    <body>
+        <!--add to bag-->
+        <div>
+            <div class="split right">
+                <div class="centeredd">
+                    <div class="headerr1">
     
-                <% if (cart.length === 0) { %>
-                    
-                    <div class="gift">
-                        <p class="p2">Add EGP‌5,100.00 to your cart to qualify<br> for a FREE gift!</p>
-                        <button class="btn3">ADD YOUR GIFT</button>
-                    </div>
-
-                <div class="bag">
-                    <p class="p1">YOUR BAG IS EMPTY</p>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <a href="/sophistiqueBeauty">
-                    <button class="btn1"> SHOP SOPHISTIQUÉ BEAUTY</button>
-                    </a>
-                    <br>
-                    <br>
-                    <a href="/skincarepage1">
-                    <button class="btn2"> SHOP SOPHISTIQUÉ SKIN</button>
-                    </a>
-        
-                   
-                  <% } else { %>
-                    <% let total = 0; %>
-                  
-                    <% for (let i = 0; i < cart.length; i++) { %>
-                        <p class="name"> <%= cart[i].name%> </p>
-                        <p class="product"><%= cart[i].quantity %> product </p> 
-                        <p class="price">EGP<%=(cart[i].quantity)*(cart[i].price)%></p>
-
-                      <form action="/addtocart/update" method="post">
-                        <img src="<%=cart[i].image%>" alt="<%=cart[i].name%>" class="cartimage">
-                        <input type="hidden" name="product" value="<%=cart[i].product%>">
-                        <input type="hidden" name="name" value="<%=cart[i].name%>">
-                        <input type="number" class="quantity" name="quantity" value="<%=cart[i].quantity%>">
-                        <button class="update" type="submit">update</button>
-                      </form>
-                  
-                      <form action="/addtocart/remove" method="post">
-                        <input type="hidden" name="product" value="<%=cart[i].product %>">
-                        <button class="remove" type="submit">Remove</button>
-                      </form>
-                  
-                      <% const price = cart[i].price; 
-                       total += price * cart[i].quantity;
-                      cart.total=total; %>
-                      <br><br><br>
-                    <% } %>
-                    
-                    
-                    <div class="cartfooter">
-                        <p class="subtottext">Total:</p>
-                        <p class="cost">EGP<%= total.toFixed(2) %></p>
-                        <span class="oneline">
-                            <a href="/checkout">
-                            <button class="checkout">&nbsp;&nbsp;CHECKOUT</button>
-                            </a>
+                        <span class="innerdetails">
+                            YOUR BAG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
-                    </div>
-                  <% } %>
-                 
-                  
-                  
-               
-               
-                
-            </div>
-            
-           </div>
-    </div>
+                        <span class="innerdetails2">
+                            <%=cart.length%> items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <!-- <span class="innerdetails3">
+                            EGP0.00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span> -->
+                        <button id="close" onclick="ex();">X</button>
     
-    </ul>        
-</body>
+    
+                    </div>
+    
+                    <div class="headerr2">
+                        <p>WELCOME&nbsp;BACK&nbsp;!</p>
+                    </div>
+        
+                    <% if (cart.length === 0) { %>
+                        
+                        <div class="gift">
+                            <p class="p2">Add EGP‌5,100.00 to your cart to qualify<br> for a FREE gift!</p>
+                            <button class="btn3">ADD YOUR GIFT</button>
+                        </div>
+    
+                    <div class="bag">
+                        <p class="p1">YOUR BAG IS EMPTY</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="/sophistiqueBeauty">
+                        <button class="btn1"> SHOP SOPHISTIQUÉ BEAUTY</button>
+                        </a>
+                        <br>
+                        <br>
+                        <a href="/skincarepage1">
+                        <button class="btn2"> SHOP SOPHISTIQUÉ SKIN</button>
+                        </a>
+            
+                       
+                      <% } else { %>
+                        <% let total = 0; %>
+                      
+                        <% for (let i = 0; i < cart.length; i++) { %>
+                            <p class="name"> <%= cart[i].name%> </p>
+                            <p class="product"><%= cart[i].quantity %> product </p> 
+                            <p class="price">EGP<%=(cart[i].quantity)*(cart[i].price)%></p>
+    
+                          <form action="/addtocart/update" method="post">
+                            <img src="<%=cart[i].image%>" alt="<%=cart[i].name%>" class="cartimage">
+                            <input type="hidden" name="product" value="<%=cart[i].product%>">
+                            <input type="hidden" name="name" value="<%=cart[i].name%>">
+                            <input type="number" class="quantity" name="quantity" value="<%=cart[i].quantity%>">
+                            <button class="update" type="submit">update</button>
+                          </form>
+                      
+                          <form action="/addtocart/remove" method="post">
+                            <input type="hidden" name="product" value="<%=cart[i].product %>">
+                            <button class="remove" type="submit">Remove</button>
+                          </form>
+                      
+                          <% const price = cart[i].price; 
+                           total += price * cart[i].quantity;
+                          cart[i].totalCart=total; %>
+                          <br><br><br>
+                        <% } %>
+                        
+                        
+                        <div class="cartfooter">
+                            <p class="subtottext">Total:</p>
+                            <p class="cost">EGP<%= total.toFixed(2) %></p>
+                            <span class="oneline">
+                                <% if (user === "") { %>
+                                  <a href="/Account">
+                                    <button class="checkout" onclick="alert('Please log in');">CHECKOUT</button>
+                                  </a>
+                                <% } else { %>
+                                  <a href="/checkout">
+                                    <button class="checkout">&nbsp;&nbsp;CHECKOUT</button>
+                                  </a>
+                                <% } %>
+                              </span>
+                        </div>
+                      <% } %>
+                     
+                      
+                      
+                   
+                   
+                    
+                </div>
+                
+               </div>
+        </div>
+        
+        </ul>        
+    </body>

@@ -25,21 +25,30 @@ const userSchema = new Schema({
   resetTokenExpiration: Date,
 }, { timestamps: true });
 
-userSchema.statics.isThisEmailInUse = async function (email) {
-  if (!email) throw new Error('Invalid email');
 
+userSchema.pre('save', async function (next) {
   try {
-    const user = await this.findOne({ Email: email });
-    if (user) return false;
+    // Check if the password is modified or new
+    if (!this.isModified('Password')) {
+      return next();
+    }
 
-    return true;
+    // Generate a salt
+    const salt = await bcrypt.genSalt(10);
+
+    // Hash the password with the generated salt
+    const hashedPassword = await bcrypt.hash(this.Password, salt);
+
+    // Set the hashed password as the new password value
+    this.Password = hashedPassword;
+
+    next();
   } catch (error) {
-    console.log('Error inside isThisEmailInUse method', error.message);
-    return false;
+    next(error);
   }
-};
+});
 
-
+const User = mongoose.model('User', userSchema);
 const users = new mongoose.model('users', userSchema);
 module.exports = users;
 

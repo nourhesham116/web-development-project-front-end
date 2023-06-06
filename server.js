@@ -176,10 +176,12 @@ app.post('/bsearch', async (req, res) => {
 });
 
 app.get('/sophistiqueBeauty', (req, res) => {
-  res.render('sophistiqueBeauty')
+  res.render('sophistiqueBeauty',{  user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 app.get('/checkout', (req, res) => {
-  res.render('checkout')
+  res.render('checkout', { user: (req.session.user === undefined ? "" : req.session.user),
+  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
 })
 app.get('/partials/addtocart', (req, res) => {
 

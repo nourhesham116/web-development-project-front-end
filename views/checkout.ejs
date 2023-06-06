@@ -11,7 +11,6 @@
 </head>
 <body>
     <%- include('./partials/Nav.ejs') %>
-    
     <p class="title">CHECKOUT</p>
         <div class="billing">
         <form action='' id="myform">
@@ -46,30 +45,13 @@
           
         </form>
       </div> 
-    <div class="shippingmethod">
-        <p>SHIPPING METHOD</p>
-        <span>
-            <label class="rdbtn">EGP 343.00
-            <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <span class="expresstext">Express Courier</p>
-        </span>
-    </div>
+    
     <div class="summary">
         <p>BILLING SUMMARY</p>
         <br>
 
 
         <form action="billsummary">
-            <span>
-            <input type="text" id="coupon" name="coupon" placeholder="please enter coupon code">
-            <input type="button" value="APPLY" id="apply">
-            </span>
         </form>
         <hr>
         <span>

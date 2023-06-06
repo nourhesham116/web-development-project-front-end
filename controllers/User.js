@@ -55,6 +55,7 @@ const registerUser = (req, res) => {
   if (!errors.isEmpty()) {
     const alert = errors.array();
     res.render('RegisterationForm', {
+      user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart),
       alert,
       emailError: errors.array().find(error => error.param === 'email') || null,
     });
@@ -77,20 +78,20 @@ const registerUser = (req, res) => {
               return user.save();
             })
             .then(result => {
-              res.redirect('/Account');
+              res.redirect('/Account',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
             })
             .catch(err => {
               console.log('Error hashing password:', err);
-              res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
+              res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] , user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
             });
         } else {
           // Email is already in use
-          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] });
+          res.render('RegisterationForm', { emailError: 'Email already taken', alert: [] , user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
         }
       })
       .catch(err => {
         console.log('Error checking email:', err);
-        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] });
+        res.render('RegisterationForm', { emailError: 'An error occurred', alert: [] , user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
       });
   }
 };

@@ -31,7 +31,7 @@ router.get('/myprofile', (req, res) => {
 
 router.get('/RegisterationForm',(req,res)=>{
     
-    res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)})
+  res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)})
     
 });
 router.post('/login-action', (req, res) => {
@@ -59,15 +59,22 @@ router.post('/login-action', (req, res) => {
 
 
 
-router.post('/RegisterationForm',userController.registerUser);
+router.post('/RegisterationForm',
+  urlencodedParser,
+  [
+    check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
+    check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
+    check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
+    check('password')
+      .exists().withMessage('Password is required')
+      .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
+      .withMessage('Password should contain at least one letter, one number, and one special character'),
+  ],
+  userController.registerUser
+);
 
 
-//router.post('/myprofile', User.GetUser)
-//router.post('/checkemail', User.checkemail)
-//router.post('/RegistrationForm', User.validateRegistrationForm, User.checkEmailAvailability, User.processRegistrationForm);
-
-
-//checking if the user  logged in or not
 
 
 //////////////////////////////////////////////////////////

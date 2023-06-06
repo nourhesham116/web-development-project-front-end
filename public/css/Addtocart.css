@@ -341,12 +341,15 @@
       float: left;
       height:95px;
       width:95px;
+      padding: 20px;
     }
     .price{
+      padding: 40px;
       float: right;
       transform: translate(90px,40px);
     }
     .name{
+      position: relative;
       transform: translate(-90px,30px);
     }
     .cartfooter{

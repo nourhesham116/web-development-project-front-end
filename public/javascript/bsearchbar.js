@@ -1,5 +1,3 @@
-const Product = require("../models/product");
-
 
 function toggleSearchBar() {
   const searchBox = document.getElementById("search-box");

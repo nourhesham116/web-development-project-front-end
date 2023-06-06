@@ -86,7 +86,14 @@
                             <div class="product-image">
                                 <span class="discount-tag">50% OFF</span>
                                 <img src="../imgs/uploads/<%= product.image1 %>" class="product-thumb" alt>
-                                <button class="card-btn">add to cart</button>
+                                <form action="/addtocart/add" method="post">
+                                    <input type="hidden" name="product" value="<%= product._id %>">
+                                    <input type="hidden" name="name" value="<%= product.name %>">
+                                    <input type="hidden" name="price" value="<%= product.price %>">
+                                    <input type="hidden" name="image" value="/imgs/uploads/<%= product.image1%>">
+                                    <input type="number" name="quantity" value="1" hidden>
+                                   <button class="card-btn" type="submit">ADD TO BAG</button>
+                                  </form>
                             </div>
                             <div class="product-info">
                                 <p class="product-short-description">
@@ -118,7 +125,7 @@
                         <br>
                         <h4>Leaves your skin looking flawless and rare</h4>
                         <br>
-                        <button class="shopbtn"><a href="#">SHOP FOUNDATION</a></button>
+                        <button class="shopbtn"><a href="/Beautyproducts/foundation">SHOP FOUNDATION</a></button>
                     </div>
                 </div>
 
@@ -133,7 +140,7 @@
                         <br>
                         <h4>Black mascara leaving your eyelashes long and luscious </h4>
                         <br>
-                        <button class="shopbtn"><a href="#">SHOP MASCARA</a></button>
+                        <button class="shopbtn"><a href="/Beautyproducts/mascaras">SHOP MASCARA</a></button>
                     </div>
                 </div>
             </div>
@@ -148,7 +155,7 @@
                         <br>
                         <h4>Bold and shimmery eye shadows for your glam nights</h4>
                         <br>
-                        <button class="shopbtn"><a href="#">SHOP EYESHADOW</a></button>
+                        <button class="shopbtn"><a href="/Beautyproducts/Eyeshadows">SHOP EYESHADOW</a></button>
                     </div>
                 </div>
             </div>
@@ -162,7 +169,7 @@
                     <br>
                     <h4>Gives a nice natural shine to your face</h4>
                     <br>
-                    <button class="shopbtn"><a href="#">SHOP HIGHLIGHTER</a></button>
+                    <button class="shopbtn"><a href="/Beautyproducts/Highlighters">SHOP HIGHLIGHTER</a></button>
                 </div>
             </div>
         </div>

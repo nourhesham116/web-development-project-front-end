@@ -252,7 +252,19 @@ app.get('/adminstatistics', (req, res) => {
 
 
 app.get('/sophistiqueBeauty', (req, res) => {
-  res.render('sophistiqueBeauty', { user: (req.session.user === undefined ? "" : req.session.user) })
+  Product.find({ category: 'BEAUTY' })
+  .then(function (productsList) {
+    // Render the index template with the product list
+    res.render('sophistiqueBeauty', {
+      productsList: productsList,
+      user: (req.session.user === undefined ? "" : req.session.user),
+      cart: (req.session.cart === undefined ? "" : req.session.cart)
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).send('An error occurred');
+  });
 })
 
 

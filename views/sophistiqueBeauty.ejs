@@ -70,7 +70,6 @@
     <!-- product display section -->
     <section>
         <div class="product">
-            <!-- <h2 class="product-category">BEST SELLING</h2> -->
             <button class="pre-btn">
                 <img src="../imgs/arrow.png">
             </button>
@@ -78,104 +77,27 @@
                 <img src="../imgs/arrow.png">
             </button>
             <div class="product-container">
-                <div class="container">
-
-                    <div class="box">
-                        <div class img-slide>
-                            <img src="../imgs/rare beauty liquid blush.jpg" class="hide" width="350"><img
-                                src="../imgs/rare beauty blush shade.jpg" width="350">
+                <% let containerIndex = 0; %>
+                <% productsList.slice(0, 4).forEach((product, index) => { %>
+                    <% if (product.category === 'BEAUTY') { %>
+                        <div class="product-card" id="product<%= index %>">
+                            <div class="product-image">
+                                <span class="discount-tag">50% OFF</span>
+                                <img src="../imgs/uploads/<%= product.image1 %>" class="product-thumb" alt>
+                                <button class="card-btn">add to cart</button>
+                            </div>
+                            <div class="product-info">
+                                <p class="product-short-description">
+                                    <%= product.description %>
+                                    <a href="#" class="price">$‌47.00</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span> NEW</span>
-                            <a href="#">Rare beauty new liquid blush in shade happy</a>
-                        </div>
-                    </div>
-                    <div class="shop">
-                        <span class=""><a href="#">ADD TO BAG</a></span>
-                        <a href="#" class="price">$‌47.00</a>
-                    </div>
-
-                </div>
-                <div class="container">
-                    <div class="box">
-                        <div class img-slide>
-                            <img src="../imgs/rhodelipbalm product.jpg" class="hide" width="350"><img src="../imgs/rhodelips.jpg"
-                                width="350">
-                        </div>
-
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span>Exclusive makeup prep</span>
-                            <a href="#">RHODE NEW PEPTIDE LIP TREATMENT</a>
-                        </div>
-                    </div>
-                    <div class="shop">
-                        <span class=""><a href="#">ADD TO BAG</a></span>
-                        <a href="#" class="price">$36.00</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box">
-                        <div class img-slide>
-                            <img src="../imgs/pefume.jpg" class="hide" width="350"><img src="../imgs/perfume angle2.jpg" width="350">
-                        </div>
-
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span> BESTSELLER</span>
-                            <a href="#">FENTY EAU DE PARFUM </a>
-                            <BR>
-                        </div>
-                    </div>
-                    <div class="shop">
-                        <span class="add"><a href="#">ADD TO BAG</a></span>
-                        <a href="#" class="price">$‌156.00</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box">
-                        <div class img-slide>
-                            <img src="../imgs/rare beauty brushes.jpg" class="hide" width="350"><img src="../imgs/rare beauty brush.jpg"
-                                width="350">
-                        </div>
-
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span>SALE</span>
-                            <a href="#">RARE BEAUTY FLAWLESS FOUNDATION BRUSH+BEAUTY BLENDER</a>
-                        </div>
-                    </div>
-                    <div class="shop">
-                        <span class=""><a href="#">ADD TO BAG</a></span>
-                        <a href="#" class="price">$‌44.00</a>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="box">
-                        <div class img-slide>
-                            <img src="../imgs/rarebeauty concealer.jpg" class="hide" width="350"><img
-                                src="../imgs/rare beauty concealer shades.jpg" width="350">
-                        </div>
-
-                    </div>
-                    <div class="detail">
-                        <div class="type">
-                            <span>SALE</span>
-                            <a href="#">RARE BEAUTY FLAWLESS FOUNDATION BRUSH+BEAUTY BLENDER</a>
-                        </div>
-                    </div>
-                    <div class="shop">
-                        <span class=""><a href="#">ADD TO BAG</a></span>
-                        <a href="#" class="price">$‌44.00</a>
-                    </div>
-                </div>
-           
+                    <% } %>
+                    <% if ((index + 1) % 8 === 0) { %>
+                        <% containerIndex++; %>
+                    <% } %>
+                <% }); %>
             </div>
         </div>
         <script src="../javascript/SliderScript.js"></script>

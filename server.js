@@ -211,9 +211,21 @@ app.post('/bsearch', async (req, res) => {
 });
 
 app.get('/sophistiqueBeauty', (req, res) => {
-  res.render('sophistiqueBeauty',{  user: (req.session.user === undefined ? "" : req.session.user),
-  cart: (req.session.cart === undefined ? "" : req.session.cart)  })
-})
+  Product.find({ category: 'BEAUTY' })
+    .then(function (productsList) {
+      // Render the index template with the product list
+      res.render('sophistiqueBeauty', {
+        productsList: productsList,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).send('An error occurred');
+    });
+});
+
 app.get('/checkout', (req, res) => {
   res.render('checkout', { user: (req.session.user === undefined ? "" : req.session.user),
   cart: (req.session.cart === undefined ? "" : req.session.cart)  })

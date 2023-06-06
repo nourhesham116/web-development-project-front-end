@@ -56,7 +56,11 @@
         <hr>
         <span>
         <p>Items total</p>
-        <p class="total">EGP <%=cart.total%></p>
+        <%let total=0;
+         for(let i=0;i<cart.length;i++){
+            total=+cart[i].totalCart
+         }%>
+       <p class="total">EGP <%=total%></p>
         </span>
         <span>
             <p>Shipping</p>

@@ -306,14 +306,20 @@ app.post('/Account/RegisterationForm', urlencodedParser, [
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
     .withMessage('Password should contain at least one letter, one number, and one special character'),
-  ], async (req, res) => {
-    const errors = validationResult(req);
-  
-    if (!errors.isEmpty()) {
+], async (req, res) => {
+  const errors = validationResult(req);
+  const query = { "Email": req.body.email };
+  try {
+    const result = await users.find(query);
+    if (result.length > 0) {
+      res.send('taken');
+    } else if (!errors.isEmpty()) {
       const alert = errors.array();
-      res.render('RegisterationForm', { alert,
-        user: (req.session.user === undefined ? "" : req.session.user),
-        cart: (req.session.cart === undefined ? "" : req.session.cart)});
+      res.render('RegisterationForm', {
+        alert,
+        user: req.session.user === undefined ? "" : req.session.user,
+        cart: req.session.cart === undefined ? "" : req.session.cart
+      });
     } else {
       const user = new users({
         Firstname: req.body.Firstname,
@@ -321,14 +327,15 @@ app.post('/Account/RegisterationForm', urlencodedParser, [
         Email: req.body.email,
         Password: req.body.password,
         Type: req.body.type
-      });try {
-        await user.save();
-        res.redirect('/Account');
-      } catch (err) {
-        console.log(err);
-      }
+      });
+      await user.save();
+      res.redirect('/Account');
     }
-  });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })

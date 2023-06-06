@@ -10,7 +10,6 @@
 
   <title>Register</title>
   
-  
 </head>
 <body>
   <%- include('./partials/Nav.ejs') %>
@@ -52,6 +51,7 @@
         <% } %>
 
         <span id="eErr" class="err"></span>
+        <span id="errormails"></span> <!-- Add this line to display the email availability message -->
         
         <input type="password" name="password" id="passwordInput" class="password-input" placeholder="Password">
         <span id="passwordError" class="error-message"></span>
@@ -79,8 +79,36 @@
     </div>
   </div>
 
+  
   <script src="../js/Validation.js"></script>
   <script>
+    $(document).ready(function () {
+  $("#emailInput").on('keyup', function (e) {
+    e.preventDefault();
+    var data = $('#emailInput').val();
+
+    $.ajax({
+      url: '/Account/user/checkem',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ Email: data }),
+      success: function (response) {
+        $('#errormails').html('Email  ' + response);
+
+        if (response == 'taken') {
+          $('#errormails').css("color", "red");
+        } else if (response == 'available') {
+          $('#errormails').css("color", "green");
+        }
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  });
+});
+
+    /////////////////////////////////
     /*$(document).ready(function() {
   const firstnameInput = $('#firstnameInput');
   const lastnameInput = $('#lastnameInput');

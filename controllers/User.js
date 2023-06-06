@@ -21,21 +21,7 @@ const GetUser = (req, res) => {
     });
 };
 
-const checkemail = (req, res) => {
-  var query = { Email: req.body.email };
-  users
-    .find(query)
-    .then((result) => {
-      if (result.length > 0) {
-        res.send('unavailable');
-      } else {
-        res.send('available');
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 const editUser = (req, res) => {
   users
@@ -98,10 +84,8 @@ const registerUser = (req, res) => {
 
 
 
-
 module.exports = {
-  checkemail,
+  
   editUser,
-  GetUser,
- 
+  GetUser
 };

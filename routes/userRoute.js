@@ -20,6 +20,24 @@ router.get('/', (req, res) => {
     res.render('Account', { user: req.session.user ,cart: (req.session.cart === undefined ? "" : req.session.cart)});
   }
 });
+router.post('/user/checkem', (req, res) => {
+  const email = req.body.Email;
+
+  users.findOne({ Email: email })
+    .then((result) => {
+      if (result) {
+        // Email is taken
+        res.send('already has an account');
+      } else {
+        // Email is available
+        res.send('available');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send('error');
+    });
+});
 
 router.get('/myprofile', (req, res) => {
   const userP = req.session.user;

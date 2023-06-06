@@ -1,19 +1,24 @@
-$(document).ready(function(){
-    $("#email").on('keyup', function(e){
+$(document).ready(function () {
+    $("#errormail").on('keyup', function (e) {
         e.preventDefault();
-        var data= $ ('#email').val();
+        var data = $('#errormail').val();
         $.ajax({
-            url:'/User/checkemail',
-            method:'POST',
-            contentType:'application/json',
-            data:JSON.stringify({email: data}),
-            success:function(response){
-                $('#result').html('email is '+response);
-                if(response == 'taken'){
-                    $('#result').css("color","red");
-                }else{
-                    $('#result').css("color","blue");
+            url: '/user/checkem',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ Email: data }),
+            success: function (response) {
+                $('#errormails').html('Email is ' + response);
+
+                if (response == 'taken') {
+                    $('#errormails').css("color", "red");
                 }
+                else if(response =='available') {
+                    $('#errormails').css("color", "green");
+                }
+            },
+            error:function(err){
+
             }
         });
     });

@@ -38,7 +38,7 @@
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Email</td>
+                        <td>Order ID</td>
                         <td>Address</td>
                         <td>Total</td>
                         <td>Items</td>
@@ -49,7 +49,7 @@
                     <% orders.forEach(function(order) { %>
                         <tr>
                             <td><%= order.firstname %> <%= order.lastname %></td>
-                            <td class="email"><%= order.email %></td>
+                            <td class="email"><%= order.id %></td>
                             <td><%= order.addressline %>, <%= order.city %></td>
                             <td><%= order.total %></td>
                             <td>

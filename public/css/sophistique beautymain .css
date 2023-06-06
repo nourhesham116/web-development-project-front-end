@@ -209,7 +209,10 @@ a:active {
     column-gap: 0px;
  
   }
- 
+ .pic1,.pic2{
+  height: 620px;
+  width: 600px;
+ }
   div .parent {
     margin: 0;
   }
@@ -322,6 +325,8 @@ a:active {
   .boxes {
     position: relative;
     display: flex;
+    width: 1300px;
+    height: 700px;
   }
  
   div .detail {
@@ -480,12 +485,12 @@ a:active {
   .description {
     background-color: #E8BEAC;
     margin: 60px;
-    width: 40%;
+    
     padding: 20px;
   }
  
   .textalign {
-    padding: 70px;
+    padding: 80px;
     display: block;
     text-align: center;
   }

@@ -3,6 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 const users = require('./models/users');
 const products = require('./models/product');
+const orders = require('./models/orders');
 //const Joi = require('joi');
 const bodyParser =require('body-parser')
 const { check, validationResult } = require('express-validator');
@@ -316,10 +317,54 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+app.post('/PlaceOrder', async (req, res) => {
+  console.log("we are here");
+  const { firstname, lastname, email, addressline, city } = req.body;
+  let total = 0;
+
+  // Calculate the total based on req.session.cart
+  for (let i = 0; i < req.session.cart.length; i++) {
+    total += req.session.cart[i].totalCart;
+  }
+
+  // Create a new instance of the orders schema
+  const newOrder = new orders({
+    firstname,
+    lastname,
+    email,
+    addressline,
+    city,
+    total,
+    items: req.session.cart,
+  });
+
+  // Save the new order to the database
+  try {
+    const result = await newOrder.save();
+    // Order saved successfully
+    // Clear the cart after placing the order
+    req.session.cart = [];
+
+    /* res.render('OrderConfirmation', {
+      order: result,
+      user: req.session.user === undefined ? '' : req.session.user,
+      cart: req.session.cart === undefined ? '' : req.session.cart,
+    }); */
+
+    res.redirect('/Account');
+  } catch (err) {
+    console.log('Error saving order:', err);
+    res.render('ErrorPage', {
+      message: 'An error occurred while placing the order',
+      user: req.session.user === undefined ? '' : req.session.user,
+      cart: req.session.cart === undefined ? '' : req.session.cart,
+    });
+  }
+});
+
 app.use((req, res, next) => {
   res.status(404).render('Error404');
 });
-
 
 
 

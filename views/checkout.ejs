@@ -11,72 +11,55 @@
 </head>
 <body>
     <%- include('./partials/Nav.ejs') %>
-    <p class="title">CHECKOUT</p>
-        <div class="billing">
-        <form action='' id="myform">
-          <p>DELIVERY ADDRESS</p> 
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="firstname" placeholder="John">
-      
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lastname" placeholder="Smith">
-
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="Johnsmith@gmail.com">
-
-          <label for="address">Address Line</label>
-          <input type="text" id="address" name="addressline"  placeholder="New cairo,5th settlment">
-
-          <label for="city">City</label>
-          <input type="text" id="city" name="city" placeholder="cairo,egypt">
-
-      
-          <label for="country">Country</label>
-          <select id="country" name="country">
-            <option value="Egypt">Egypt</option>
-            <option value="Australia">Australia</option>
-            <option value="Kuwait">Kuwait</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-          </select>
-          <br>
-          <br>
-          <button type="button" id="submit">Submit</button>
-          
-        </form>
-      </div> 
-    
-    <div class="summary">
-        <p>BILLING SUMMARY</p>
-        <br>
-
-
-        <form action="billsummary">
-        </form>
-        <hr>
-        <span>
-        <p>Items total</p>
-        <%let total=0;
+    <%let total=0;
          for(let i=0;i<cart.length;i++){
             total=+cart[i].totalCart
          }%>
+    <p class="title">CHECKOUT</p>
+        <div class="billing">
+        <form action='/PlaceOrder' id="myform" method= "post">
+          <p>DELIVERY ADDRESS</p> 
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" value="<%=user.Firstname%>" required>
+      
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" value="<%=user.Lastname%>" required>
+
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" value="<%=user.Email%>" required>
+
+          <label for="address">Address Line</label>
+          <input type="text" id="address" name="addressline"  placeholder="New cairo,5th settlment" required>
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="cairo,egypt">
+          <br>
+          <br>
+        <hr>
+        <span>
+        <p>Items total</p>
+        
        <p class="total">EGP <%=total%></p>
         </span>
         <span>
             <p>Shipping</p>
-            <p class="total2">EGP 343.00</p>
+            <p class="total2">EGP 200.00</p>
         </span>
         <hr>
         <span>
             <p>Total for your order</p>
-            <p class="total3"><em>EGP 1743.00</em></p>
+            <p class="total3"><em><%=total+200%></em></p>
         </span>
         <p class="text">The total amount you pay includes all applicable customs duties & taxes. We guarantee no additional charges on delivery</p>
-
+  <button type="submit" id="submit">Place Order</button>
     </div>
-    <div>
-        <button class="placeorder">PLACE ORDER</button>
-    </div>
+    
+        
+          
+        </form>
+      </div> 
+    
+    
     
     
     <script src="../javascript/checkout.js"></script> 

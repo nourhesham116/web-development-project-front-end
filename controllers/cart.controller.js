@@ -1,12 +1,14 @@
 const Cart = require('../models/cart');
 const addItemToCart = (req, res) => {
     try {
+      
       const cartItem = {
         product: req.body.product,
         quantity: parseInt(req.body.quantity),
         price: req.body.price,
         image: req.body.image,
-        name: req.body.name
+        name: req.body.name,
+        totalCart:0
       };
   
       console.log(cartItem);

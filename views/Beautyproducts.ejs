@@ -22,7 +22,9 @@
     <%- include('./partials/beautynav.ejs') %>
         <%- include('./partials/addtocart.ejs') %>
         <div class="h2">
-            <h2 class="title">SOPHISTIQUÉ</h2>
+          <%  if(productsList[0]!==undefined){%>
+            <h2 class="title">SOPHISTIQUÉ <%= productsList[0].type%></h2>
+            <%}%>
           </div>
         
           <div class="product-grid">

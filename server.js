@@ -161,7 +161,8 @@ app.post('/addadmin-action', async (req, res, next) => {
 
   // const hashPass = await bcrypt.hash(req.body.pass, 10)
 
-  const add = new users({
+  const add = new 
+  ({
     Firstname: req.body.Firstname,
     Lastname:req.body.Lastname,
     Email:req.body.Email,

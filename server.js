@@ -213,6 +213,33 @@ app.post('/bsearch', async (req, res) => {
   }
 });
 
+app.get('/osearch', (req, res) => {
+  res.render('osearch');
+});
+
+app.post('/osearch', async (req, res) => {
+  let payload = req.body.payload.trim();
+  try {
+    let orderSearch = await orders.find({
+      firstname: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    }).exec();
+
+    if (orderSearch) {
+      // Limit search results to 3
+      orderSearch = orderSearch.slice(0, 3);
+      res.send({ payload: orderSearch });
+    } else {
+      // Handle the case when orderSearch is undefined
+      res.send({ payload: [] });
+    }
+  } catch (error) {
+    console.log('Error in search:', error);
+    res.send({ payload: [] });
+  }
+});
+
+
+
 app.get('/sophistiqueBeauty', (req, res) => {
   Product.find({ category: 'BEAUTY' })
     .then(function (productsList) {

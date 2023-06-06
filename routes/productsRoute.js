@@ -353,6 +353,7 @@ router.get('/newplushpuddin', function (req, res, next) {
   });
 });
 
+
 router.get('/allskin', function (req, res, next) {
   Product.find({ category:"SKIN" }).then(function (product) {
     res.render('Skinproducts', {
@@ -415,6 +416,10 @@ router.get('/eyecream', function (req, res, next) {
           })
   });
 });
+
+
 router.get('/productdetail/:id', productController.getProductDetail);
+
+
 
 module.exports = router;

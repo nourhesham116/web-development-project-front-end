@@ -307,6 +307,16 @@ tbody tr td{
     margin-left: 0.06%;  
     width:90%;
     background-color:rgb(255, 255, 255);
-  
-    
+}
+
+#searchResult{
+    font-family:sans-serif;
+    height: fit-content;
+    z-index: 500;
+    position: absolute;
+    display:block;
+    top:15%;
+    margin-left: 0.06%;  
+    width:90%;
+    background-color:rgb(255, 255, 255);
 }

@@ -59,7 +59,7 @@ router.post('/login-action', (req, res) => {
 
 
 
-router.post('/RegisterationForm',
+/*router.post('/RegisterationForm',
   urlencodedParser,
   [
     check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
@@ -72,7 +72,7 @@ router.post('/RegisterationForm',
       .withMessage('Password should contain at least one letter, one number, and one special character'),
   ],
   userController.registerUser
-);
+);*/
 
 
 

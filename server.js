@@ -20,6 +20,7 @@ const bproductsRouter = require("./routes/bproductsRoute.js");
 const admindashboardRouter = require("./routes/admindashboardRoute.js");
 const userRouter = require("./routes/userRoute.js");
 const cartRouter=require("./routes/cartRoute")
+const bcrypt = require('bcrypt');
 const productdetailRouter = require("./routes/productdetailRoute");
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const app = express()
@@ -269,7 +270,38 @@ app.get('/sophistiqueBeauty', (req, res) => {
   });
 })
 
-
+app.post('/Account/RegisterationForm', urlencodedParser, [
+  check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
+  check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
+  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
+  check('password')
+    .exists().withMessage('Password is required')
+    .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/)
+    .withMessage('Password should contain at least one letter, one number, and one special character'),
+  ], async (req, res) => {
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) {
+      const alert = errors.array();
+      res.render('RegisterationForm', { alert,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)});
+    } else {
+      const user = new users({
+        Firstname: req.body.Firstname,
+        Lastname: req.body.Lastname,
+        Email: req.body.email,
+        Password: req.body.password,
+        Type: req.body.type
+      });try {
+        await user.save();
+        res.redirect('/Account');
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
 app.get('/adminlogin', (req, res) => {
   res.render('adminlogin')
 })

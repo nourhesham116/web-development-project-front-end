@@ -310,6 +310,28 @@ app.post('/remusers', async (req, res) => {
 app.get('/bodymoisturizer', (req, res) => {
   res.render('Skinproducts')
 })
+
+
+
+
+app.get('/vieworders', (req, res) => {
+  orders.find()
+    .sort({ createdAt: -1 }) // Sort orders by descending creation date
+    .exec()
+    .then((orders) => {
+      res.render('vieworders', { orders });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect('/');
+    });
+});
+
+module.exports = app;
+
+
+  
+
 app.get('/Error404', (req, res) => {
   res.render('Error404')
 })

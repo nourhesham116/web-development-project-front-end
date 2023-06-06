@@ -83,6 +83,14 @@ router.get('/', function (req, res, next) {
     })
   });
 
+  router.get('/mascaras', function (req, res, next) {
+    Product.find({ type:'mascara'}).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user), cart:(req.session.cart===undefined?"":req.session.cart)
+      })
+    })
+  });
+
   router.get('/concealer', function (req, res, next) {
     Product.find({ type:'concelar'}).then(function (product) {
       res.render('Beautyproducts', {
@@ -129,5 +137,36 @@ router.get('/', function (req, res, next) {
     })
   });
 
+  router.get('/combos', function (req, res, next) {
+    Product.find({ type:'combos'}).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user), cart:(req.session.cart===undefined?"":req.session.cart)
+      })
+    })
+  });
+
+  router.get('/newrare', function (req, res, next) {
+    Product.find({ name: { $regex: /^Rare/i } }).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product,
+        userP: req.session.user,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)
+      });
+    });
+  });
+  
+  router.get('/newfenty', function (req, res, next) {
+    Product.find({ name: { $regex: /^Fenty/i }, category: 'BEAUTY' }).then(function (product) {
+      res.render('Beautyproducts', {
+        productsList: product,
+        userP: req.session.user,
+        user: (req.session.user === undefined ? "" : req.session.user),
+        cart: (req.session.cart === undefined ? "" : req.session.cart)
+      });
+    });
+  });
+  
+  
     
   module.exports = router;

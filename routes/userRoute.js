@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const urlencodedParser =bodyParser.urlencoded({extended: false});
 const User =require("../controllers/User");
+const bcrypt = require('bcrypt');
 
 const { check, validationResult } = require('express-validator');
 
@@ -33,26 +34,34 @@ router.get('/RegisterationForm',(req,res)=>{
     
   res.render('RegisterationForm',{ user: (req.session.user === undefined ? "" : req.session.user) ,cart: (req.session.cart === undefined ? "" : req.session.cart)})
     
+
 });
 router.post('/login-action', (req, res) => {
-  console.log("logged")
-  var query = { Email: req.body.email, Password: req.body.password };
-  users.find(query)
-    .then(result => {
-      if (result.length > 0) {
-        console.log(result[0]);
-        req.session.user = result[0];
-        res.render('myprofile', { userP: result[0], user: (req.session.user === undefined ? "" : req.session.user),cart: (req.session.cart === undefined ? "" : req.session.cart) });
-      }
-      else {
+  console.log("logged");
+  const email = req.body.email;
+  const password = req.body.password;
+
+  users.findOne({ Email: email })
+    .then(async (user) => {
+      if (user) {
+        const isPasswordMatch = await bcrypt.compare(password, user.Password);
+        if (isPasswordMatch) {
+          console.log(user);
+          req.session.user = user;
+          res.render('myprofile', { userP: user, user: (req.session.user === undefined ? "" : req.session.user), cart: (req.session.cart === undefined ? "" : req.session.cart) });
+        } else {
+          // Error message: Invalid email or password
+          res.render('Account', { error: 'Invalid email or password', email: '', password: '' });
+        }
+      } else {
         // Error message: Invalid email or password
-        res.render('Account', { error: 'Invalid email or password', email: req.body.email || '', password: req.body.password || '' });
+        res.render('Account', { error: 'Invalid email or password', email: '', password: '' });
       }
     })
     .catch(err => {
       console.log(err);
       // Error message: An error occurred
-      res.render('Account', { error: 'An error occurred', email: req.body.email || '', password: req.body.password || '' });
+      res.render('Account', { error: 'An error occurred', email: '', password: '' });
     });
 });
 

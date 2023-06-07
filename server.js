@@ -105,11 +105,11 @@ app.set('view engine', 'ejs')
 app.get('/', function(req, res, next) {
   orders.aggregate([
     {
-      $unwind: '$items' // Unwind the `items` array to create a separate document for each item
+      $unwind: '$items' // byfok item array elf kol order
     },
     {
       $group: {
-        _id: '$items.product', // Group by the product field
+        _id: '$items.product', // da elproduct id fl schema
         count: { $sum: 1 } // Count the occurrences of each product
       }
     },
@@ -119,10 +119,10 @@ app.get('/', function(req, res, next) {
       }
     },
     {
-      $limit: 10 // Limit the result to 10 documents
+      $limit: 10 // akssa haga 10
     },
     {
-      $project: {
+      $project: { //by3dl eldocument
         _id: 0, // Exclude the _id field from the result
         product: '$_id', // Rename the _id field to `product`
         count: 1 // Include the count field in the result

@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skincare</title>
     <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="../css/Nav.css">    
+    <link rel="stylesheet" href="../css/Nav.css">   
+    <link rel="stylesheet" href="../public/javascript/addtocartbutton.js">     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="public/javascript/addtocartbutton/appear.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap"
@@ -18,7 +19,9 @@
 
 </head>
 
+
 <body>
+  <script src="../public/javascript/addtocartbutton.js"></script>
     <%- include('./partials/Nav.ejs') %>
         <%- include('./partials/addtocart.ejs') %>
         <div class="h2">
@@ -62,7 +65,7 @@
                     <input type="hidden" name="price" value="<%= product.price %>">
                     <input type="hidden" name="image" value="/imgs/uploads/<%= product.image1%>">
                     <input type="number" name="quantity" value="1" hidden>
-                    <span class="addtobag"><button id="add-to-bag" type="submit">ADD TO BAG</button></span>
+                    <span class="addtobag"><button id="add-to-bag" type="submit" >ADD TO BAG</button></span>
                   </form>
                 <% } else if (userP.Type == "admin") { %>
                 <span class=""><a href="/admindashboard/editproduct/<%= product._id %>">Edit</a></span>
@@ -96,15 +99,21 @@
             <a href="?page=<%= currentPage + 1 %>">Next</a>
             <% } %>
           </div>
-        </body>
+        
+        
         <script>
-          // JavaScript
-          const addToCartButton = document.getElementById('add-to-bag');
-          addToCartButton.addEventListener('click', () => {
-            // Perform the logic to add the item to the cart
-            appear();
-            // Show the cart container
-            
-          });
+
+const urlParams = new URLSearchParams(window.location.search);
+const message = urlParams.get('message');
+
+if (message === 'Item added to cart') {
+  // Item added successfully, invoke the appear function
+  console.log("function is called");
+  appear();
+} else if (message) {
+  console.error('Error adding item to cart:', message);
+}
+history.replaceState(null, '', window.location.pathname);//bnfady elquery parameter     
         </script>
+</body>
         </html>

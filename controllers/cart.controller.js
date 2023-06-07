@@ -24,7 +24,9 @@ const addItemToCart = (req, res) => {
         req.session.cart.push(cartItem);
       }
       const currentUrl = req.headers.referer;
-      res.redirect(currentUrl);
+const redirectUrl = `${currentUrl}?message=Item added to cart`;
+res.redirect(redirectUrl);
+      
     } catch (error) {
       console.error('Error adding to cart:', error);
       res.status(500).send('Error adding to cart');

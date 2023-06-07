@@ -103,19 +103,43 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', './views')
 app.set('view engine', 'ejs')
 app.get('', (req, res) => {
-  Product.find({ category: 'SKIN' })
-  .then(function (productsList) {
-    // Render the index template with the product list
-    res.render('index', {
-      productsList: productsList,
-      user: (req.session.user === undefined ? "" : req.session.user),
-      cart: (req.session.cart === undefined ? "" : req.session.cart)
+  const topProductCount = 4;
+
+  orders.aggregate([
+    { $unwind: '$items' },
+    {
+      $group: {
+        _id: '$items.productId',
+        orderCount: { $sum: 1 },
+      },
+    },
+    {
+      $sort: { orderCount: -1 },
+    },
+    {
+      $limit: topProductCount,
+    },
+  ])
+    .then((topProducts) => {
+      const topProductIds = topProducts.map((product) => product._id);
+
+      Product.find({ _id: { $in: topProductIds } })
+        .then((products) => {
+          res.render('index', {
+            topProducts: topProducts,
+            user: (req.session.user === undefined ? '' : req.session.user),
+            cart: (req.session.cart === undefined ? '' : req.session.cart),
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(500).send('An error occurred');
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send('An error occurred');
     });
-  })
-  .catch(function (error) {
-    console.log(error);
-    res.status(500).send('An error occurred');
-  });
 })
 
 app.get('/index', (req, res) => {
@@ -160,16 +184,40 @@ app.get('/index', (req, res) => {
 
 app.get('/', (req, res) => {
   // Retrieve the products with the category "SKIN"
-  Product.find({ category: 'SKIN' })
-    .then(function (productsList) {
-      // Render the index template with the product list
-      res.render('index', {
-        productsList: productsList,
-        user: (req.session.user === undefined ? "" : req.session.user),
-        cart: (req.session.cart === undefined ? "" : req.session.cart)
-      });
+  const topProductCount = 4;
+
+  orders.aggregate([
+    { $unwind: '$items' },
+    {
+      $group: {
+        _id: '$items.productId',
+        orderCount: { $sum: 1 },
+      },
+    },
+    {
+      $sort: { orderCount: -1 },
+    },
+    {
+      $limit: topProductCount,
+    },
+  ])
+    .then((topProducts) => {
+      const topProductIds = topProducts.map((product) => product._id);
+
+      Product.find({ _id: { $in: topProductIds } })
+        .then((products) => {
+          res.render('index', {
+            topProducts: topProducts,
+            user: (req.session.user === undefined ? '' : req.session.user),
+            cart: (req.session.cart === undefined ? '' : req.session.cart),
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(500).send('An error occurred');
+        });
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
       res.status(500).send('An error occurred');
     });

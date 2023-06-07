@@ -21,7 +21,7 @@
         <%- include('./partials/addtocart.ejs') %>
 
             <div>
-                <a href='productdetail'><img id="big-melt-image"
+                <a href='#'><img id="big-melt-image"
                         src="../imgs/FS366458-FS-Melt-Awf-Launch_HP_Takeover_Hero_Desktop_1400x.webp" width="100%"
                         height="675px"></a>
                 <a href=""><img id="small-melt-image" src="../imgs/ pic 728px.webp" width="100%" height="675px"></a>
@@ -57,35 +57,49 @@
             <br>
 
             <!-- start slider down here-->
-           
-                <div class="product">
+            
+                <div class="product1">
                     <button class="pre-btn">
-                      <img src="../imgs/arrow.png">
+                        <img src="../imgs/arrow.png">
                     </button>
                     <button class="nxt-btn">
-                      <img src="../imgs/arrow.png">
+                        <img src="../imgs/arrow.png">
                     </button>
-                    <div class="product-container">
-                      <% topProducts.forEach((product, index) => { %>
-                        <!-- Render each top product -->
-                        <div class="product-card" id="product<%= index %>">
-                          <!-- Product details -->
-                          <div class="product-info">
-                            <p class="product-short-description">
-                              <%= product._id %> <!-- Display the product ID -->
-                              <a href="#" class="price">$<%= product.orderCount %></a> <!-- Display the order count as the price -->
-                            </p>
-                          </div>
-                        </div>
-                      <% }); %>
-                    </div>
-                  </div>
-                  <script src="../javascript/SliderScript.js"></script>
-                  <div>
-                    <%-include('./partials/footer.ejs') %>
-                  </div>
-                  
-            
-</body>
+                    <P>TOP SELLING PRODUCTS</P>
+                    <div class="product-container1">
+                        <% products.forEach((product, index) => { %>
+                           
+                                <div class="product-card" id="product<%= index %>">
+                                    <div class="product-image">
+                                        <span class="discount-tag">50% OFF</span>
+                                        <img src="../imgs/uploads/<%= product.image1 %>" class="product-thumb" alt>
+                                        <form action="/addtocart/add" method="post">
+                                            <input type="hidden" name="product" value="<%= product._id %>">
+                                            <input type="hidden" name="name" value="<%= product.name %>">
+                                            <input type="hidden" name="price" value="<%= product.price %>">
+                                            <input type="hidden" name="image" value="/imgs/uploads/<%= product.image1%>">
+                                            <input type="number" name="quantity" value="1" hidden>
+                                           <button class="card-btn" type="submit">ADD TO CART</button>
+                                          </form>
+                                        <!-- <button class="card-btn">add to cart</button> -->
 
+                                    </div>
+                                    <div class="product-info">
+                                        <p class="product-short-description">
+                                            <%= product.description %>
+                                            <a href="#" class="price">$‌47.00</a>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                           
+                        <% }); %>
+                    </div>
+                </div>
+                <script src="../javascript/SliderScript.js"></script>
+             
+         
+               <%- include('./partials/footer.ejs') %>
+            
+              </body>
 </html>

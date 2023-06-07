@@ -102,127 +102,150 @@ app.use(express.urlencoded({ extended: true }));
 /////////////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
-app.get('', (req, res) => {
-  const topProductCount = 4;
-
+app.get('/', function(req, res, next) {
   orders.aggregate([
-    { $unwind: '$items' },
+    {
+      $unwind: '$items' // Unwind the `items` array to create a separate document for each item
+    },
     {
       $group: {
-        _id: '$items.productId',
-        orderCount: { $sum: 1 },
-      },
+        _id: '$items.product', // Group by the product field
+        count: { $sum: 1 } // Count the occurrences of each product
+      }
     },
     {
-      $sort: { orderCount: -1 },
+      $sort: {
+        count: -1 // Sort by count in descending order
+      }
     },
     {
-      $limit: topProductCount,
+      $limit: 10 // Limit the result to 10 documents
     },
+    {
+      $project: {
+        _id: 0, // Exclude the _id field from the result
+        product: '$_id', // Rename the _id field to `product`
+        count: 1 // Include the count field in the result
+      }
+    }
   ])
-    .then((topProducts) => {
-      const topProductIds = topProducts.map((product) => product._id);
-
-      Product.find({ _id: { $in: topProductIds } })
-        .then((products) => {
+    .then(result => {
+      const topProductIDs = result.map(item => item.product);
+      Product.find({ _id: { $in: topProductIDs } }) // Fetch the products based on the IDs
+        .then(products => {
           res.render('index', {
-            topProducts: topProducts,
-            user: (req.session.user === undefined ? '' : req.session.user),
-            cart: (req.session.cart === undefined ? '' : req.session.cart),
+            products: products,
+            userP: req.session.user,
+            user: req.session.user ? req.session.user : "",
+            cart: req.session.cart === undefined ? "" : req.session.cart
           });
         })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send('An error occurred');
+        .catch(error => {
+          console.error('Error fetching products:', error);
+          res.status(500).send('Error fetching products');
         });
     })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send('An error occurred');
-    });
-})
-
-app.get('/index', (req, res) => {
-  const topProductCount = 4;
-
-  orders.aggregate([
-    { $unwind: '$items' },
-    {
-      $group: {
-        _id: '$items.productId',
-        orderCount: { $sum: 1 },
-      },
-    },
-    {
-      $sort: { orderCount: -1 },
-    },
-    {
-      $limit: topProductCount,
-    },
-  ])
-    .then((topProducts) => {
-      const topProductIds = topProducts.map((product) => product._id);
-
-      Product.find({ _id: { $in: topProductIds } })
-        .then((products) => {
-          res.render('index', {
-            topProducts: topProducts,
-            user: (req.session.user === undefined ? '' : req.session.user),
-            cart: (req.session.cart === undefined ? '' : req.session.cart),
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send('An error occurred');
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send('An error occurred');
+    .catch(error => {
+      console.error('Error retrieving top product IDs:', error);
+      res.status(500).send('Error retrieving top product IDs');
     });
 });
-
-app.get('/', (req, res) => {
-  // Retrieve the products with the category "SKIN"
-  const topProductCount = 4;
-
+app.get('/', function(req, res, next) {
   orders.aggregate([
-    { $unwind: '$items' },
+    {
+      $unwind: '$items' // Unwind the `items` array to create a separate document for each item
+    },
     {
       $group: {
-        _id: '$items.productId',
-        orderCount: { $sum: 1 },
-      },
+        _id: '$items.product', // Group by the product field
+        count: { $sum: 1 } // Count the occurrences of each product
+      }
     },
     {
-      $sort: { orderCount: -1 },
+      $sort: {
+        count: -1 // Sort by count in descending order
+      }
     },
     {
-      $limit: topProductCount,
+      $limit: 10 // Limit the result to 10 documents
     },
+    {
+      $project: {
+        _id: 0, // Exclude the _id field from the result
+        product: '$_id', // Rename the _id field to `product`
+        count: 1 // Include the count field in the result
+      }
+    }
   ])
-    .then((topProducts) => {
-      const topProductIds = topProducts.map((product) => product._id);
-
-      Product.find({ _id: { $in: topProductIds } })
-        .then((products) => {
+    .then(result => {
+      const topProductIDs = result.map(item => item.product);
+      Product.find({ _id: { $in: topProductIDs } }) // Fetch the products based on the IDs
+        .then(products => {
           res.render('index', {
-            topProducts: topProducts,
-            user: (req.session.user === undefined ? '' : req.session.user),
-            cart: (req.session.cart === undefined ? '' : req.session.cart),
+            products: products,
+            userP: req.session.user,
+            user: req.session.user ? req.session.user : "",
+            cart: req.session.cart === undefined ? "" : req.session.cart
           });
         })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send('An error occurred');
+        .catch(error => {
+          console.error('Error fetching products:', error);
+          res.status(500).send('Error fetching products');
         });
     })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send('An error occurred');
+    .catch(error => {
+      console.error('Error retrieving top product IDs:', error);
+      res.status(500).send('Error retrieving top product IDs');
     });
 });
-
+app.get('/index', function(req, res, next) {
+  orders.aggregate([
+    {
+      $unwind: '$items' // Unwind the `items` array to create a separate document for each item
+    },
+    {
+      $group: {
+        _id: '$items.product', // Group by the product field
+        count: { $sum: 1 } // Count the occurrences of each product
+      }
+    },
+    {
+      $sort: {
+        count: -1 // Sort by count in descending order
+      }
+    },
+    {
+      $limit: 10 // Limit the result to 10 documents
+    },
+    {
+      $project: {
+        _id: 0, // Exclude the _id field from the result
+        product: '$_id', // Rename the _id field to `product`
+        count: 1 // Include the count field in the result
+      }
+    }
+  ])
+    .then(result => {
+      const topProductIDs = result.map(item => item.product);
+      Product.find({ _id: { $in: topProductIDs } }) // Fetch the products based on the IDs
+        .then(products => {
+          res.render('index', {
+            products: products,
+            userP: req.session.user,
+            user: req.session.user ? req.session.user : "",
+            cart: req.session.cart === undefined ? "" : req.session.cart
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching products:', error);
+          res.status(500).send('Error fetching products');
+        });
+    })
+    .catch(error => {
+      console.error('Error retrieving top product IDs:', error);
+      res.status(500).send('Error retrieving top product IDs');
+    });
+});
 
 app.use('/Skinproducts',productsRouter);
 app.use('/Beautyproducts', bproductsRouter);
@@ -507,11 +530,7 @@ app.post('/PlaceOrder', async (req, res) => {
     // Clear the cart after placing the order
     req.session.cart = [];
 
-    /* res.render('OrderConfirmation', {
-      order: result,
-      user: req.session.user === undefined ? '' : req.session.user,
-      cart: req.session.cart === undefined ? '' : req.session.cart,
-    }); */
+    
 
     res.redirect('/Account');
   } catch (err) {

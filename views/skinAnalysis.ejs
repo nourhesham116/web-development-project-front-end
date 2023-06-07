@@ -45,41 +45,28 @@
 
     const input = document.createElement('input');
     input.type = 'text';
-    if (key === 'left_eyelids'||key==="right_eyelids") {
-      if(value.right_eyelids==0||value.left_eyelids==0){
-        input.value = "single fold eyelid"
-      }
-      if(value.right_eyelids==1||value.left_eyelids==1){
-        input.value = "parallel double-fold eyelid"
-      }
-      if(value.right_eyelids==2||value.left_eyelids==2){
-        input.value = "	fanshaped double-fold eyelid"
-      }
-      
-    }
+
     if (key === 'skin_type') {
       // Special handling for skin_type result
-      if(value.skin_type==0){
-      input.value = "oily skin";
+      if (value.skin_type == 0) {
+        input.value = "oily skin";
+        recommendProduct("Product A","Skinproducts/productdetail/64773fee50b94af291854bcc"); // Recommendation for oily skin
+      } else if (value.skin_type == 1) {
+        input.value = "dry skin";
+        recommendProduct("Product B"); // Recommendation for dry skin
+      } else if (value.skin_type == 2) {
+        input.value = "normal skin";
+        recommendProduct("Product C","Skinproducts/productdetail/64772b6807828b6a86a64633" ); // Recommendation for normal skin
+      } else if (value.skin_type == 3) {
+        input.value = "mixed skin";
+        recommendProduct("Product D"); // Recommendation for mixed skin
       }
-      if(value.skin_type==1){
-      input.value = "dry skin";
-      }
-      if(value.skin_type==2){
-      input.value = "normal skin";
-      }
-      if(value.skin_type==3){
-      input.value = "mixed skin";
-      }
-      
     } else {
-      if(value.value==1){
-        input.value ="Yes";
+      if (value.value == 1) {
+        input.value = "Yes";
+      } else {
+        input.value = "No";
       }
-      else{
-       input.value="No"
-      }
-     
     }
 
     resultRow.appendChild(label);
@@ -89,6 +76,22 @@
   }
 
   document.getElementById('resultsContainer').style.display = 'block';
+}
+
+// Function to make a product recommendation based on skin type
+function recommendProduct(product,productLink) {
+  const recommendationContainer = document.createElement('div');
+  recommendationContainer.id = 'recommendationContainer';
+  if(product=="Product C"){
+  recommendationContainer.innerHTML = '<h3>Product Recommendation</h3>' +
+                                      '<p>We recommend using <a href="' + productLink + '">' +"Fenty total facial cleanser" + '</a> for your skin type.</p>';
+  }
+  if(product=="Product A"){
+  recommendationContainer.innerHTML = '<h3>Product Recommendation</h3>' +
+                                      '<p>We recommend using <a href="' + productLink + '">' +"Fenty Niacinimide toner" + '</a> for your skin type.</p>';
+  }
+  const analysisResultsContainer = document.getElementById('analysisResults');
+  analysisResultsContainer.appendChild(recommendationContainer);
 }
 
     // Handle form submission

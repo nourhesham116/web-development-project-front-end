@@ -27,10 +27,10 @@ router.post('/user/checkem', (req, res) => {
     .then((result) => {
       if (result) {
         // Email is taken
-        res.send('already has an account');
+        res.send('This Email already has an account');
       } else {
         // Email is available
-        res.send('available');
+        res.send();
       }
     })
     .catch((err) => {

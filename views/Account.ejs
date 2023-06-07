@@ -11,12 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <title> Account</title>
-   
+    <title>Account</title>
 </head>
-
+<style>
+    .error {
+      border-color: red;
+    }
+    
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+  
 <body>
-    <%- include('./partials/Nav.ejs') %>
+    <% include('./partials/Nav.ejs') %>
     <br>
     <div class="small-header">
         Home /
@@ -36,7 +46,7 @@
                     If you haven’t logged in recently and are having trouble,
                     please reset your password to login.</p>
             </h2>
-            <button class="acc-buttons"><a href="/Account/forgot-password"> RESET PASSWORD</a></button>
+            <button class="acc-buttons"><a href="/Account/forgot-password">RESET PASSWORD</a></button>
         </div>
         <div class="square2">
             <h2 class="h3-title-bold-uppercase">
@@ -48,57 +58,49 @@
                     your Pro Filt'r # to your profile and
                     more.
                 </p>
-                <form action="/Account/login-action" method="post">
+                <form action="/Account/login-action" method="post" id="loginForm">
                     <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<%= typeof email !== 'undefined' ? email : '' %>">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<%= typeof email !== 'undefined' ? email : '' %>">
+                        <span class="error-message" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<%= typeof password !== 'undefined' ? password : '' %>">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<%= typeof password !== 'undefined' ? password : '' %>">
+                        <span class="error-message" id="passwordError"></span>
                     </div>
-                  
+
                     <% if (typeof error !== 'undefined' && error && error !== 'An error occurred') { %>
-                      <div class="alert alert-danger" role="alert" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 10px; border-radius: 3px; font-size: 14px;">
-                        <%= error %>
-                      </div>
+                        <div class="alert alert-danger" role="alert" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 10px; border-radius: 3px; font-size: 14px;">
+                            <%= error %>
+                        </div>
                     <% } %>
-                  
-                    <input type="submit" name="submit" value="SIGN-IN" >
-                  </form>
-                  
-                  
+
+                    <input type="submit" name="submit" value="SIGN-IN">
+                </form>
             </h2>
-            
         </div>
         <div class="square3">
             <h2 class="h3-title-bold-uppercase">
                 CREATE ACCOUNT
                 <h3 class="subtitle">
                     GET YOUR FAVES FASTER
-                   
                 <p class="sq1-small-writing">
-                    
-                Save your order information to make checkout a breeze.
+                    Save your order information to make checkout a breeze.
                 </p>
-
-                  </h3>
-                  <h3 class="subtitle">
+                </h3>
+                <h3 class="subtitle">
                     EXCLUSIVE OFFERS + INFO
-                   
                 <p class="sq1-small-writing">
-                    
                     Sign up to stay posted on hyper-limited offers,
-                     online-only product drops, in-store events,
-                      and—as true Fenty and Rhode ,
-                      personal beauty tips from Rihanna herself.
+                    online-only product drops, in-store events,
+                    and—as true Fenty and Rhode,
+                    personal beauty tips from Rihanna herself.
                 </p>
-
-                  </h3>
-                  
+                </h3>
             </h2>
             <br>
-           <a href="/Account/RegisterationForm"> <button class="acc-buttons" > CREATE ACCOUNT</button></a>
+            <a href="/Account/RegisterationForm"><button class="acc-buttons">CREATE ACCOUNT</button></a>
         </div>
     </div>
     <div class="square4">
@@ -106,12 +108,40 @@
             CHECK YOUR ORDER STATUS
             <p class="sq1-small-writing">
                 To check your order status, you may
-                 SIGN IN, CREATE ACCOUNT, or click
-                  the links found in your order confirmation 
-                  or shipping notification emails.</p>
+                SIGN IN, CREATE ACCOUNT, or click
+                the links found in your order confirmation
+                or shipping notification emails.
+            </p>
         </h2>
     </div>
-    
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var errors = false;
+
+            if (email === '') {
+                emailError.innerText = 'This field is required';
+                errors = true;
+            } else {
+                emailError.innerText = '';
+            }
+
+            if (password === '') {
+                passwordError.innerText = 'This field is required';
+                errors = true;
+            } else {
+                passwordError.innerText = '';
+            }
+
+            if (errors) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -93,10 +93,10 @@
       contentType: 'application/json',
       data: JSON.stringify({ Email: data }),
       success: function (response) {
-        $('#errormails').html('Email  ' + response);
+        $('#errormails').html('' + response);
 
         if (response == 'taken') {
-          $('#errormails').css("color", "red");
+          $('#errormails').css("color", "pink");
         } else if (response == 'available') {
           $('#errormails').css("color", "green");
         }
@@ -109,7 +109,7 @@
 });
 
     /////////////////////////////////
-    /*$(document).ready(function() {
+    $(document).ready(function() {
   const firstnameInput = $('#firstnameInput');
   const lastnameInput = $('#lastnameInput');
   const emailInput = $('#emailInput');
@@ -243,7 +243,7 @@
       requirementsList.empty();
     }
   }
-});*/
+});
   </script>
 </body>
 </html>

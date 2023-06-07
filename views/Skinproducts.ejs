@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/Nav.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="public/javascript/addtocartbutton/appear.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Space+Grotesk:wght@300&display=swap"
@@ -96,5 +97,14 @@
             <% } %>
           </div>
         </body>
-        
+        <script>
+          // JavaScript
+          const addToCartButton = document.getElementById('add-to-bag');
+          addToCartButton.addEventListener('click', () => {
+            // Perform the logic to add the item to the cart
+            appear();
+            // Show the cart container
+            
+          });
+        </script>
         </html>

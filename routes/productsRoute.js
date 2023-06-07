@@ -355,65 +355,150 @@ router.get('/newplushpuddin', function (req, res, next) {
 
 
 router.get('/allskin', function (req, res, next) {
-  Product.find({ category:"SKIN" }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product, userP: req.session.user, user: (req.session.user === undefined ? "" : req.session.user)
-          })
+  const page = parseInt(req.query.page) || 1; // Get the current page from the query parameters
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; // Calculate the number of items to skip
+
+  // Use the `countDocuments` method to get the total count of products matching the filter
+  Product.countDocuments({ category: "SKIN" }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ category: "SKIN" })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 router.get('/facecleanser', function (req, res, next) {
-  Product.find({ type: 'face cleanser' }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product,
-             userP: req.session.user,
-              user: (req.session.user === undefined ? "" : req.session.user),
-              cart:(req.session.cart===undefined?"":req.session.cart)
-          })
+  const page = parseInt(req.query.page) || 1; // Get the current page from the query parameters
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; // Calculate the number of items to skip
+
+  // Use the `countDocuments` method to get the total count of products matching the filter
+  Product.countDocuments({ type: 'face cleanser' }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ type: 'face cleanser' })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 
 router.get('/toner', function (req, res, next) {
-  Product.find({ type: 'toner' }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product,
-             userP: req.session.user,
-              user: (req.session.user === undefined ? "" : req.session.user),
-              cart:(req.session.cart===undefined?"":req.session.cart)
-          })
+  const page = parseInt(req.query.page) || 1; // Get the current page from the query parameters
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; // Calculate the number of items to skip
+
+  // Use the `countDocuments` method to get the total count of products matching the filter
+  Product.countDocuments({ type: 'toner' }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ type: 'toner' })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 
 router.get('/lipcare', function (req, res, next) {
-  Product.find({ type: 'lip care' }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product,
-             userP: req.session.user,
-              user: (req.session.user === undefined ? "" : req.session.user),
-              cart:(req.session.cart===undefined?"":req.session.cart)
-          })
+  const page = parseInt(req.query.page) || 1; // Get the current page from the query parameters
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; // Calculate the number of items to skip
+
+  // Use the `countDocuments` method to get the total count of products matching the filter
+  Product.countDocuments({ type: 'lip care' }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ type: 'lip care' })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 
 router.get('/masks', function (req, res, next) {
-  Product.find({ type: 'mask and treatment' }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product,
-             userP: req.session.user, 
-             user: (req.session.user === undefined ? "" : req.session.user),
-             cart:(req.session.cart===undefined?"":req.session.cart)
-          })
+  const page = parseInt(req.query.page) || 1; 
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; 
+  Product.countDocuments({ type: 'mask and treatment' }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ type: 'mask and treatment' })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 
 
 router.get('/eyecream', function (req, res, next) {
-  Product.find({ type: 'eye cream' }).then(function (product) {
-    res.render('Skinproducts', {
-            productsList: product,
-             userP: req.session.user,
-              user: (req.session.user === undefined ? "" : req.session.user),
-              cart:(req.session.cart===undefined?"":req.session.cart)
-          })
+  const page = parseInt(req.query.page) || 1; // Get the current page from the query parameters
+  const skipItems = (page - 1) * ITEMS_PER_PAGE; // Calculate the number of items to skip
+
+  // Use the `countDocuments` method to get the total count of products matching the filter
+  Product.countDocuments({ type: 'eye cream' }).then(function (totalProducts) {
+    // Use the `find` method with pagination parameters to fetch the products
+    Product.find({ type: 'eye cream' })
+      .skip(skipItems)
+      .limit(ITEMS_PER_PAGE)
+      .then(function (products) {
+        const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE); // Calculate the total number of pages
+
+        res.render('Skinproducts', {
+          productsList: products,
+          userP: req.session.user,
+          user: req.session.user ? req.session.user : "",
+          currentPage: page,
+          totalPages: totalPages,
+          cart: req.session.cart || "" // Pass the cart data from the session or an empty string if it's undefined
+        });
+      });
   });
 });
 

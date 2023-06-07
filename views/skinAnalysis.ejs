@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="../css/analysis.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Skin Analysis</title>
   <style>
     .form-row {
@@ -13,6 +13,7 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+  <%- include('./partials/Nav.ejs') %>
   <h1>Skin Analysis</h1>
 
   <form id="skinAnalysisForm">
@@ -44,14 +45,41 @@
 
     const input = document.createElement('input');
     input.type = 'text';
-
+    if (key === 'left_eyelids'||key==="right_eyelids") {
+      if(value.right_eyelids==0||value.left_eyelids==0){
+        input.value = "single fold eyelid"
+      }
+      if(value.right_eyelids==1||value.left_eyelids==1){
+        input.value = "parallel double-fold eyelid"
+      }
+      if(value.right_eyelids==2||value.left_eyelids==2){
+        input.value = "	fanshaped double-fold eyelid"
+      }
+      
+    }
     if (key === 'skin_type') {
       // Special handling for skin_type result
-      input.value = value.skin_type;
+      if(value.skin_type==0){
+      input.value = "oily skin";
+      }
+      if(value.skin_type==1){
+      input.value = "dry skin";
+      }
+      if(value.skin_type==2){
+      input.value = "normal skin";
+      }
+      if(value.skin_type==3){
+      input.value = "mixed skin";
+      }
       
     } else {
-      input.value = value.value;
-      input.readOnly = true;
+      if(value.value==1){
+        input.value ="Yes";
+      }
+      else{
+       input.value="No"
+      }
+     
     }
 
     resultRow.appendChild(label);

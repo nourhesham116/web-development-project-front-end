@@ -394,10 +394,14 @@ app.get('/sophistiqueBeauty', (req, res) => {
   });
 })
 
+
 app.post('/Account/RegisterationForm', urlencodedParser, [
   check('Firstname', 'Firstname should contain min 3 characters').exists().isLength({ min: 3 }),
   check('Lastname', 'Lastname should contain min 3 characters').exists().isLength({ min: 3 }),
-  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email'),
+  check('email').exists().withMessage('Email is required').isEmail().withMessage('Invalid email').custom(async (email) => {
+    const emailInUse = await users.isThisEmailInUse(email);
+    if (!emailInUse) throw new Error('Email already taken');
+  }),
   check('password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password should contain at least 6 characters')
@@ -408,9 +412,9 @@ app.post('/Account/RegisterationForm', urlencodedParser, [
   const query = { "Email": req.body.email };
   try {
     const result = await users.find(query);
-    if (result.length > 0) {
-      res.send('taken');
-    } else if (!errors.isEmpty()) {
+    
+
+    if (!errors.isEmpty()) {
       const alert = errors.array();
       res.render('RegisterationForm', {
         alert,
@@ -418,15 +422,24 @@ app.post('/Account/RegisterationForm', urlencodedParser, [
         cart: req.session.cart === undefined ? "" : req.session.cart
       });
     } else {
-      const user = new users({
-        Firstname: req.body.Firstname,
-        Lastname: req.body.Lastname,
-        Email: req.body.email,
-        Password: req.body.password,
-        Type: req.body.type
-      });
-      await user.save();
-      res.redirect('/Account');
+      const emailInUse = await users.isThisEmailInUse(req.body.email);
+      if (emailInUse) {
+        const user = new users({
+          Firstname: req.body.Firstname,
+          Lastname: req.body.Lastname,
+          Email: req.body.email,
+          Password: req.body.password,
+          Type: req.body.type
+        });
+        await user.save();
+        res.redirect('/Account');
+      } else {
+        const alert = [{ msg: 'Email already taken' }];
+        res.render('RegisterationForm', {
+          alert,
+          emailError: errors.mapped().email ? errors.mapped().email.msg : ''
+        });
+      }
     }
   } catch (err) {
     console.log(err);

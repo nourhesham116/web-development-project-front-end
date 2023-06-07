@@ -27,6 +27,20 @@ const userSchema = new Schema({
 }, { timestamps: true });
 
 
+userSchema.statics.isThisEmailInUse = async function (email) {
+  if (!email) throw new Error('Invalid email');
+
+  try {
+    const user = await this.findOne({ Email: email });
+    if (user) return false;
+
+    return true;
+  } catch (error) {
+    console.log('Error inside isThisEmailInUse method', error.message);
+    return false;
+  }
+}
+//////////////////////////////////////////////////////////
 userSchema.pre('save', async function (next) {
   try {
     // Check if the password is modified or new
